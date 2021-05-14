@@ -1,0 +1,37 @@
+#logo{
+    max-width: 100%;
+    height: auto;
+    padding-left: 25%; 
+    padding-right: 1%;
+}
+
+header {
+    background-color: #422da3;
+}
+
+.title{
+    color: white;
+    font-size: 21pt;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#title-description{
+    font-size: 13pt;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+li{
+    font-size: 15pt;
+    /* padding-right: 4%; */
+}
+
+#design-block {
+    background-image: linear-gradient( #422da3, white);
+    max-width: 100%;
+    height: 4vh;
+}
+
+#navbarContent{
+    padding-right: 1.5%;
+}

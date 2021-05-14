@@ -1,0 +1,86 @@
+<header>
+    <div class="flex-container">
+        <nav class="navbar navbar-expand-md navbar-light">
+            
+            <span class="navbar-brand">
+                <a [routerLink]="['/']">
+                    <img src="../../../assets/originalLogoHeader.jpg" id="logo">
+                </a>
+            </span>
+                
+            <a [routerLink]="['/']">
+                <div class="title">
+                    House of Worship 
+                    <p id="title-description">
+                        Prayer Line Altar
+                    </p>
+                </div>
+            </a>
+
+            <button class="navbar-toggler" type="button" aria-controls="navbarContent" [attr.aria-expanded]="collapsed"
+                aria-label="Toggle navigation" (click)="collapse()">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" ngbDropdown>
+                        <a class="nav-link" a [routerLink]="['/']" routerLinkActive="router-link-active" style="color:white" role="button" (click)="collapse()">
+                            Home  
+                        </a>
+                    </li>
+
+                    <li class="nav-item" ngbDropdown>
+                        <a class="nav-link" a [routerLink]="['/mission']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
+                            Mission  
+                        </a>
+                    </li>
+
+                    <li class="nav-item" ngbDropdown>
+                        <a class="nav-link" a [routerLink]="['/services']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
+                            Services  
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown" ngbDropdown id="infoDropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" style="color: white" aria-haspopup="true" aria-expanded="false">Testimonials</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" a [routerLink]="['/testimonials']" (click)="collapse()">View Testimonials</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" a [routerLink]="['/add-testimonial']"(click)="collapse()">Share Testimonial</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown" ngbDropdown id="infoDropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" style="color: white" aria-haspopup="true" aria-expanded="false">Prayers</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" a [routerLink]="['/view-prayer-requests']"(click)="collapse()">Pray for Others</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" a [routerLink]="['/prayer-request']"(click)="collapse()">Request a Prayer</a>
+                        </div>
+                    </li>
+                    
+                    <li class="nav-item" ngbDropdown placement="bottom-right">
+                        <a class="nav-link" a [routerLink]="['/contact']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
+                            Contact  
+                        </a> 
+                    </li>
+
+                    <li class="nav-item" ngbDropdown>
+                        <a class="nav-link" a [routerLink]="['/support']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
+                            Support  
+                        </a>
+                    </li>
+
+                    <li *ngIf="pastorLoggedIn" class="nav-item" ngbDropdown>
+                        <a class="nav-link" a [routerLink]="['/pastor-login']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="logOut()">
+                            Log Out  
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div id="design-block"></div>
+    </div>
+</header>
