@@ -11,6 +11,7 @@ export class HeaderComponent implements OnInit {
   collapsed: boolean = true;
   pastorLoggedIn: boolean;
   subscription: Subscription;
+  userLoggedIn: boolean;
 
   constructor(private authService:AuthenticationService) {}
   ngOnDestroy(): void {

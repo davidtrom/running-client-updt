@@ -6,18 +6,18 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private isPastorLoggedIn$: BehaviorSubject<boolean>;
+  private isUserLoggedIn$: BehaviorSubject<boolean>;
 
   constructor(private http: HttpClient) {
-    this.isPastorLoggedIn$ = new BehaviorSubject<boolean>(false);
+    this.isUserLoggedIn$ = new BehaviorSubject<boolean>(false);
    }
 
   setUserLoggedIn(status:boolean) {
-    this.isPastorLoggedIn$.next(status);
+    this.isUserLoggedIn$.next(status);
   }
 
   getLoginStatus(): Observable<boolean> {
-    return this.isPastorLoggedIn$;
+    return this.isUserLoggedIn$;
   }
   
   logOut() {
