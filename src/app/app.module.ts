@@ -10,6 +10,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { HeaderComponent } from './Components/header/header.component';
 import { FooterComponent } from './Components/footer/footer.component';
+import { PersonalRecordsComponent } from './Components/personal-records/personal-records.component';
+import { UpcomingRacesComponent } from './Components/upcoming-races/upcoming-races.component';
+import { SupplyListComponent } from './Components/supply-list/supply-list.component';
+import { ContactComponent } from './Components/contact/contact.component';
+import { RaceShoesComponent } from './Components/race-shoes/race-shoes.component';
 
 
 @NgModule({
@@ -18,7 +23,12 @@ import { FooterComponent } from './Components/footer/footer.component';
     LoginComponent,
     AboutComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    PersonalRecordsComponent,
+    UpcomingRacesComponent,
+    SupplyListComponent,
+    ContactComponent,
+    RaceShoesComponent
   ],
   imports: [
     BrowserModule,

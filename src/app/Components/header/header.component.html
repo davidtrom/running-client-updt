@@ -13,29 +13,23 @@
                 </a> -->
             </span>
 
-        </div>
+        
                 
             
 
-            <button class="navbar-toggler" type="button" aria-controls="navbarContent" [attr.aria-expanded]="collapsed"
+            <!-- <button class="navbar-toggler" type="button" aria-controls="navbarContent" [attr.aria-expanded]="collapsed"
                 aria-label="Toggle navigation" (click)="collapse()">
                 <span class="navbar-toggler-icon"></span>
-            </button>
+            </button> -->
 
             
 
         <!-- <div id="design-block"> -->
-            <div class = "aligner">
+            <span class = "aligner">
             <nav class="navbar navbar-expand-md navbar-light">
 
             <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item" ngbDropdown>
-                        <a class="nav-link" a [routerLink]="['/']" routerLinkActive="router-link-active" style="color:white" role="button" (click)="collapse()">
-                            Home | 
-                        </a>
-                    </li>
-
                     <li class="nav-item" ngbDropdown>
                         <a class="nav-link" a [routerLink]="['/personal-records']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
                             PR's |
@@ -54,17 +48,17 @@
                         </a>
                     </li>
 
-                     <li class="nav-item dropdown" ngbDropdown id="infoDropdown">
+                     <!-- <li class="nav-item dropdown" ngbDropdown id="infoDropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" style="color: white" aria-haspopup="true" aria-expanded="false">Upcoming Races</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" a [routerLink]="['/testimonials']" (click)="collapse()">Registered Races</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" a [routerLink]="['/add-testimonial']"(click)="collapse()">Tentative Races</a>
                         </div>
-                    </li>
+                    </li> -->
 
                     <li class="nav-item" ngbDropdown>
-                        <a class="nav-link" a [routerLink]="['/support']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
+                        <a class="nav-link" a [routerLink]="['/upcoming-races']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
                            Find A Race |  
                         </a>
                     </li>
@@ -79,7 +73,7 @@
                     </li> -->
 
                     <li class="nav-item" ngbDropdown>
-                        <a class="nav-link" a [routerLink]="['/support']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
+                        <a class="nav-link" a [routerLink]="['/race-shoes']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
                            Race Shoes |
                         </a>
                     </li>
@@ -104,7 +98,6 @@
                 </ul>
             </div>
         </nav>
-       </div>
-    
-    <!-- </div> -->
+    </span>
+    </div>
 </header>
