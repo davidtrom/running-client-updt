@@ -1,13 +1,17 @@
 #logo{
-    max-width: 100%;
+    max-width: 50%;
     height: auto;
     /* padding-left: 25%; 
     padding-right: 10%; */
 }
-
-header {
-    background-color: #170664;
+.blackLogo{
+    background: #121212;
+    text-align: center;
 }
+
+/* header {
+    background-color: #170664;
+} */
 
 /* .title{
     color: white;
@@ -21,11 +25,11 @@ header {
     font-family: Georgia, 'Times New Roman', Times, serif;
 } */
 
-li{
+/* li{
     font-size: 15pt;
-    /* text-align: center; */
-    /* padding-right: 4%; */
-}
+    text-align: center;
+    padding-right: 4%;
+} */
 
 #design-block {
     background-image: linear-gradient( #170664, white);
@@ -33,15 +37,15 @@ li{
     height: 4vh;
 }
 
-#navbarContent{
+/* #navbarContent{
     text-align: center;
     padding-right: 1.5%;
-}
+} */
 
 .navbar{
-    text-align: center;
+    justify-content: center;
 }
-
+/*
 .nav-item{
     text-align: center;
 }
@@ -52,32 +56,31 @@ li{
 
 .aligner{
     text-align: center;
-}
+} */
 
-#nav {
-    position: absolute;
+/* #nav {
+    position: relative;
     left: 0px;
     height: 40px;
     background-color: #2C64B4;
     width: 100%;
     margin: 0 auto;
-    text-align: center;
- } 
+ }  */
 
- #nav ul {
+ /* #nav ul {
     margin: 0;
     padding: 0;
     list-style: none;
     text-align: center;
-}
+} */
 
-#nav ul li {
+/* #nav ul li {
     margin: 0;
     padding: 0;
     display: inline-block;
-}
+} */
 
-#nav ul li a {
+/* #nav ul li a {
     text-decoration: none;
     padding: 10px 20px;
     display: block;
@@ -87,11 +90,11 @@ li{
 
 
 #navbar {
-    position: absolute;
+    position: relative;
     left: 0px;
     height: 40px;
     background-color: #2C64B4;
     width: 100%;
     display: flex;
     justify-content: center;
-} 
+}  */

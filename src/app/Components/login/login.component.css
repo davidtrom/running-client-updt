@@ -1,0 +1,62 @@
+.container{
+    display: flex;
+    font-size: 13pt;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    justify-content: center;
+}
+
+.title{
+    color: #ffffff;
+    text-align: center;
+    padding-top: 1.5%;
+}
+
+.form-group{
+    align-self: center;
+    border: 1px solid #ffffff;
+    padding: 5%;
+    color: white;
+}
+
+#btnSubmit{
+    padding-top: 3%;
+    text-align: center;
+}
+
+#username{
+    width:90%;
+}
+
+#password{
+    width:90%;
+}
+
+.alert-danger{
+    text-align: center;
+}
+
+#loginError{
+    padding-top: 3%;
+}
+
+.loginBackground{
+    background-image: url("../../../assets/road-2371503_1920.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    padding-bottom: 5%;
+}
+
+.container{
+    /* background-color: cornsilk; */
+    padding-left: 0%;
+    padding-right: 1%;
+    
+}
+
+/* body{
+    
+}
+*/ 

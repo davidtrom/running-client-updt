@@ -9,9 +9,8 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 })
 export class HeaderComponent implements OnInit {
   collapsed: boolean = true;
-  pastorLoggedIn: boolean;
   subscription: Subscription;
-  userLoggedIn: boolean;
+  userLoggedIn: boolean = false;
 
   constructor(private authService:AuthenticationService) {}
   ngOnDestroy(): void {
@@ -19,10 +18,10 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subscription = this.authService.getLoginStatus().subscribe(data => {this.pastorLoggedIn = data;});
-    if(!this.pastorLoggedIn){
-      if(sessionStorage.getItem("username") == "pastorAdminBHOW" && sessionStorage.getItem("token") != null) {
-        this.pastorLoggedIn = true;
+    this.subscription = this.authService.getLoginStatus().subscribe(data => {this.userLoggedIn = data;});
+    if(!this.userLoggedIn){
+      if(sessionStorage.getItem("username") == "userName" && sessionStorage.getItem("token") != null) {
+        this.userLoggedIn = true;
       }
     }
   }
@@ -38,7 +37,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logOut(): boolean{
-    this.pastorLoggedIn = false;
+    this.userLoggedIn = false;
     this.authService.logOut();
     this.authService.setUserLoggedIn(false);
     return this.collapse();

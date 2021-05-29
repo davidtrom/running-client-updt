@@ -1,1 +1,39 @@
-<p>login works!</p>
+<div class="loginBackground responsive">
+    
+    <div class="title">
+        <h1><u>User Login:</u></h1>
+    </div>
+    
+    <div class="container">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group"> 
+                
+                <label for="username">Username:</label>
+                <input type="email" formControlName = "username" class="form-control" id="username" size="40" placeholder="Username" [ngClass]="{'is-invalid': form.username.errors && (form.username.touched || form.username.dirty)}">
+                <div *ngIf="form.username.errors && (form.username.touched || form.username.dirty)" class="invalid-feedback">
+                    <div *ngIf='form.username.errors.required'>*Username is Required</div>
+                </div>
+                
+                <label for="password">Password:</label>
+                <input size="40" type="password" formControlName = "password" class="form-control" id="password" placeholder="Password" [ngClass]="{'is-invalid': form.password.errors && (form.password.touched || form.password.dirty)}">
+                <div *ngIf="form.password.errors && (form.password.touched || form.password.dirty)" class="invalid-feedback">
+                    <div *ngIf='form.password.errors.required'>*Password is Required</div>    
+                </div>
+
+                <div *ngIf="invalidLogin" id="loginError">
+                    <div class="alert alert-danger" > 
+                        *Invalid Username or Password! <br> Please try again.
+                    </div>
+                </div> 
+        
+                <div id="btnSubmit">
+                    <button type="submit" class="btn btn-light">Submit</button>
+                </div> 
+                
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
