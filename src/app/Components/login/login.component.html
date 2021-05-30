@@ -11,18 +11,27 @@
                 <label for="username">Username:</label>
                 <input type="email" formControlName = "username" class="form-control" id="username" size="40" placeholder="Username" [ngClass]="{'is-invalid': form.username.errors && (form.username.touched || form.username.dirty)}">
                 <div *ngIf="form.username.errors && (form.username.touched || form.username.dirty)" class="invalid-feedback">
-                    <div *ngIf='form.username.errors.required'>*Username is Required</div>
+                    <div class="errorMessage" *ngIf='form.username.errors.required'>*Username is Required</div>
                 </div>
                 
                 <label for="password">Password:</label>
                 <input size="40" type="password" formControlName = "password" class="form-control" id="password" placeholder="Password" [ngClass]="{'is-invalid': form.password.errors && (form.password.touched || form.password.dirty)}">
                 <div *ngIf="form.password.errors && (form.password.touched || form.password.dirty)" class="invalid-feedback">
-                    <div *ngIf='form.password.errors.required'>*Password is Required</div>    
+                    <div class="errorMessage" *ngIf='form.password.errors.required'>*Password is Required</div>    
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        Forgot Username?
+                    </div>
+                    <div class="col-md-6">
+                        Forgot Password?
+                    </div>
                 </div>
 
                 <div *ngIf="invalidLogin" id="loginError">
                     <div class="alert alert-danger" > 
-                        *Invalid Username or Password! <br> Please try again.
+                        *Invalid Username and/or Password! <br> Please try again.
                     </div>
                 </div> 
         

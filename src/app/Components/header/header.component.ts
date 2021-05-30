@@ -10,7 +10,7 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 export class HeaderComponent implements OnInit {
   collapsed: boolean = true;
   subscription: Subscription;
-  userLoggedIn: boolean = false;
+  userLoggedIn: boolean = true;
 
   constructor(private authService:AuthenticationService) {}
   ngOnDestroy(): void {
@@ -18,12 +18,12 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subscription = this.authService.getLoginStatus().subscribe(data => {this.userLoggedIn = data;});
-    if(!this.userLoggedIn){
-      if(sessionStorage.getItem("username") == "userName" && sessionStorage.getItem("token") != null) {
-        this.userLoggedIn = true;
-      }
-    }
+    // this.subscription = this.authService.getLoginStatus().subscribe(data => {this.userLoggedIn = data;});
+    // if(!this.userLoggedIn){
+    //   if(sessionStorage.getItem("username") == "userName" && sessionStorage.getItem("token") != null) {
+    //     this.userLoggedIn = true;
+    //   }
+    // }
   }
 
   collapse(): boolean{
