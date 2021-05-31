@@ -15,6 +15,7 @@ import { UpcomingRacesComponent } from './Components/upcoming-races/upcoming-rac
 import { SupplyListComponent } from './Components/supply-list/supply-list.component';
 import { ContactComponent } from './Components/contact/contact.component';
 import { RaceShoesComponent } from './Components/race-shoes/race-shoes.component';
+import { RegisterComponent } from './Components/register/register.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { RaceShoesComponent } from './Components/race-shoes/race-shoes.component
     UpcomingRacesComponent,
     SupplyListComponent,
     ContactComponent,
-    RaceShoesComponent
+    RaceShoesComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
