@@ -1,15 +1,17 @@
 .container{
     display: flex;
     font-size: 13pt;
-    padding-top: 2%;
-    padding-bottom: 2%;
+    /* padding-top: 4%;
+    padding-bottom: 4%; */
     justify-content: center;
+    /* max-width: 80%; */
 }
 
 .title{
     color: #000000;
     text-align: center;
     padding-top: 1.5%;
+    padding-bottom: 3%;
 }
 
 .form-group{
@@ -25,11 +27,11 @@
 }
 
 #username{
-    width:95%;
+    width:100%;
 }
 
 #password{
-    width:95%;
+    width:100%;
 }
 
 .alert-danger{
@@ -39,6 +41,16 @@
 #loginError{
     padding-top: 3%;
     font-weight: bold;
+}
+
+#row1{
+    text-align: center;
+    padding-top: 3%;
+    padding-bottom: 2%;
+}
+
+#row2{
+    padding-bottom: 2%;
 }
 
 .loginBackground{
@@ -51,21 +63,11 @@
     padding-top: 2%;
 }
 
-.container{
-    /* background-color: cornsilk; */
-    padding-left: 0%;
-    padding-right: 1%;
-}
 .errorMessage{
     font-weight: bolder;
     color: white
 }
 
-.signup{
+#signup{
     text-align: center;
 }
-
-/* body{
-    
-}
-*/ 

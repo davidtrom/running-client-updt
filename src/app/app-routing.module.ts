@@ -8,6 +8,7 @@ import { ContactComponent } from './Components/contact/contact.component';
 import { SupplyListComponent } from './Components/supply-list/supply-list.component';
 import { UpcomingRacesComponent } from './Components/upcoming-races/upcoming-races.component';
 import { RaceShoesComponent } from './Components/race-shoes/race-shoes.component';
+import { RegisterComponent } from './Components/register/register.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'supply-lists', component: SupplyListComponent},
   {path: 'upcoming-races', component: UpcomingRacesComponent},
   {path: 'race-shoes', component: RaceShoesComponent},
+  {path: 'register', component: RegisterComponent},
 
   // if no route, redirect to home
   { path: '**', redirectTo: '' }

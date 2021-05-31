@@ -20,7 +20,7 @@
                     <div class="errorMessage" *ngIf='form.password.errors.required'>*Password is Required</div>    
                 </div>
 
-                <div class="row">
+                <div class="row" id="row1">
                     <div class="col-md-6">
                         Forgot Username?
                     </div>
@@ -29,14 +29,14 @@
                     </div>
                 </div>
 
-                <!-- <div class="row signup">
-                    <div class="col-md">
-                        Sign up
+                <div class="row" id="row2">
+                    <div class="col" id="signup">
+                        <a class="signupLink" [routerLink]="['/register']" style="color:white">Sign up</a>
                     </div>
-                </div> -->
+                </div>
 
                 <div *ngIf="invalidLogin" id="loginError">
-                    <div class="alert alert-danger" > 
+                    <div class="alert alert-danger"> 
                         *Invalid Username and/or Password! <br> Please try again.
                     </div>
                 </div> 

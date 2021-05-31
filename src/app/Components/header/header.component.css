@@ -9,6 +9,12 @@
     text-align: center;
 }
 
+ul{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
 /* .navbar{
     justify-content: center;
     text-align: center;

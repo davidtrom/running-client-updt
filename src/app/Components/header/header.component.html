@@ -1,77 +1,66 @@
 <header>
     <div class="flex-container">
-    <div class="blackLogo">
-        <img src="../../../assets/blackRaceVaultLogo2.jpg" alt="Logo" class="responsive" id="logo">
-    </div>
-
-    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button> -->
-<!-- 
-    <div class="needToLogin" *ngIf="!userLoggedIn">
-        <li class="nav-item" ngbDropdown >
-            <a class="nav-link" a [routerLink]="['/login']" routerLinkActive="router-link-active" style="color:black"  role="button" (click)="collapse()">
-                Login
-            </a> 
-        </li>
-    </div>
-     -->
+        <div class="blackLogo">
+            <img src="../../../assets/blackRaceVaultLogo2.jpg" alt="Logo" class="responsive" id="logo">
+        </div>
     
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-            <button class="navbar-toggler" type="button" aria-controls="navbarContent" [attr.aria-expanded]="collapsed"
-                aria-label="Toggle navigation" (click)="collapse()">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <div *ngIf="userLoggedIn">
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <button class="navbar-toggler" type="button" aria-controls="navbarContent" [attr.aria-expanded]="collapsed"
+                    aria-label="Toggle navigation" (click)="collapse()">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
-                <ul class="navbar-nav">
-                    <li class="nav-item" ngbDropdown>
-                        <a class="nav-link" a [routerLink]="['/personal-records']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
-                            PR's |
-                        </a>
-                    </li>
-                    <li class="nav-item" ngbDropdown>
-                        <a class="nav-link" a [routerLink]="['/supply-lists']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
-                        Supply Lists |
-                        </a>
-                    </li>
+                <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item" ngbDropdown>
+                            <a class="nav-link" a [routerLink]="['/personal-records']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
+                                PR's
+                            </a>
+                        </li>
+                        <li class="nav-item" ngbDropdown>
+                            <a class="nav-link" a [routerLink]="['/supply-lists']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
+                            Supply Lists
+                            </a>
+                        </li>
 
-                    <li class="nav-item" ngbDropdown>
-                        <a class="nav-link" a [routerLink]="['/upcoming-races']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
-                        Upcoming Races |  
-                        </a>
-                    </li>
-                    <li class="nav-item" ngbDropdown>
-                        <a class="nav-link" a [routerLink]="['/upcoming-races']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
-                        Find A Race |  
-                        </a>
-                    </li>
-                    <li class="nav-item" ngbDropdown>
-                        <a class="nav-link" a [routerLink]="['/race-shoes']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
-                        Race Shoes |
-                        </a>
-                    </li>
+                        <li class="nav-item" ngbDropdown>
+                            <a class="nav-link" a [routerLink]="['/upcoming-races']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
+                            Upcoming Races
+                            </a>
+                        </li>
+                        <li class="nav-item" ngbDropdown>
+                            <a class="nav-link" a [routerLink]="['/upcoming-races']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
+                            Find A Race
+                            </a>
+                        </li>
+                        <li class="nav-item" ngbDropdown>
+                            <a class="nav-link" a [routerLink]="['/race-shoes']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
+                            Race Shoes
+                            </a>
+                        </li>
 
-                    <li class="nav-item" ngbDropdown>
-                        <a class="nav-link" a [routerLink]="['/about']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
-                            About |
-                        </a>
-                    </li>
+                        <li class="nav-item" ngbDropdown>
+                            <a class="nav-link" a [routerLink]="['/about']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
+                                About
+                            </a>
+                        </li>
 
-                    <li class="nav-item" ngbDropdown>
-                        <a class="nav-link" a [routerLink]="['/contact']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
-                            Contact |
-                        </a> 
-                    </li>
+                        <li class="nav-item" ngbDropdown>
+                            <a class="nav-link" a [routerLink]="['/contact']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
+                                Contact
+                            </a> 
+                        </li>
 
-                    <li *ngIf="userLoggedIn" class="nav-item" ngbDropdown>
-                        <a class="nav-link" a [routerLink]="['/login']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="logOut()">
-                            Log Out  
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+                        <li class="nav-item" ngbDropdown>
+                            <a class="nav-link" a [routerLink]="['/login']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="logOut()">
+                                Log Out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
     </div>
 </header>
 
