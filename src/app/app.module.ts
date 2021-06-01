@@ -16,6 +16,8 @@ import { SupplyListComponent } from './Components/supply-list/supply-list.compon
 import { ContactComponent } from './Components/contact/contact.component';
 import { RaceShoesComponent } from './Components/race-shoes/race-shoes.component';
 import { RegisterComponent } from './Components/register/register.component';
+import { ForgotPasswordComponent } from './Components/forgot-password/forgot-password.component';
+import { ForgotUsernameComponent } from './Components/forgot-username/forgot-username.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { RegisterComponent } from './Components/register/register.component';
     SupplyListComponent,
     ContactComponent,
     RaceShoesComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgotPasswordComponent,
+    ForgotUsernameComponent
   ],
   imports: [
     BrowserModule,

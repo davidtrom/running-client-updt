@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   formNotValid: boolean;
   loginForm :FormGroup;
   invalidLogin: boolean;
-  pastorLoggedIn: boolean;
+  userLoggedIn: boolean;
   constructor(private fb:FormBuilder, private authService:AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
     });
 
-    this.authService.getLoginStatus().subscribe(data => this.pastorLoggedIn = data);
+    this.authService.getLoginStatus().subscribe(data => this.userLoggedIn = data);
   }
 
   get form() { return this.loginForm.controls; }

@@ -10,7 +10,7 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 export class HeaderComponent implements OnInit {
   collapsed: boolean = true;
   subscription: Subscription;
-  userLoggedIn: boolean = false;
+  userLoggedIn: boolean = true;
 
   constructor(private authService:AuthenticationService) {}
   ngOnDestroy(): void {

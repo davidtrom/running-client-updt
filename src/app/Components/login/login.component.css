@@ -54,10 +54,10 @@
 }
 
 .loginBackground{
-    background-image: url("../../../assets/road-2371503_1920.jpg");
+    background-image: url("../../../assets/roadLogin.jpg");
     background-position: center center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: local;
     background-size: cover;
     padding-bottom: 10%;
     padding-top: 2%;
