@@ -18,6 +18,7 @@ import { RaceShoesComponent } from './Components/race-shoes/race-shoes.component
 import { RegisterComponent } from './Components/register/register.component';
 import { ForgotPasswordComponent } from './Components/forgot-password/forgot-password.component';
 import { ForgotUsernameComponent } from './Components/forgot-username/forgot-username.component';
+import { SidebarNavComponent } from './Components/sidebar-nav/sidebar-nav.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ForgotUsernameComponent } from './Components/forgot-username/forgot-use
     RaceShoesComponent,
     RegisterComponent,
     ForgotPasswordComponent,
-    ForgotUsernameComponent
+    ForgotUsernameComponent,
+    SidebarNavComponent
   ],
   imports: [
     BrowserModule,
