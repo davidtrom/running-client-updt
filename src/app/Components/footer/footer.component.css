@@ -36,14 +36,16 @@
 /* } */
 
 #smallLogo{
-    max-width: 50%;
+    max-width: 65%;
     height: auto;
     /* text-align: center;
     display: flex;
     justify-content: space-around; */
 }
 
-
+.quote{
+    padding-bottom: 1%;
+}
 
 img{
     max-width: 100%;
