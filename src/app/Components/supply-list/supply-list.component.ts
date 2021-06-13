@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ListItem } from 'src/app/Models/list-item.model';
+import { ListsService } from 'src/app/Services/lists.service';
 
 @Component({
   selector: 'app-supply-list',
@@ -7,12 +8,16 @@ import { ListItem } from 'src/app/Models/list-item.model';
   styleUrls: ['./supply-list.component.css']
 })
 export class SupplyListComponent implements OnInit {
+  status: boolean = false;
+  updateList: Boolean;
   listItem: ListItem;
   listItems = [];
+  lists: any[];
 
-  constructor() { }
+  constructor(private listService: ListsService) { }
 
   ngOnInit(): void {
+    this.getClientLists();
   }
 
   onClick(){
@@ -54,6 +59,10 @@ onStrike(item){
       break;
     }
   }
+}
+
+getClientLists(){
+  this.listService.getAllLists().subscribe(data => {this.lists = data});
 }
 
 }

@@ -1,28 +1,67 @@
-<div>
-    <h2> Race List Manager </h2>
+<div class="d-flex" id="wrapper">
  
-    <div class="row">
-        <div class="col-xs-6 col-md-4">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Enter Race Items" id="txtSearch" [(ngModel)]="listItem" />
-                <div class="input-group-btn">
-                    <button class="btn btn-primary" type="button" (click)="onClick()">
-                        <span class="glyphicon glyphicon-ok">OK</span>
-                    </button>
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper"  [ngClass]="status ? 'hide' : 'show'">
+        <div class="sidebar-heading">Supply Lists </div>
+        <div class="list-group list-group-flush">
+        <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+        </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+
+
+    <div class="container-fluid">
+    
+        <div class="title">
+            <h2>Race Lists</h2>
+            <p>Update or Create new Race Lists</p>
+        </div>
+
+        <button type="button" class="btn btn-success">New List</button>
+
+
+
+
+
+
+
+
+
+
+    <div *ngIf="updateList">
+        <h2> Race List Manager </h2>
+
+        <div class="row">
+            <div class="col-xs-6 col-md-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Enter Race Items" id="txtSearch" [(ngModel)]="listItem" />
+                    <div class="input-group-btn">
+                        <button class="btn btn-primary" type="button" (click)="onClick()">
+                            <span class="glyphicon glyphicon-ok">OK</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <br />
+
+        <ul class="list-group">
+            <li *ngFor="let listItem of listItems" class="list-group-item">
+                <span (click)="onStrike(task)" [ngClass]="{'strike': task.strike}"> {{ task.name }} </span>
+                <span (click)="onEdit(task)" class="glyphicon glyphicon-pencil floatright"></span>
+                <span (click)="onDelete(task)" class="glyphicon glyphicon-remove floatright paddingLeft"></span>
+            </li>
+        </ul>
     </div>
 
-    <br />
-
-    <ul class="list-group">
-        <li *ngFor="let listItem of listItems" class="list-group-item">
-            <span (click)="onStrike(task)" [ngClass]="{'strike': task.strike}"> {{ task.name }} </span>
-            <span (click)="onEdit(task)" class="glyphicon glyphicon-pencil floatright"></span>
-            <span (click)="onDelete(task)" class="glyphicon glyphicon-remove floatright paddingLeft"></span>
-        </li>
-    </ul>
-   
- 
+    </div>
 </div>
+
+

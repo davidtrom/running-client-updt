@@ -11,10 +11,12 @@ import { RaceShoesComponent } from './Components/race-shoes/race-shoes.component
 import { RegisterComponent } from './Components/register/register.component';
 import { ForgotPasswordComponent } from './Components/forgot-password/forgot-password.component';
 import { ForgotUsernameComponent } from './Components/forgot-username/forgot-username.component';
+import { SidebarNavComponent } from './Components/sidebar-nav/sidebar-nav.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
-  {path: 'about', component: AboutComponent},
+  // {path: 'about', component: AboutComponent},
+  {path: 'about', component: SidebarNavComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'personal-records', component: PersonalRecordsComponent},
   {path: 'supply-lists', component: SupplyListComponent},
@@ -23,6 +25,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'forgot-username', component: ForgotUsernameComponent},
+  
   
 
   // if no route, redirect to home

@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar-nav.component.css']
 })
 export class SidebarNavComponent implements OnInit {
+  status: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  clickEvent(){
+    this.status = !this.status;       
   }
 
 }
