@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { fromEventPattern } from 'rxjs';
 import { ListItem } from 'src/app/Models/list-item.model';
 import { ListsService } from 'src/app/Services/lists.service';
+import { SupplyList } from 'src/app/Models/supply-list.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-supply-list',
@@ -9,17 +12,35 @@ import { ListsService } from 'src/app/Services/lists.service';
 })
 export class SupplyListComponent implements OnInit {
   status: boolean = false;
-  updateList: Boolean;
+  updateList: boolean;
   listItem: ListItem;
   listItems = [];
   lists: any[];
+  supplyList: SupplyList;
+  newListForm: FormGroup;
+  listName: string;
 
-  constructor(private listService: ListsService) { }
+  constructor(private listService: ListsService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.getClientLists();
+    this.newListForm = this.fb.group({
+      listName: ['', Validators.required],
+    });
   }
 
+  get form() {return this.newListForm.controls;}
+
+  submitListName(){
+    this.listName = this.newListForm.controls.listName.value
+  }
+
+  submitNewList(){
+    
+    this.listService.createNewList(this.listName)
+      .subscribe(data => console.log('new list created') )
+  } 
+  
   onClick(){
     if(this.listItem.id == 0){
       this.listItems.push({id: (new Date()).getTime(),name: this.listItem.name, strike: false});
@@ -62,7 +83,7 @@ onStrike(item){
 }
 
 getClientLists(){
-  this.listService.getAllLists().subscribe(data => {this.lists = data});
+  this.listService.getUserLists().subscribe(data => {this.lists = data});
 }
 
 }

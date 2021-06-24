@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { ClientList } from '../Models/client-list.model';
+import { SupplyList } from '../Models/supply-list.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListsService {
 
-  baseUrl = environment.baseUrl;
+  baseUrl = environment.baseUrl + "/travel-list";
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type' : 'application/json'})
@@ -18,11 +18,17 @@ export class ListsService {
 
   constructor(private http: HttpClient) { }
 
-  getAllLists() : Observable <ClientList[]> {
+  getUserLists() : Observable <SupplyList[]> {
     console.log("inside list service: ", this.baseUrl+"/lists")
-    return this.http.get<ClientList[]>(this.baseUrl+"/lists", this.httpOptions)
+    return this.http.get<SupplyList[]>(this.baseUrl+"/lists", this.httpOptions)
     .pipe(tap(data => console.log('fetch lists', data)),
-      catchError(this.handleError<ClientList[]>('error geting lists', null)));
+      catchError(this.handleError<SupplyList[]>('error geting lists', null)));
+  }
+
+  createNewList(listName: string): Observable<SupplyList> {
+    return this.http.post<SupplyList>(this.baseUrl+"/", listName, this.httpOptions)
+    .pipe(tap(data=> console.log("creating new list")),
+    catchError(this.handleError<SupplyList>('error creating list', null)));
   }
 
 

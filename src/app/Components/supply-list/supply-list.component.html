@@ -19,11 +19,27 @@
     <div class="container-fluid">
     
         <div class="title">
-            <h2>Race Lists</h2>
-            <p>Update or Create new Race Lists</p>
+            <h2>Supply Lists</h2>
+            <p>Make your list and check it twice!</p>
         </div>
 
+        
+
+
+    <form [formGroup]="newListForm" (ngSubmit)="submitListName()">
+        <div class="title">
+            <label for="listName">Enter the name or description of a new Supply List:</label>
+            <input id="listName" formControlName="listName" type="listName" class="form-control" placeholder="Name or Description" [ngClass]="{'is-invalid': form.listName.errors && (form.listName.touched || form.listName.dirty)}" >
+            <div *ngIf="form.listName.errors && (form.listName.touched || form.listName.dirty)" class="invalid-feedback">
+                <div *ngIf='form.listName.errors.required'>*Supply List Name is Required</div>
+            </div>
+        </div>
         <button type="button" class="btn btn-success">New List</button>
+</form>
+
+<div>
+    {{listName}}
+</div>
 
 
 
@@ -31,11 +47,9 @@
 
 
 
-
-
-
-    <div *ngIf="updateList">
+    <!-- <div *ngIf="updateList"> -->
         <h2> Race List Manager </h2>
+        <h2> {{listName}} </h2>
 
         <div class="row">
             <div class="col-xs-6 col-md-4">
@@ -59,7 +73,7 @@
                 <span (click)="onDelete(task)" class="glyphicon glyphicon-remove floatright paddingLeft"></span>
             </li>
         </ul>
-    </div>
+    <!-- </div> -->
 
     </div>
 </div>
