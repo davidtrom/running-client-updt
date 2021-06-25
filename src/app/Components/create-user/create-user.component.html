@@ -1,0 +1,69 @@
+<div class="flex-container">
+    <div class="container">
+        <form [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Register</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="firstName">First Name:</label>
+                            <input id="firstName" formControlName="firstName" type="text" class="form-control" [ngClass]="{ 'is-invalid': form.firstName.errors }" placeholder="First Name">
+                            <div *ngIf="submitted && form.firstName.errors" class="invalid-feedback">
+                                <div *ngIf="form.firstName.errors.pattern">First name not valid</div>
+                                <div *ngIf="form.firstName.errors.required">First Name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="lastName">Last Name:</label>
+                            <input id="lastName" formControlName="lastName" type="text" class="form-control" [ngClass]="{ 'is-invalid': form.lastName.errors }" placeholder="Last Name">
+                            <div *ngIf="submitted && form.lastName.errors" class="invalid-feedback">
+                                <div *ngIf="form.lastName.errors.pattern">Last name not valid</div>
+                                <div *ngIf="form.lastName.errors.required">Last Name is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="birthdate">Birthday:</label>
+                            <input type="date" formControlName="birthdate" class="form-control" id="birthdate" [ngClass]="{ 'is-invalid': form.birthdate.errors }" placeholder="302-555-7890">
+                            <div *ngIf="submitted && form.birthdate.errors" class="invalid-feedback">
+                                <div *ngIf="form.birthdate.errors.minlength">Phone number needs to be 10 characters minimum</div>
+                                <div *ngIf="form.birthdate.errors.required">Birthday is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="email">Email Address:</label>
+                            <input type="email" formControlName="email" class="form-control" id="email" [ngClass]="{ 'is-invalid': form.email.errors }" placeholder="yourAddress@email.com">
+                            <div *ngIf="submitted && form.email.errors" class="invalid-feedback">
+                                <div *ngIf="form.email.errors.pattern">Email is not valid</div>
+                                <div *ngIf="form.email.errors.required">Email is required</div>
+                            </div>
+                        </div>
+                        <div *ngIf="emailAlreadyTaken" class="alert alert-danger"> 
+                            *This username already exists!
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="password">Password:</label>
+                            <input type="password" formControlName="password" class="form-control" id="password" [ngClass]="{ 'is-invalid': form.password.errors }" placeholder="Password">
+                            <div *ngIf="submitted && form.password.errors" class="invalid-feedback">
+                                <div *ngIf="form.password.errors.pattern">Password needs lowercase, uppercase, number, and symbol: 8 characters minimum</div>
+                                <div *ngIf="form.password.errors.required">Password is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="link">A link to a social media account for identification purposes:</label>
+                            <input type="text" formControlName="link" class="form-control" id="link" placeholder="Social Media Link">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" id="btnSubmit">                 
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+            </div>
+          </form>
+    </div>
+</div>
