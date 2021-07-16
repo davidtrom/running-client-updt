@@ -1,26 +1,38 @@
 .container{
     border-style: solid; 
     border-width: 2px;
-    border-color: rgb(245, 78, 78);
+    border-color: black;
     padding-top: 1%;
     padding-bottom: 1%;
+    /* max-width: fit-content ; */
+    max-width: 33%;
     /* border: medium groove rgb(228, 86, 86) */
 }
 
 .flex-container{
     padding-top: 2%;
     padding-bottom: 2%;
-}
 
-.panel-footer, .panel-heading{
-    text-align: center;
 }
 
 h2{
     padding-bottom: 1%;
+    text-align: center;
 }
 
-#btnSubmit{
+.buttonGroup{
     text-align: center;
-    padding-top: 1%;
+    padding-top: 5%;
 }
+
+.grid-container {
+    padding-top: 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 25%;
+}
+
+label{
+    padding-top: 1.5%;
+}
+

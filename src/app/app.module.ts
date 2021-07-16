@@ -20,6 +20,7 @@ import { ForgotPasswordComponent } from './Components/forgot-password/forgot-pas
 import { ForgotUsernameComponent } from './Components/forgot-username/forgot-username.component';
 import { SidebarNavComponent } from './Components/sidebar-nav/sidebar-nav.component';
 import { CreateUserComponent } from './Components/create-user/create-user.component';
+import { ProfileComponent } from './Components/profile/profile.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { CreateUserComponent } from './Components/create-user/create-user.compon
     ForgotPasswordComponent,
     ForgotUsernameComponent,
     SidebarNavComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    ProfileComponent
   ],
   imports: [
     FormsModule,

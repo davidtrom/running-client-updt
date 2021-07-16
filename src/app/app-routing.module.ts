@@ -13,6 +13,7 @@ import { ForgotPasswordComponent } from './Components/forgot-password/forgot-pas
 import { ForgotUsernameComponent } from './Components/forgot-username/forgot-username.component';
 import { SidebarNavComponent } from './Components/sidebar-nav/sidebar-nav.component';
 import { CreateUserComponent } from './Components/create-user/create-user.component';
+import { ProfileComponent } from './Components/profile/profile.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'forgot-username', component: ForgotUsernameComponent},
   {path: 'new-user', component: CreateUserComponent},
+  {path: 'profile', component: ProfileComponent},
   
   
 
