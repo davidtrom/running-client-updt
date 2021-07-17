@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SimpleOuterSubscriber } from 'rxjs/internal/innerSubscribe';
 import { User } from 'src/app/Models/user.model';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { UserService } from 'src/app/Services/user.service';
@@ -16,8 +17,8 @@ export class CreateUserComponent implements OnInit {
   // submitted: boolean = false;
   formNotValid: boolean;
   emailAlreadyTaken: boolean = false;
-  password: FormControl;
-  passwordConfirm: FormControl;
+  //password: FormControl;
+  //passwordConfirm: FormControl;
 
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) { }
 
@@ -28,7 +29,7 @@ export class CreateUserComponent implements OnInit {
       birthdate: ['', [Validators.required, Validators.minLength(10)]],
       email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%$!#+\-]+@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$')]],
       password: ['', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!_.@$%^&*-]).{8,}$')]],
-      passwordConfirm: ['', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!_.@$%^&*-]).{8,}$')]]
+      // passwordConfirm: ['', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!_.@$%^&*-]).{8,}$')]]
     });
   }
 
@@ -78,34 +79,39 @@ export class CreateUserComponent implements OnInit {
    
    
    if(this.createUserForm.valid){
-    //this.submitted = true;
-    this.userService.checkUserEmailAvailability(this.createUserForm.controls.email.value).subscribe(
-      data =>{
+     console.log("valid form")
+    // this.userService.checkUserEmailAvailability(this.createUserForm.controls.email.value).subscribe(
+    //   data =>{
     
-      if(!data){
+    //   if(!data){
         
-        let user: User = new User(
-          null,
-          this.createUserForm.controls.firstName.value,
-          this.createUserForm.controls.lastName.value,
-          this.createUserForm.controls.birthdate.value,
-          this.createUserForm.controls.email.value,
-          this.createUserForm.controls.password.value,
-          );
+    //     let user: User = new User(
+    //       null,
+    //       this.createUserForm.controls.firstName.value,
+    //       this.createUserForm.controls.lastName.value,
+    //       this.createUserForm.controls.birthdate.value,
+    //       this.createUserForm.controls.email.value,
+    //       this.createUserForm.controls.password.value,
+    //       );
 
-        this.userService.createUser(user).subscribe(
-          data => {console.log("in component", data);
-          console.log(this.createUserForm.value);
-          this.router.navigate(['']);
-          this.createUserForm.reset();
-          alert('You are now successfully registered! \nProceeding to Login...');
-          }
-        );
-      }
-      else{
-        this.emailAlreadyTaken = true;
-      }
-    });  
+    //     this.userService.createUser(user).subscribe(
+    //       data => {console.log("in component", data);
+    //       console.log(this.createUserForm.value);
+    //       this.router.navigate(['']);
+    //       this.createUserForm.reset();
+    //       alert('You are now successfully registered! \nProceeding to Login...');
+    //       }
+    //     );
+    //   }
+    //   else{
+    //     this.emailAlreadyTaken = true;
+    //   }
+    // });  
+  }
+  else{
+    this.createUserForm.markAllAsTouched();
+    this.formNotValid = true;
   }
 }
+
 }

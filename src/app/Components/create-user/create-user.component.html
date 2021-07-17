@@ -24,11 +24,11 @@
                         </div>
                         
                         
-                        <label for="birthDate">Birthday:*</label>
-                        <input type="date" formControlName="birthDate" class="form-control" id="birthDate" placeholder="yyyy-mm-dd" [ngClass]="{'is-invalid': form.birthDate.errors && (form.birthDate.touched || form.birthDate.dirty)}">
-                        <div *ngIf="form.birthDate.errors && (form.birthDate.touched || form.birthDate.dirty)" class="invalid-feedback">
-                            <div *ngIf='form.birthDate.errors.required'>*Birth Date is Required</div>
-                        </div>
+                        <!-- <label for="birthdate">Birthday:*</label>
+                        <input type="date" formControlName="birthdate" class="form-control" id="birthdate" placeholder="yyyy-mm-dd" [ngClass]="{'is-invalid': form.birthDate.errors && (form.birthDate.touched || form.birthDate.dirty)}">
+                        <div *ngIf="form.birthdate.errors && (form.birthdate.touched || form.birthdate.dirty)" class="invalid-feedback">
+                            <div *ngIf='form.birthdate.errors.required'>*Birth Date is Required</div>
+                        </div> -->
                         
                         
                         <label for="email">Email Address:*</label>
@@ -43,21 +43,21 @@
                         </div>
                     
                         
-                            <label for="password">Password:</label>
+                            <label for="password">Password: (Password Details?) </label>
                             <input type="password" formControlName="password" class="form-control" id="password" [ngClass]="{ 'is-invalid': form.password.errors && (form.password.touched || form.password.dirty)}" placeholder="Password">
                             <div *ngIf="form.password.errors && (form.password.touched || form.password.dirty)" class="invalid-feedback">
                                 <div *ngIf="form.password.errors.pattern">Password needs lowercase, uppercase, number, and symbol: 8 characters minimum</div>
-                                <div *ngIf="form.password.errors.required">Password is required</div>
-                            </div>
+                                <div *ngIf="form.password.errors.required">*Password is required</div>
+                            </div> 
 
-                            <!-- <label for="passwordConfirm">Password:</label>
-                            <input type="password" formControlName="passwordConfirm" class="form-control" id="passwordConfirm" [ngClass]="{ 'is-invalid': form.passwordConfirm.errors }" placeholder="Confirm Password">
-                            <div *ngIf="submitted && form.passwordConfirm.errors" class="invalid-feedback">
+                            <!-- <label for="passwordConfirm">Password Conform:</label>
+                            <input type="password" formControlName="passwordConfirm" class="form-control" id="passwordConfirm" [ngClass]="{ 'is-invalid': form.passwordConfirm.errors && (form.passwordConfirm.touched || form.passwordConfirm.dirty)}" placeholder="Confirm Password">
+                            <div *ngIf="form.passwordConfirm.errors && (form.passwordConfirm.touched || form.passwordConfirm.dirty)" class="invalid-feedback">
                                 <div *ngIf="form.passwordConfirm.errors.pattern">Password needs lowercase, uppercase, number, and symbol: 8 characters minimum</div>
                                 <div *ngIf="form.passwordConfirm.errors.required">Password is required</div>
-                            </div> -->
+                            </div>
 
-                            <div *ngIf="password.value!=passwordConfirm.value"> Password & Confirm Password does not match.</div>
+                            <div *ngIf="password.value!=passwordConfirm.value"> Password & Confirm Password does not match.</div> -->
                         
                             <div *ngIf="formNotValid" class="formNotValid">
                                 *Please enter all required fields before submitting
