@@ -1,10 +1,11 @@
 <div class="flex-container">
     <div class="container">
+        <div class="panel-heading">
+            <h2 class="panel-title">New User Registration</h2>
+        </div>
         <form [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
             <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h2 class="panel-title">New User Registration</h2>
-                </div>
+                
                 <div class="panel-body">
                     <div class="form-row">
                         
@@ -24,11 +25,11 @@
                         </div>
                         
                         
-                        <!-- <label for="birthdate">Birthday:*</label>
-                        <input type="date" formControlName="birthdate" class="form-control" id="birthdate" placeholder="yyyy-mm-dd" [ngClass]="{'is-invalid': form.birthDate.errors && (form.birthDate.touched || form.birthDate.dirty)}">
-                        <div *ngIf="form.birthdate.errors && (form.birthdate.touched || form.birthdate.dirty)" class="invalid-feedback">
-                            <div *ngIf='form.birthdate.errors.required'>*Birth Date is Required</div>
-                        </div> -->
+                        <label for="birthDate">Birthday:*</label>
+                        <input type="date" formControlName="birthDate" class="form-control" id="birthDate" placeholder="yyyy-mm-dd" [ngClass]="{'is-invalid': form.birthDate.errors && (form.birthDate.touched || form.birthDate.dirty)}">
+                        <div *ngIf="form.birthDate.errors && (form.birthDate.touched || form.birthDate.dirty)" class="invalid-feedback">
+                            <div *ngIf='form.birthDate.errors.required'>*Birthday is Required</div>
+                        </div>
                         
                         
                         <label for="email">Email Address:*</label>
@@ -50,18 +51,54 @@
                                 <div *ngIf="form.password.errors.required">*Password is required</div>
                             </div> 
 
-                            <!-- <label for="passwordConfirm">Password Conform:</label>
+                            <!-- <label for="passwordConfirm">Password Confirm:</label>
                             <input type="password" formControlName="passwordConfirm" class="form-control" id="passwordConfirm" [ngClass]="{ 'is-invalid': form.passwordConfirm.errors && (form.passwordConfirm.touched || form.passwordConfirm.dirty)}" placeholder="Confirm Password">
                             <div *ngIf="form.passwordConfirm.errors && (form.passwordConfirm.touched || form.passwordConfirm.dirty)" class="invalid-feedback">
                                 <div *ngIf="form.passwordConfirm.errors.pattern">Password needs lowercase, uppercase, number, and symbol: 8 characters minimum</div>
-                                <div *ngIf="form.passwordConfirm.errors.required">Password is required</div>
-                            </div>
+                                <div *ngIf="form.passwordConfirm.errors.required">*Please Confirm your Password</div>
+                            </div> -->
 
-                            <div *ngIf="password.value!=passwordConfirm.value"> Password & Confirm Password does not match.</div> -->
+                            <!-- <div *ngIf="password.value!=passwordConfirm.value"> Password & Confirm Password do not match.</div> -->
+
+                            <!-- <label for="flexRadioDefault">Profile Status:</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="publicStatus" id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                  Default radio
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="publicStatus" id="flexRadioDefault2" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                  Default checked radio
+                                </label>
+                              </div> -->
+                            
+                            
+                            <label for="flexRadioDefault">Profile Status:</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="publicStatus" [value]=true id="public" checked (change)="changeStatus($event)">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                  Public
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="publicStatus" [value]=false id="private" (change)="changeStatus($event)"> 
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                  Private
+                                </label>
+                              </div>
+                            
+                            
+                            <!-- <label for="flexRadioDefault">Profile Status:</label>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" value=true id="flexSwitchCheckChecked" checked>
+                                <label class="form-check-label" for="flexSwitchCheckChecked">Public</label>
+                              </div> -->
                         
                             <div *ngIf="formNotValid" class="formNotValid">
                                 *Please enter all required fields before submitting
-                            </div>
+                            </div>  
                     </div>
                 </div>
                 
