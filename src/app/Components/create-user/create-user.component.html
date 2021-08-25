@@ -51,14 +51,12 @@
                                 <div *ngIf="form.password.errors.required">*Password is required</div>
                             </div> 
 
-                            <!-- <label for="passwordConfirm">Password Confirm:</label>
+                            <label for="passwordConfirm">Password Confirm:</label>
                             <input type="password" formControlName="passwordConfirm" class="form-control" id="passwordConfirm" [ngClass]="{ 'is-invalid': form.passwordConfirm.errors && (form.passwordConfirm.touched || form.passwordConfirm.dirty)}" placeholder="Confirm Password">
                             <div *ngIf="form.passwordConfirm.errors && (form.passwordConfirm.touched || form.passwordConfirm.dirty)" class="invalid-feedback">
-                                <div *ngIf="form.passwordConfirm.errors.pattern">Password needs lowercase, uppercase, number, and symbol: 8 characters minimum</div>
+                                <div *ngIf="form.passwordConfirm.errors.confirmedValidator">*Passwords do not match</div>
                                 <div *ngIf="form.passwordConfirm.errors.required">*Please Confirm your Password</div>
-                            </div> -->
-
-                            <!-- <div *ngIf="password.value!=passwordConfirm.value"> Password & Confirm Password do not match.</div> -->
+                            </div>
 
                             <!-- <label for="flexRadioDefault">Profile Status:</label>
                             <div class="form-check">

@@ -41,6 +41,12 @@
                     <div class="errorMessage" *ngIf='form.password.errors.required'>*Password is Required</div>    
                 </div>
 
+                <div *ngIf="invalidLogin" id="loginError">
+                    <div class="alert alert-danger"> 
+                        *Invalid Username and/or Password! <br> Please try again.
+                    </div>
+                </div> 
+
                 <!-- <div class="row" id="row1">
                     <div class="col-md-6">
                         <a [routerLink]="['/forgot-username']" style="color:white">Forgot Username?</a>
@@ -52,18 +58,20 @@
  
                 <div class="row" id="row2">
                     <div class="col" id="signup">
-                        Don't have an account? <a class="signupLink" [routerLink]="['/register']" style="color:white"> Sign up</a>
+                        Don't have an account? <a class="signupLink" [routerLink]="['/new-user']" style="color:white"> Sign up</a>
                     </div>
                 </div>
 
-                <div *ngIf="invalidLogin" id="loginError">
-                    <div class="alert alert-danger"> 
-                        *Invalid Username and/or Password! <br> Please try again.
+                <div class="row" id="row3">
+                    <div class="col" id="about">
+                       <a class="signupLink" [routerLink]="['/about']" style="color:white">Learn More</a> about Runner Remind
                     </div>
-                </div> 
+                </div>
+
+                
         
                 <div id="btnSubmit">
-                    <button type="submit" class="btn btn-dark" style="color: white;">Submit</button>
+                    <button type="submit" class="btn btn-dark" style="color: white;">Log In</button>
                 </div> 
                 
             </div>

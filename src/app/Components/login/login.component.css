@@ -55,6 +55,11 @@
     padding-bottom: 2%;
 }
 
+#row3{
+    padding-bottom: 2%;
+    text-align: center;
+}
+
 .loginBackground{
     background-image: url("../../../assets/roadLogin.jpg");
     background-position: ce nter center;
