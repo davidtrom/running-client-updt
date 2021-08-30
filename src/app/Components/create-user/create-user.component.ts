@@ -67,6 +67,9 @@ export class CreateUserComponent implements OnInit {
                 //   alert('There was an error, your email has NOT been sent ' + '\n'
                 //   + 'Please try again.');
                 //}
+                
+                this.router.navigate(['']);
+                this.emailAlreadyTaken = false;
                 this.createUserForm.reset();
               }
               );
@@ -77,8 +80,6 @@ export class CreateUserComponent implements OnInit {
       })
     }
       else{
-        console.log('errors: ', 
-        this.createUserForm.value )
         this.createUserForm.markAllAsTouched();
         this.formNotValid = true;
       }

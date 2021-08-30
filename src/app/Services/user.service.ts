@@ -15,6 +15,7 @@ export class UserService {
   private checkEmailUrl: string = this.baseUrl + "/user/check-email";
   private emailJson;
   private createEmailJson: any;
+  private email: string;
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type' : 'application/json'})
@@ -31,12 +32,14 @@ export class UserService {
 
   checkUserEmailAvailability(emailToCheck: string): Observable<Boolean> {
     console.log("inside service check email");
-    this.createEmailJson =  {email: emailToCheck};
-    this.emailJson = JSON.stringify(this.createEmailJson);
-    console.log("String json object :", this.createEmailJson);
-    console.log("Type :", typeof this.createEmailJson);
+    //this.createEmailJson =  {email: emailToCheck};
+    this.emailJson = JSON.stringify({email: emailToCheck});
+    console.log("String json object :", this.emailJson);
+    console.log("Type :", typeof this.emailJson);
+    this.email = emailToCheck;
+    console.log("email sending thru ", this.email)
     //let reqData: Object = {"email": email};
-    return this.http.post<Boolean>(this.checkEmailUrl, this.emailJson, this.httpOptions)
+    return this.http.post<Boolean>(this.checkEmailUrl, this.email, this.httpOptions)
       .pipe(tap(data => console.log("verifying email")));
   }
 
