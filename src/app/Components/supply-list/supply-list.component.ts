@@ -26,6 +26,7 @@ export class SupplyListComponent implements OnInit {
     this.getClientLists();
     this.newListForm = this.fb.group({
       listName: ['', Validators.required],
+      listItem: ['', Validators.required]
     });
   }
 

@@ -41,6 +41,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
     SidebarNavComponent,
     CreateUserComponent,
     ProfileComponent
+    
   ],
   imports: [
     FormsModule,

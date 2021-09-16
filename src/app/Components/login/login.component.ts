@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
         this. invalidLogin = true;
       }
       else {
-        this.router.navigate(['/pastor-dashboard']);
+        this.router.navigate(['/dashboard']);
       }
       // if(this.pastorLoggedIn){
       //   this.router.navigate(['/pastor-dashboard']);

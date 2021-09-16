@@ -1,4 +1,11 @@
-<div class="flex-container">
+<div class="container-fluid">
+<div *ngIf="successModal" class="alert alert-success alert-dismissible fade show" role="alert" id="modal">
+    <strong>Congratulations!</strong> You have been signed up successfully
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="homePageRoute()"></button>
+  </div>
+</div>
+
+<div *ngIf="noModal" class="flex-container">
     <div class="container">
         <div class="panel-heading">
             <h2 class="panel-title">New User Registration</h2>
@@ -57,21 +64,6 @@
                                 <div *ngIf="form.passwordConfirm.errors.confirmedValidator">*Passwords do not match</div>
                                 <div *ngIf="form.passwordConfirm.errors.required">*Please Confirm your Password</div>
                             </div>
-
-                            <!-- <label for="flexRadioDefault">Profile Status:</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="publicStatus" id="flexRadioDefault1">
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                  Default radio
-                                </label>
-                              </div>
-                              <div class="form-check">
-                                <input class="form-check-input" type="radio" name="publicStatus" id="flexRadioDefault2" checked>
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                  Default checked radio
-                                </label>
-                              </div> -->
-                            
                             
                             <label for="flexRadioDefault">Profile Status:</label>
                             <div class="form-check">
@@ -87,13 +79,6 @@
                                 </label>
                               </div>
                             
-                            
-                            <!-- <label for="flexRadioDefault">Profile Status:</label>
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" value=true id="flexSwitchCheckChecked" checked>
-                                <label class="form-check-label" for="flexSwitchCheckChecked">Public</label>
-                              </div> -->
-                        
                             <div *ngIf="formNotValid" class="formNotValid">
                                 *Please enter all required fields before submitting
                             </div>  
@@ -103,13 +88,12 @@
                     <div class="form-group">                 
                         <div class="form-row grid-container">
                             <button type="submit" class="btn btn-success">Register</button>
-                            <button type="button" class="btn btn-warning">Cancel</button>  
+                            <button type="button" class="btn btn-warning" (click)="homePageRoute()">Cancel</button>  
                         </div>
-                    <!-- <div id="btnCancel">                 
-                        <button type="submit" class="btn btn-primary">Register</button>
-                    </div> -->
                 </div>
             </div>
           </form>
     </div>
 </div>
+
+

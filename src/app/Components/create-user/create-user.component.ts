@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SimpleOuterSubscriber } from 'rxjs/internal/innerSubscribe';
 import { User } from 'src/app/Models/user.model';
-import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { UserService } from 'src/app/Services/user.service';
 import { ConfirmedValidator } from 'src/app/Validators/confirmed.validator';
 
@@ -17,6 +15,8 @@ export class CreateUserComponent implements OnInit {
   createUserForm: FormGroup;
   formNotValid: boolean;
   emailAlreadyTaken: boolean = false;
+  successModal: boolean;
+  noModal: boolean = true;
 
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) { }
 
@@ -39,6 +39,10 @@ export class CreateUserComponent implements OnInit {
   changeStatus(e){
     this.createUserForm.patchValue({publicStatus: e.target.value});
     console.log('Change Status: ', e.target.value);
+  }
+
+  homePageRoute(){
+    this.router.navigate(['']);
   }
 
   onSubmit(): void{
@@ -68,9 +72,11 @@ export class CreateUserComponent implements OnInit {
                 //   + 'Please try again.');
                 //}
                 
-                this.router.navigate(['']);
-                this.emailAlreadyTaken = false;
-                this.createUserForm.reset();
+                this.successModal = true;
+                this.noModal = false;
+                //this.router.navigate(['']);
+                //this.emailAlreadyTaken = false;
+                //this.createUserForm.reset();
               }
               );
             }
