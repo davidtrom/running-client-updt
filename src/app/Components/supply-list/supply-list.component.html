@@ -5,6 +5,14 @@
         <div class="sidebar-heading">Supply Lists </div>
         <div class="list-group list-group-flush">
         <a href="#" class="list-group-item list-group-item-action bg-light">New</a>
+        <div class="flex-container" *ngFor="let userList of userLists">
+            {{userList.name}}
+            <div *ngIf="noSupplyLists">
+                <div class="list-group-item list-group-item-action bg-light">Add A New List</div>
+            </div>
+        </div>
+        
+
         <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
@@ -23,29 +31,17 @@
             <p>Make sure you have all the supplies you need for a successful race!</p>
         </div>
 
-        
+        <div class="container" *ngIf="noSupplyLists">
+            <h2>You have no Supply Lists created at this time
+                <br>
+                Please create a new list</h2>
+                <button type="button" class="btn btn-warning" (click)="newListRoute()">Cancel</button>  
 
-
-    <form [formGroup]="newListForm" (ngSubmit)="submitListName()">
-        <div class="title">
-            <label for="listName">Enter the name or description of a new Supply List:</label>
-            <input id="listName" formControlName="listName" type="listName" class="form-control" placeholder="Name or Description" [ngClass]="{'is-invalid': form.listName.errors && (form.listName.touched || form.listName.dirty)}" >
-            <div *ngIf="form.listName.errors && (form.listName.touched || form.listName.dirty)" class="invalid-feedback">
-                <div *ngIf='form.listName.errors.required'>*Supply List Name is Required</div>
-            </div>
         </div>
-        <button type="submit" class="btn btn-success">Create List</button>
-</form>
-
-<div>
-    {{listName}}
-</div>
+        <!-- insert picture? -->
 
 
-
-
-
-
+    
 
     <!-- <div *ngIf="updateList"> -->
         <h2> Race List Manager </h2>
@@ -68,7 +64,7 @@
 
         <ul class="list-group">
             <li *ngFor="let listItem of listItems" class="list-group-item">
-                <span (click)="onStrike(task)" [ngClass]="{'strike': task.strike}"> {{ task.name }} </span>
+                <span (click)="onStrike(task)" [ngClass]="{'strike': task.strike}"> {{ listItem.name }} </span>
                 <span (click)="onEdit(task)" class="glyphicon glyphicon-pencil floatright"></span>
                 <span (click)="onDelete(task)" class="glyphicon glyphicon-remove floatright paddingLeft"></span>
             </li>

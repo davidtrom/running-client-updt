@@ -10,7 +10,7 @@ import { SupplyList } from '../Models/supply-list.model';
 })
 export class ListsService {
 
-  baseUrl = environment.baseUrl + "/travel-list";
+  baseUrl = environment.baseUrl + "/supply-lists";
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type' : 'application/json'})
@@ -18,9 +18,9 @@ export class ListsService {
 
   constructor(private http: HttpClient) { }
 
-  getUserLists() : Observable <SupplyList[]> {
-    console.log("inside list service: ", this.baseUrl+"/lists")
-    return this.http.get<SupplyList[]>(this.baseUrl+"/lists", this.httpOptions)
+  getUserLists(id:number) : Observable <SupplyList[]> {
+    console.log("inside list service: ", this.baseUrl+`/get-lists/${id}`)
+    return this.http.get<SupplyList[]>(this.baseUrl+`/get-lists/${id}`, this.httpOptions)
     .pipe(tap(data => console.log('fetch lists', data)),
       catchError(this.handleError<SupplyList[]>('error geting lists', null)));
   }

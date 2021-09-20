@@ -4,6 +4,7 @@ import { ListItem } from 'src/app/Models/list-item.model';
 import { ListsService } from 'src/app/Services/lists.service';
 import { SupplyList } from 'src/app/Models/supply-list.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-supply-list',
@@ -14,41 +15,28 @@ export class SupplyListComponent implements OnInit {
   status: boolean = false;
   updateList: boolean;
   listItem: ListItem;
-  listItems = [];
-  lists: any[];
+  listItems: ListItem[];
+  userLists: SupplyList[];
   supplyList: SupplyList;
-  newListForm: FormGroup;
-  listName: string;
+  noSupplyLists: boolean;
+  userId: number;
 
-  constructor(private listService: ListsService, private fb: FormBuilder) { }
+  constructor(private listService: ListsService, private router:Router) { }
 
   ngOnInit(): void {
-    this.getClientLists();
-    this.newListForm = this.fb.group({
-      listName: ['', Validators.required],
-      listItem: ['', Validators.required]
-    });
+    let userId = 4;
+
+    this.getMyUserLists(userId);
   }
 
-  get form() {return this.newListForm.controls;}
-
-  submitListName(){
-    this.listName = this.newListForm.controls.listName.value
-  }
-
-  submitNewList(){
-    
-    this.listService.createNewList(this.listName)
-      .subscribe(data => console.log('new list created') )
-  } 
+  
   
   onClick(){
-    if(this.listItem.id == 0){
-      this.listItems.push({id: (new Date()).getTime(),name: this.listItem.name, strike: false});
-  }
+      //this.listItems.push({name: this.listItem.name, strike: false});
+      this.listItems.push({id: null, name: this.listItem.name});
 
   this.listItem.name = '';
-  this.listItem.id = 0;
+  //this.listItem.id = 0;
    
   // this.listItem = {
   //     name: '',
@@ -69,22 +57,33 @@ onDelete(item){
   }
 }
 
-onStrike(item){
-  for(var i = 0;i < this.listItems.length; i++){
-    if(item.id == this.listItems[i].id){
-      if(this.listItems[i].strike){
-        this.listItems[i].strike = false;
-      }
-      else{
-        this.listItems[i].strike = true;
-      }
-      break;
+// onStrike(item){
+//   for(var i = 0;i < this.listItems.length; i++){
+//     if(item.id == this.listItems[i].id){
+//       if(this.listItems[i].strike){
+//         this.listItems[i].strike = false;
+//       }
+//       else{
+//         this.listItems[i].strike = true;
+//       }
+//       break;
+//     }
+//   }
+// }
+
+getMyUserLists(id:number){
+  this.listService.getUserLists(id).subscribe(data => {this.userLists = data;
+    if(this.userLists.length === 0){
+      this.noSupplyLists = true;
     }
-  }
+    else{
+      this.noSupplyLists = false;
+    }
+  });
 }
 
-getClientLists(){
-  this.listService.getUserLists().subscribe(data => {this.lists = data});
+newListRoute(){
+  this.router.navigate(['new-list']);
 }
 
 }
