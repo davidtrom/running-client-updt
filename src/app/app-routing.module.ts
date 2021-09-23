@@ -14,6 +14,7 @@ import { ForgotUsernameComponent } from './Components/forgot-username/forgot-use
 import { SidebarNavComponent } from './Components/sidebar-nav/sidebar-nav.component';
 import { CreateUserComponent } from './Components/create-user/create-user.component';
 import { ProfileComponent } from './Components/profile/profile.component';
+import { CreateSupplyListComponent } from './Components/create-supply-list/create-supply-list.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -29,7 +30,7 @@ const routes: Routes = [
   {path: 'forgot-username', component: ForgotUsernameComponent},
   {path: 'new-user', component: CreateUserComponent},
   {path: 'profile', component: ProfileComponent},
-  
+  {path: 'new-list', component: CreateSupplyListComponent},
   
 
   // if no route, redirect to home

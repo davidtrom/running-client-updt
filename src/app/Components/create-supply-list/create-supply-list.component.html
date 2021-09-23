@@ -1,6 +1,6 @@
 <h2>Create a New List:</h2>
 
-<form [formGroup]="newListForm" (ngSubmit)="submitListName()">
+<form [formGroup]="newListForm" (ngSubmit)="onSubmit()">
     <div class="title">
         <label for="listName">Enter the name or description of a new Supply List:</label>
         <input id="listName" formControlName="listName" type="listName" class="form-control" placeholder="Name or Description" [ngClass]="{'is-invalid': form.listName.errors && (form.listName.touched || form.listName.dirty)}" >

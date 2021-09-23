@@ -21,7 +21,6 @@ import { ForgotUsernameComponent } from './Components/forgot-username/forgot-use
 import { SidebarNavComponent } from './Components/sidebar-nav/sidebar-nav.component';
 import { CreateUserComponent } from './Components/create-user/create-user.component';
 import { ProfileComponent } from './Components/profile/profile.component';
-import { ComponentsComponent } from './create-supplyList/components/components.component';
 import { CreateSupplyListComponent } from './Components/create-supply-list/create-supply-list.component';
 
 
@@ -43,7 +42,7 @@ import { CreateSupplyListComponent } from './Components/create-supply-list/creat
     SidebarNavComponent,
     CreateUserComponent,
     ProfileComponent,
-    ComponentsComponent,
+  
     CreateSupplyListComponent
     
   ],

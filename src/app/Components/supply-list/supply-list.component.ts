@@ -24,9 +24,9 @@ export class SupplyListComponent implements OnInit {
   constructor(private listService: ListsService, private router:Router) { }
 
   ngOnInit(): void {
-    let userId = 4;
+    this.userId = 1;
 
-    this.getMyUserLists(userId);
+    this.getMyUserLists(this.userId);
   }
 
   
@@ -72,7 +72,9 @@ onDelete(item){
 // }
 
 getMyUserLists(id:number){
-  this.listService.getUserLists(id).subscribe(data => {this.userLists = data;
+  this.listService.getUserLists(id).subscribe(data => {
+    this.userLists = data;
+    console.log("userLists: ", this.userLists.length);
     if(this.userLists.length === 0){
       this.noSupplyLists = true;
     }

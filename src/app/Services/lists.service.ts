@@ -25,9 +25,11 @@ export class ListsService {
       catchError(this.handleError<SupplyList[]>('error geting lists', null)));
   }
 
-  createNewList(listName: string): Observable<SupplyList> {
-    return this.http.post<SupplyList>(this.baseUrl+"/", listName, this.httpOptions)
-    .pipe(tap(data=> console.log("creating new list")),
+  createNewList(userId: number, listName: string): Observable<SupplyList> {
+    console.log(this.baseUrl+ `/create/${userId}`); 
+    console.log("insie createNewList");
+    return this.http.post<SupplyList>(this.baseUrl+`/create/${userId}`, listName, this.httpOptions)
+    .pipe(tap(data=> console.log("creating new list", data)),
     catchError(this.handleError<SupplyList>('error creating list', null)));
   }
 

@@ -2,7 +2,7 @@
  
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper"  [ngClass]="status ? 'hide' : 'show'">
-        <div class="sidebar-heading">Supply Lists </div>
+        <div class="sidebar-heading">Supply Lists:</div>
         <div class="list-group list-group-flush">
         <a href="#" class="list-group-item list-group-item-action bg-light">New</a>
         <div class="flex-container" *ngFor="let userList of userLists">
@@ -28,14 +28,15 @@
     
         <div class="title">
             <h2>Supply Lists</h2>
-            <p>Make sure you have all the supplies you need for a successful race!</p>
+            <p>When race day comes, you want to make sure you're prepared with everything you need.  You can now make a list and check it twice!  
+                Make sure you have all the supplies you need for a successful race!</p>
         </div>
 
         <div class="container" *ngIf="noSupplyLists">
             <h2>You have no Supply Lists created at this time
                 <br>
                 Please create a new list</h2>
-                <button type="button" class="btn btn-warning" (click)="newListRoute()">Cancel</button>  
+                <button type="button" class="btn btn-success" (click)="newListRoute()">New List</button>  
 
         </div>
         <!-- insert picture? -->
@@ -45,7 +46,7 @@
 
     <!-- <div *ngIf="updateList"> -->
         <h2> Race List Manager </h2>
-        <h2> {{listName}} </h2>
+        <!-- <h2> {{listName}} </h2> -->
 
         <div class="row">
             <div class="col-xs-6 col-md-4">
