@@ -10,6 +10,8 @@ import { SupplyList } from '../Models/supply-list.model';
 })
 export class ListsService {
 
+  nameOfList: string;
+
   baseUrl = environment.baseUrl + "/supply-lists";
 
   httpOptions = {
@@ -26,9 +28,11 @@ export class ListsService {
   }
 
   createNewList(userId: number, listName: string): Observable<SupplyList> {
+    this.nameOfList = listName;
+    console.log(this.nameOfList, " ", listName);
     console.log(this.baseUrl+ `/create/${userId}`); 
     console.log("insie createNewList");
-    return this.http.post<SupplyList>(this.baseUrl+`/create/${userId}`, listName, this.httpOptions)
+    return this.http.post<SupplyList>(this.baseUrl+`/create/${userId}`, this.nameOfList, this.httpOptions)
     .pipe(tap(data=> console.log("creating new list", data)),
     catchError(this.handleError<SupplyList>('error creating list', null)));
   }

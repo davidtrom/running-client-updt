@@ -64,10 +64,19 @@
                             </a> 
                         </li>
 
-                        <li class="nav-item" ngbDropdown>
+                        <!-- <li class="nav-item" ngbDropdown>
                             <a class="nav-link" a [routerLink]="['/profile']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
                                 Profile
                             </a> 
+                        </li> -->
+
+                        <li class="nav-item dropdown" ngbDropdown id="infoDropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" style="color: white" aria-haspopup="true" aria-expanded="false">Profile</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" a [routerLink]="['/profile']"(click)="collapse()">View</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" a [routerLink]="['/edit-profile']"(click)="collapse()">Edit</a>
+                            </div>
                         </li>
 
                         <li class="nav-item" ngbDropdown>

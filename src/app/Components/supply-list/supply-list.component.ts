@@ -20,6 +20,7 @@ export class SupplyListComponent implements OnInit {
   supplyList: SupplyList;
   noSupplyLists: boolean;
   userId: number;
+  collapsed: boolean = true;
 
   constructor(private listService: ListsService, private router:Router) { }
 
@@ -27,6 +28,16 @@ export class SupplyListComponent implements OnInit {
     this.userId = 1;
 
     this.getMyUserLists(this.userId);
+  }
+
+  collapse(): boolean{
+    if(this.collapsed === true){
+      this.collapsed = false;
+    }
+    else{
+      this.collapsed = true;
+    }
+    return this.collapsed;
   }
 
   

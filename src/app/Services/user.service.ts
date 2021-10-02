@@ -14,7 +14,6 @@ export class UserService {
   private createUserUrl: string = this.baseUrl + "/user/new";
   private checkEmailUrl: string = this.baseUrl + "/user/check-email";
   private emailJson;
-  private createEmailJson: any;
   private email: string;
 
   httpOptions = {

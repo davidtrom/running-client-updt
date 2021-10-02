@@ -22,6 +22,7 @@ import { SidebarNavComponent } from './Components/sidebar-nav/sidebar-nav.compon
 import { CreateUserComponent } from './Components/create-user/create-user.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { CreateSupplyListComponent } from './Components/create-supply-list/create-supply-list.component';
+import { EditProfileComponent } from './Components/edit-profile/edit-profile.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { CreateSupplyListComponent } from './Components/create-supply-list/creat
     CreateUserComponent,
     ProfileComponent,
   
-    CreateSupplyListComponent
+    CreateSupplyListComponent,
+       EditProfileComponent
     
   ],
   imports: [
