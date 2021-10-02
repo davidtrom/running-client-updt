@@ -1,0 +1,14 @@
+.flex-container{
+    padding-top: 2%;
+    padding-bottom: 2%;
+    font-size: 13pt;
+}
+
+.card-header{
+    font-weight: bold;
+    font-size: 13pt;
+}
+
+#backBtn, #editProfBtn, #editLoginBtn, #bottomRow{
+    padding-bottom: 2%;
+}

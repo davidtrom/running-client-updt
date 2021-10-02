@@ -1,1 +1,60 @@
-<p>profile works!</p>
+<div class="flex-container">
+    <div class="card w-75 p-3 mx-auto">
+        <div class="card-header">
+        User Profile:
+        </div>
+        <div class="card-body">
+            <div class = "row">
+                <div class= "col-md-4">
+                    <u>Name:</u>
+                </div>
+                <div class= "col-md-8">
+                    {{user.firstName}} {{user.lastName}}
+                </div>
+            </div>
+
+            <div class = "row">
+                <div class= "col-md-4">
+                    <u>Birthday:</u>
+                </div>
+                <div class= "col-md-8">
+                    {{user.birthday}}
+                </div>
+            </div>
+
+            <div class = "row">
+                <div class= "col-md-4">
+                    <u>Email:</u>
+                </div>
+                <div class= "col-md-8">
+                    {{user.email}}
+                </div>
+            </div>
+
+            <div class = "row" id="bottomRow">
+                <div class= "col-md-4">
+                    <u>Privacy Status:</u>
+                </div>
+                <div class= "col-md-8">
+                    {{user.publicStatus}}
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-md-3">
+                    <div id="editProfBtn">
+                        <a [routerLink]="['/edit-volunteer', currentVolunteer.id]" type="button" class="btn btn-info ">Edit Profile</a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div id="editLoginBtn">
+                        <a [routerLink]="['/edit-volpw', currentVolunteer.id]" type="button" class="btn btn-info">Edit Login</a>
+                    </div>
+                </div>
+            </div>   
+        </div>
+    </div>
+</div>
+

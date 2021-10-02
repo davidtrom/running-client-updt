@@ -13,6 +13,7 @@ export class UserService {
   //private isUserLoggedIn$: BehaviorSubject<boolean>;
   private createUserUrl: string = this.baseUrl + "/user/new";
   private checkEmailUrl: string = this.baseUrl + "/user/check-email";
+  private getUserByEmailUrl: string = this.baseUrl +"/user/get-by-email"
   private emailJson;
   private email: string;
 
@@ -27,6 +28,12 @@ export class UserService {
       .pipe(tap(data => {console.log("user created");}), 
       catchError(this.handleError<User>('error registering new user', null))
     )
+  }
+
+  getUserByEmail(email: String): Observable<User>{
+    return this.http.post<User>(this.getUserByEmailUrl, email, this.httpOptions)
+    .pipe(tap(data => {console.log("fetching userr");}),
+    catchError(this.handleError<User>('error fetching user', null)))
   }
 
   checkUserEmailAvailability(emailToCheck: string): Observable<Boolean> {
