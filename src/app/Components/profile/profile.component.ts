@@ -10,14 +10,21 @@ import { UserService } from 'src/app/Services/user.service';
 })
 export class ProfileComponent implements OnInit {
 
-  currentUser: User;
+  user: User;
 
   constructor(private authService: AuthenticationService, private userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService.getUserByEmail(sessionStorage.getItem('username')).subscribe(userData => {
-      this.currentUser = userData;
-    });
+
+    this.userService.getUserById(1).subscribe(userData => {this.user = userData;})
+
+    // this.userService.getUserByEmail('davidtrom@hotmail.com').subscribe(userData => {
+    //   this.user = userData;
+    // });
+    
+    // this.userService.getUserByEmail(sessionStorage.getItem('username')).subscribe(userData => {
+    //   this.user = userData;
+    // });
   }
 
 }

@@ -13,7 +13,8 @@ export class UserService {
   //private isUserLoggedIn$: BehaviorSubject<boolean>;
   private createUserUrl: string = this.baseUrl + "/user/new";
   private checkEmailUrl: string = this.baseUrl + "/user/check-email";
-  private getUserByEmailUrl: string = this.baseUrl +"/user/get-by-email"
+  private getUserByEmailUrl: string = this.baseUrl +"/user/get-by-email/";
+  private getUserByIdUrl: string = this.baseUrl + "/user/";
   private emailJson;
   private email: string;
 
@@ -30,18 +31,25 @@ export class UserService {
     )
   }
 
-  getUserByEmail(email: String): Observable<User>{
-    return this.http.post<User>(this.getUserByEmailUrl, email, this.httpOptions)
+  getUserByEmail(email: string): Observable<User>{
+    console.log(email)
+    return this.http.get<User>(this.getUserByEmailUrl + email, this.httpOptions)
     .pipe(tap(data => {console.log("fetching userr");}),
     catchError(this.handleError<User>('error fetching user', null)))
+  }
+
+  getUserById(id: number): Observable<User>{
+    return this.http.get<User>(this.getUserByIdUrl + id, this.httpOptions)
+    .pipe(tap(data => {console.log("fetching user");}),
+    catchError(this.handleError<User>('error fetching user')))
   }
 
   checkUserEmailAvailability(emailToCheck: string): Observable<Boolean> {
     console.log("inside service check email");
     //this.createEmailJson =  {email: emailToCheck};
-    this.emailJson = JSON.stringify({email: emailToCheck});
-    console.log("String json object :", this.emailJson);
-    console.log("Type :", typeof this.emailJson);
+    //this.emailJson = JSON.stringify({email: emailToCheck});
+    // console.log("String json object :", this.emailJson);
+    // console.log("Type :", typeof this.emailJson);
     this.email = emailToCheck;
     console.log("email sending thru ", this.email)
     //let reqData: Object = {"email": email};
