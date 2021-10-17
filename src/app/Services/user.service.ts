@@ -46,13 +46,8 @@ export class UserService {
 
   checkUserEmailAvailability(emailToCheck: string): Observable<Boolean> {
     console.log("inside service check email");
-    //this.createEmailJson =  {email: emailToCheck};
-    //this.emailJson = JSON.stringify({email: emailToCheck});
-    // console.log("String json object :", this.emailJson);
-    // console.log("Type :", typeof this.emailJson);
     this.email = emailToCheck;
     console.log("email sending thru ", this.email)
-    //let reqData: Object = {"email": email};
     return this.http.post<Boolean>(this.checkEmailUrl, this.email, this.httpOptions)
       .pipe(tap(data => console.log("verifying email")));
   }

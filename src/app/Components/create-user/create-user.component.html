@@ -51,37 +51,65 @@
                         </div>
                     
                         
-                            <label for="password">Password: (Password Details?) </label>
-                            <input type="password" formControlName="password" class="form-control" id="password" [ngClass]="{ 'is-invalid': form.password.errors && (form.password.touched || form.password.dirty)}" placeholder="Password">
-                            <div *ngIf="form.password.errors && (form.password.touched || form.password.dirty)" class="invalid-feedback">
-                                <div *ngIf="form.password.errors.pattern">Password needs lowercase, uppercase, number, and symbol: 8 characters minimum</div>
-                                <div *ngIf="form.password.errors.required">*Password is required</div>
-                            </div> 
+                        <label for="city">City:*</label>
+                        <input id="city" formControlName="city" type="text" class="form-control" placeholder="City" [ngClass]="{'is-invalid': form.city.errors && (form.city.touched || form.city.dirty)}">
+                        <div *ngIf="form.city.errors && (form.city.touched || form.city.dirty)" class="invalid-feedback">
+                            <div *ngIf='form.city.errors.required'>*City is Required</div>
+                            <div *ngIf='form.city.errors.pattern'>*Please Enter Your City Location</div>
+                        </div>
 
-                            <label for="passwordConfirm">Password Confirm:</label>
-                            <input type="password" formControlName="passwordConfirm" class="form-control" id="passwordConfirm" [ngClass]="{ 'is-invalid': form.passwordConfirm.errors && (form.passwordConfirm.touched || form.passwordConfirm.dirty)}" placeholder="Confirm Password">
-                            <div *ngIf="form.passwordConfirm.errors && (form.passwordConfirm.touched || form.passwordConfirm.dirty)" class="invalid-feedback">
-                                <div *ngIf="form.passwordConfirm.errors.confirmedValidator">*Passwords do not match</div>
-                                <div *ngIf="form.passwordConfirm.errors.required">*Please Confirm your Password</div>
+                        <label for="state">State:*</label>
+                        <input id="state" formControlName="state" type="text" class="form-control" placeholder="State" [ngClass]="{'is-invalid': form.state.errors && (form.state.touched || form.state.dirty)}">
+                        <div *ngIf="form.state.errors && (form.state.touched || form.state.dirty)" class="invalid-feedback">
+                            <div *ngIf='form.state.errors.required'>*State is Required</div>
+                            <div *ngIf='form.state.errors.pattern'>*Please Enter Your State</div>
+                        </div>
+
+                        <label for="country">Country:*</label>
+                        <input id="country" formControlName="country" type="text" class="form-control" placeholder="Country" [ngClass]="{'is-invalid': form.country.errors && (form.country.touched || form.country.dirty)}">
+                        <div *ngIf="form.country.errors && (form.country.touched || form.country.dirty)" class="invalid-feedback">
+                            <div *ngIf='form.country.errors.required'>*Country is Required</div>
+                            <div *ngIf='form.country.errors.pattern'>*Please Enter Your Country</div>
+                        </div>
+
+                        <label for="gender">Gender:*</label>
+                        <select class="form-control" id="gender" formControlName="gender"[ngClass]="{'is-invalid': form.gender.errors && (form.gender.touched || form.gender.dirty)}">
+                          <option>Male</option>
+                          <option>Female</option>
+                          <option>Prefer Not to Disclose</option>
+                        </select>
+
+                        <label for="password">Password: (Password Details?) </label>
+                        <input type="password" formControlName="password" class="form-control" id="password" [ngClass]="{ 'is-invalid': form.password.errors && (form.password.touched || form.password.dirty)}" placeholder="Password">
+                        <div *ngIf="form.password.errors && (form.password.touched || form.password.dirty)" class="invalid-feedback">
+                            <div *ngIf="form.password.errors.pattern">Password needs lowercase, uppercase, number, and symbol: 8 characters minimum</div>
+                            <div *ngIf="form.password.errors.required">*Password is required</div>
+                        </div> 
+
+                        <label for="passwordConfirm">Password Confirm:</label>
+                        <input type="password" formControlName="passwordConfirm" class="form-control" id="passwordConfirm" [ngClass]="{ 'is-invalid': form.passwordConfirm.errors && (form.passwordConfirm.touched || form.passwordConfirm.dirty)}" placeholder="Confirm Password">
+                        <div *ngIf="form.passwordConfirm.errors && (form.passwordConfirm.touched || form.passwordConfirm.dirty)" class="invalid-feedback">
+                            <div *ngIf="form.passwordConfirm.errors.confirmedValidator">*Passwords do not match</div>
+                            <div *ngIf="form.passwordConfirm.errors.required">*Please Confirm your Password</div>
+                        </div>
+                        
+                        <label for="flexRadioDefault">Profile Status:</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="profileStatus" [value]=true id="public" checked (change)="changeStatus($event)">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Public
+                            </label>
                             </div>
-                            
-                            <label for="flexRadioDefault">Profile Status:</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="publicStatus" [value]=true id="public" checked (change)="changeStatus($event)">
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                  Public
-                                </label>
-                              </div>
-                              <div class="form-check">
-                                <input class="form-check-input" type="radio" name="publicStatus" [value]=false id="private" (change)="changeStatus($event)"> 
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                  Private
-                                </label>
-                              </div>
-                            
-                            <div *ngIf="formNotValid" class="formNotValid">
-                                *Please enter all required fields before submitting
-                            </div>  
+                            <input class="form-check-input" type="radio" name="profileStatus" [value]=false id="private" (change)="changeStatus($event)"> 
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Private
+                            </label>
+                            </div>
+                        
+                        <div *ngIf="formNotValid" class="formNotValid">
+                            *Please enter all required fields before submitting
+                        </div>  
                     </div>
                 </div>
                 

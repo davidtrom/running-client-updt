@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Gender } from 'src/app/Models/Gender';
+import { ProfileStatus } from 'src/app/Models/ProfileStatus';
 import { User } from 'src/app/Models/user.model';
 import { UserService } from 'src/app/Services/user.service';
 import { ConfirmedValidator } from 'src/app/Validators/confirmed.validator';
@@ -17,6 +19,8 @@ export class CreateUserComponent implements OnInit {
   emailAlreadyTaken: boolean = false;
   successModal: boolean;
   noModal: boolean = true;
+  gender: Gender;
+  profileStatus: ProfileStatus;
 
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) { }
 
@@ -26,9 +30,13 @@ export class CreateUserComponent implements OnInit {
       lastName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
       birthDate: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%$!#+\-]+@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$')]],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      country: ['', Validators.required],
+      gender: ['', Validators.required],
       password: ['', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!_.@$%^&*-]).{8,}$')]],
       passwordConfirm: ['', Validators.required],
-      publicStatus: ['true', Validators.required]
+      profileStatus: [ProfileStatus.Public, Validators.required]
     }, {
       validator: ConfirmedValidator('password', 'passwordConfirm')
     });
@@ -37,15 +45,29 @@ export class CreateUserComponent implements OnInit {
   get form() { return this.createUserForm.controls; }
 
   changeStatus(e){
-    this.createUserForm.patchValue({publicStatus: e.target.value});
+    this.createUserForm.patchValue({profileStatus: e.target.value});
     console.log('Change Status: ', e.target.value);
+    if(e.target.value === true){
+      this.profileStatus = ProfileStatus.Public;
+      console.log(this.profileStatus);
+    }
+    else{this.profileStatus = ProfileStatus.Private};
+    console.log(this.profileStatus);
   }
+
+  selectChangeHandler(event:any){
+  //this.
+}
 
   homePageRoute(){
     this.router.navigate(['']);
   }
 
   onSubmit(): void{
+      // if(this.createUserForm.controls.publicStatus.value == true){
+      //   this.profileStatus = ProfileStatus.PUBLIC
+      // }
+
       if(this.createUserForm.valid){
         console.log("valid form")
           this.userService.checkUserEmailAvailability(this.createUserForm.controls.email.value).subscribe(
@@ -58,7 +80,7 @@ export class CreateUserComponent implements OnInit {
                 this.createUserForm.controls.birthDate.value,
                 this.createUserForm.controls.email.value,
                 this.createUserForm.controls.password.value,
-                this.createUserForm.controls.publicStatus.value
+                this.createUserForm.controls.profileStatus.value
                 );
       
               this.userService.createUser(user).subscribe(

@@ -1,4 +1,4 @@
 export enum ProfileStatus {
-    PUBLIC, 
-    PRIVATE
+    Public, 
+    Private
 }
