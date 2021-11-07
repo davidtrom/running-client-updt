@@ -4,16 +4,25 @@
         User Profile:
         </div>
         <div class="card-body">
-            <div class = "row">
-                <div class= "col-md-4">
-                    <u>Name:</u>
+            <div class="row">
+                <div class="col-md-4">
+                    <u>First Name:</u>
                 </div>
-                <div class= "col-md-8">
-                    {{user.firstName}} {{user.lastName}}
+                <div class="col-md-8">
+                    {{user.firstName}}
                 </div>
             </div>
 
-            <div class = "row">
+            <div class="row">
+                <div class="col-md-4">
+                    <u>Last Name:</u>
+                </div>
+                <div class="col-md-8">
+                    {{user.lastName}}
+                </div>
+            </div>
+
+            <div class ="row">
                 <div class= "col-md-4">
                     <u>Birthday:</u>
                 </div>
@@ -22,21 +31,57 @@
                 </div>
             </div>
 
-            <div class = "row">
+            <div class ="row">
                 <div class= "col-md-4">
-                    <u>Email:</u>
+                    <u>Username/Email:</u>
                 </div>
                 <div class= "col-md-8">
                     {{user.email}}
                 </div>
             </div>
 
-            <div class = "row" id="bottomRow">
+            <div class ="row">
                 <div class= "col-md-4">
-                    <u>Privacy Status:</u>
+                    <u>City:</u>
                 </div>
                 <div class= "col-md-8">
-                    {{user.publicStatus}}
+                    {{user.locationCity}}
+                </div>
+            </div>
+
+            <div class ="row">
+                <div class= "col-md-4">
+                    <u>State:</u>
+                </div>
+                <div class= "col-md-8">
+                    {{user.locationState}}
+                </div>
+            </div>
+
+            <div class ="row">
+                <div class= "col-md-4">
+                    <u>Country:</u>
+                </div>
+                <div class= "col-md-8">
+                    {{user.locationCountry}}
+                </div>
+            </div>
+
+            <div class ="row">
+                <div class= "col-md-4">
+                    <u>Gender:</u>
+                </div>
+                <div class= "col-md-8">
+                    {{user.gender}}
+                </div>
+            </div>
+
+            <div class = "row" id="bottomRow">
+                <div class= "col-md-4">
+                    <u>Profile Status:</u>
+                </div>
+                <div class= "col-md-8">
+                    {{user.profileStatus}}
                 </div>
             </div>
         </div>

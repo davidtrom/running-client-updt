@@ -1,0 +1,68 @@
+.flex-container{
+    padding-top: 2%;
+    padding-bottom: 2%;
+    font-size: 13pt;
+}
+
+#btnSubmit{
+    padding-top: 2%;
+   
+}
+
+#backBtn{
+    display: inline;
+}
+
+.container{
+    border-style: solid; 
+    border-width: 2px;
+    border-color: black;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    /* max-width: fit-content ; */
+    /* max-width: 33%; */
+    /* border: medium groove rgb(228, 86, 86) */
+}
+
+.flex-container{
+    padding-top: 2%;
+    padding-bottom: 2%;
+    /* max-height: ; */
+}
+
+#modal{
+    max-height: max-content;
+    padding-top: 2%;
+    
+}
+
+h2{
+    padding-bottom: 1%;
+    text-align: center;
+    /* padding-left: 20%;
+    padding-right: 20%; */
+}
+
+.buttonGroup{
+    text-align: center;
+    padding-top: 5%;
+}
+
+.grid-container {
+    padding-top: 5%;
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr;
+    grid-gap: 10%;
+}
+
+label{
+    padding-top: 1.5%;
+}
+
+.form-check{
+    padding-top: 0.5%;
+}
+
+.title{
+    text-align: center;
+}

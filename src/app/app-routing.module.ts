@@ -20,7 +20,6 @@ import { EditProfileComponent } from './Components/edit-profile/edit-profile.com
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'about', component: AboutComponent},
-  //{path: 'about', component: SidebarNavComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'personal-records', component: PersonalRecordsComponent},
   {path: 'supply-lists', component: SupplyListComponent},
@@ -30,8 +29,8 @@ const routes: Routes = [
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'forgot-username', component: ForgotUsernameComponent},
   {path: 'new-user', component: CreateUserComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path: 'edit-profile', component: EditProfileComponent},
+  {path: 'profile/:id', component: ProfileComponent},
+  {path: 'edit-profile/:id', component: EditProfileComponent},
   {path: 'new-list', component: CreateSupplyListComponent},
   
 

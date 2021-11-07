@@ -19,8 +19,6 @@ export class CreateUserComponent implements OnInit {
   emailAlreadyTaken: boolean = false;
   successModal: boolean;
   noModal: boolean = true;
-  gender: Gender;
-  profileStatus: ProfileStatus;
 
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) { }
 
@@ -44,20 +42,38 @@ export class CreateUserComponent implements OnInit {
 
   get form() { return this.createUserForm.controls; }
 
+
   changeStatus(e){
-    this.createUserForm.patchValue({profileStatus: e.target.value});
     console.log('Change Status: ', e.target.value);
-    if(e.target.value === true){
-      this.profileStatus = ProfileStatus.Public;
-      console.log(this.profileStatus);
+    if(e.target.value == "true"){
+      this.createUserForm.patchValue({profileStatus: ProfileStatus.Public});
+      console.log("Status is now Public");
     }
-    else{this.profileStatus = ProfileStatus.Private};
-    console.log(this.profileStatus);
+    else{
+      this.createUserForm.patchValue({profileStatus: ProfileStatus.Private});
+      console.log("Status is now Private");
+    }
   }
 
-  selectChangeHandler(event:any){
-  //this.
-}
+  setGender(e){
+    console.log('Change Status: ', e.target.value);
+    if(e.target.value == "Male"){
+      this.createUserForm.patchValue({gender: Gender.Male});
+      console.log("Gender is Male");
+    }
+    else if(e.target.value == "Female"){
+      this.createUserForm.patchValue({gender: Gender.Female});
+      console.log("Gender is Female");
+    }
+    else if (e.target.value == "Other"){
+      this.createUserForm.patchValue({gender: Gender.Other});
+      console.log("Gender is Other");
+    }
+    else{
+      this.createUserForm.patchValue({gender: Gender.Undisclosed});
+      console.log("Gender is Undisclosed");
+    }
+ }
 
   homePageRoute(){
     this.router.navigate(['']);
@@ -79,9 +95,15 @@ export class CreateUserComponent implements OnInit {
                 this.createUserForm.controls.lastName.value,
                 this.createUserForm.controls.birthDate.value,
                 this.createUserForm.controls.email.value,
+                this.createUserForm.controls.city.value,
+                this.createUserForm.controls.state.value,
+                this.createUserForm.controls.country.value,
+                this.createUserForm.controls.gender.value,
                 this.createUserForm.controls.password.value,
                 this.createUserForm.controls.profileStatus.value
                 );
+
+                console.log(user);
       
               this.userService.createUser(user).subscribe(
                 data => {
@@ -112,11 +134,6 @@ export class CreateUserComponent implements OnInit {
         this.formNotValid = true;
       }
   } 
-   
-   
-   
-   
-   
    
    
    
@@ -157,7 +174,4 @@ export class CreateUserComponent implements OnInit {
 // }
 
 }
-// function ConfirmedValidator(arg0: string, arg1: string): any {
-//   throw new Error('Function not implemented.');
-//}
 
