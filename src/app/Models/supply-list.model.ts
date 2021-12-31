@@ -3,12 +3,14 @@ import { ListItem } from "./list-item.model";
 
 export class SupplyList {
     id: number;
-    listName: string
+    userId: number;
+    listDescription: string
     listItems: ListItem[];
 
-    constructor(id:number, listName:string, listItems:ListItem[]){
+    constructor(id:number, userId: number, listDescription:string, listItems:ListItem[]){
         this.id = id;
-        this.listName = listName;
+        this.userId = userId;
+        this.listDescription = listDescription;
         this.listItems = listItems;
     }
 }

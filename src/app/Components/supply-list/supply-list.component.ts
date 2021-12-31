@@ -5,6 +5,7 @@ import { ListsService } from 'src/app/Services/lists.service';
 import { SupplyList } from 'src/app/Models/supply-list.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/Models/user.model';
 
 @Component({
   selector: 'app-supply-list',
@@ -21,6 +22,7 @@ export class SupplyListComponent implements OnInit {
   noSupplyLists: boolean;
   userId: number;
   collapsed: boolean = true;
+  user: User;
 
   constructor(private listService: ListsService, private router:Router) { }
 

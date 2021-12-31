@@ -14,6 +14,9 @@ export class CreateSupplyListComponent implements OnInit {
   listName: string;
   userId: number;
   supplyList: SupplyList;
+  listNotCreated: boolean = true;
+  showGif: boolean;
+  listExists: boolean = false;
 
   constructor( private fb: FormBuilder, private router: Router, private listService: ListsService) { }
 
@@ -21,8 +24,7 @@ export class CreateSupplyListComponent implements OnInit {
     this.userId = 1;
 
     this.newListForm = this.fb.group({
-      listName: ['', Validators.required],
-      listItem: ['', Validators.required]
+      listName: ['', Validators.required]
     });
   }
 
@@ -35,13 +37,27 @@ export class CreateSupplyListComponent implements OnInit {
   onSubmit(){
     this.listService.createNewList(this.userId, this.newListForm.controls.listName.value)
       .subscribe(data => {
-        console.log('new list created');
-        this.supplyList = data;
+        if (data == null){
+          this.listExists = true;
+        }
+        else {
+          console.log('new list created');
+          this.supplyList = data;
+          this.listNotCreated = false;
+          this.showGif = true;
+          setTimeout(() => {
+            console.log('sleep');
+            this.router.navigate(['/supply-lists']);
+            // And any other code that should run only after 5s
+            //add list_id to array to send to supply-lists
+          }, 5000);
+        }
+        
        })
   }
   
   createNewList(){
-    
+
   }
 
 }

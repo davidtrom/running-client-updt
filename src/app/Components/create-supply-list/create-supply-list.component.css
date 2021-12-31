@@ -14,3 +14,12 @@ input{
     width: 50%
 }
 
+.showGif{
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.listExists{
+    color: red;
+}
+
