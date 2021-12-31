@@ -27,7 +27,12 @@ export class SupplyListComponent implements OnInit {
   ngOnInit(): void {
     this.userId = 1;
 
-    this.getMyUserLists(this.userId);
+    this.listService.getUserLists(this.userId).subscribe(data => {
+      this.userLists = data;
+      this.checkForLists(this.userLists);
+    });
+
+    
   }
 
   collapse(): boolean{
@@ -38,6 +43,15 @@ export class SupplyListComponent implements OnInit {
       this.collapsed = true;
     }
     return this.collapsed;
+  }
+
+  checkForLists(supplyLists: SupplyList[]) {
+    if (supplyLists.length != 0){
+      this.noSupplyLists = false;
+    }
+    else {
+      this.noSupplyLists = true;
+    }
   }
 
   

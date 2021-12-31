@@ -31,11 +31,18 @@ export class ListsService {
     this.nameOfList = listName;
     console.log(this.nameOfList, " ", listName);
     console.log(this.baseUrl+ `/create/${userId}`); 
-    console.log("insie createNewList");
+    console.log("inside createNewList");
     return this.http.post<SupplyList>(this.baseUrl+`/create/${userId}`, this.nameOfList, this.httpOptions)
     .pipe(tap(data=> console.log("creating new list", data)),
     catchError(this.handleError<SupplyList>('error creating list', null)));
   }
+
+  // getUserLists(id:number) : Observable <SupplyList[]> {
+  //   console.log("inside list service: ", this.baseUrl+`/get-lists/${id}`)
+  //   return this.http.get<SupplyList[]>(this.baseUrl+`/get-lists/${id}`, this.httpOptions)
+  //   .pipe(tap(data => console.log('fetch lists', data)),
+  //     catchError(this.handleError<SupplyList[]>('error geting lists', null)));
+  // }
 
 
 

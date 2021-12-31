@@ -46,27 +46,31 @@
     
         <div class="title">
             <h2>Supply Lists</h2>
-            <p>When race day comes, you want to make sure you're prepared with everything you need.  You can now make a list and check it twice!  
-                Make sure you have all the supplies you need for a successful race!</p>
+            <p>When race day comes, you want to make sure you're prepared with everything you need.  Make your list and check it twice!  
+                <br>Add supplies to your list to make sure you have all the things you'll need for a successful race!</p>
         </div>
 
-        <div class="container" *ngIf="noSupplyLists">
+        <div class="noLists" *ngIf="noSupplyLists">
             <h2>You have no Supply Lists created at this time
                 <br>
-                Please create a new list</h2>
-                <button type="button" class="btn btn-success" (click)="newListRoute()">New List</button>  
+                Click Below to Create a New List</h2>
+                <div id="newListBtn">
+                    <button type="button" class="btn btn-success" (click)="newListRoute()">New List</button>
+                </div>  
 
         </div>
         <!-- insert picture? -->
+
+        
 
 
     
 
     <!-- <div *ngIf="updateList"> -->
-        <h2> Race List Manager </h2>
+        <!-- <h2> Race List Manager </h2> -->
         <!-- <h2> {{listName}} </h2> -->
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-xs-6 col-md-4">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Enter Race Items" id="txtSearch" [(ngModel)]="listItem" />
@@ -87,10 +91,10 @@
                 <span (click)="onEdit(task)" class="glyphicon glyphicon-pencil floatright"></span>
                 <span (click)="onDelete(task)" class="glyphicon glyphicon-remove floatright paddingLeft"></span>
             </li>
-        </ul>
+        </ul> -->
     <!-- </div> -->
 
-    </div>
+    <!-- </div> -->
 </div>
 
 

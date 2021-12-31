@@ -67,7 +67,13 @@ body {
     }
   }
  */
+ .title{
+  padding-top: 2%;
+}
 
+#newListBtn{
+  padding-left: 15%;
+}
 
  /* The side navigation menu */
 .sidebar {

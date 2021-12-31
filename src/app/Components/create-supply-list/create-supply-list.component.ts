@@ -38,6 +38,10 @@ export class CreateSupplyListComponent implements OnInit {
         console.log('new list created');
         this.supplyList = data;
        })
-  } 
+  }
+  
+  createNewList(){
+    
+  }
 
 }
