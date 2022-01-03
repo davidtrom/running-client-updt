@@ -37,6 +37,12 @@ export class ListsService {
     catchError(this.handleError<SupplyList>('error creating list', null)));
   }
 
+  getListById(id:number) : Observable <SupplyList>{
+    return this.http.get<SupplyList>(this.baseUrl+`/${id}`, this.httpOptions)
+    .pipe(tap(data => console.log('fetching list', data)),
+    catchError(this.handleError<SupplyList>('error fetching list', null)));
+  }
+
   // getUserLists(id:number) : Observable <SupplyList[]> {
   //   console.log("inside list service: ", this.baseUrl+`/get-lists/${id}`)
   //   return this.http.get<SupplyList[]>(this.baseUrl+`/get-lists/${id}`, this.httpOptions)

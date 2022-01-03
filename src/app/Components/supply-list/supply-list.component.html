@@ -43,7 +43,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let list of userLists">
-                <td>{{list.listDescription}}</td>
+                <td><a [routerLink]="['/view-list', list.id]">{{list.listDescription}}</a></td>
             </tr>
         </tbody>
     </table>
@@ -63,15 +63,22 @@
                 <br>Add supplies to your list to make sure you have all the things you'll need for a successful race!</p>
         </div>
 
-        <div class="noLists" *ngIf="noSupplyLists">
-            <h2>You have no Supply Lists created at this time
-                <br>
-                Click Below to Create a New List</h2>
-                <div id="newListBtn">
-                    <button type="button" class="btn btn-success" (click)="newListRoute()">New List</button>
-                </div>  
-
+        <div class="createList">
+            <div id="viewListLabel">View or edit a list by clicking on it in the side panel.</div>
+            <br>
+            <div id="newListLabel">Click Below to Create a New List</div>
+            <div id="newListBtn">
+                <button type="button" class="btn btn-success" (click)="newListRoute()">New List</button>
+            </div>
         </div>
+        
+
+        <div class="noLists" *ngIf="noSupplyLists">
+            <h2>You have no Supply Lists created at this time</h2>
+                <br>
+        </div>
+                
+        
         <!-- insert picture? -->
 
         
@@ -79,35 +86,7 @@
 
     
 
-    <!-- <div *ngIf="updateList"> -->
-        <!-- <h2> Race List Manager </h2> -->
-        <!-- <h2> {{listName}} </h2> -->
+    
 
-        <!-- <div class="row">
-            <div class="col-xs-6 col-md-4">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Enter Race Items" id="txtSearch" [(ngModel)]="listItem" />
-                    <div class="input-group-btn">
-                        <button class="btn btn-primary" type="button" (click)="onClick()">
-                            <span class="glyphicon glyphicon-ok">OK</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <br />
-
-        <ul class="list-group">
-            <li *ngFor="let listItem of listItems" class="list-group-item">
-                <span (click)="onStrike(task)" [ngClass]="{'strike': task.strike}"> {{ listItem.name }} </span>
-                <span (click)="onEdit(task)" class="glyphicon glyphicon-pencil floatright"></span>
-                <span (click)="onDelete(task)" class="glyphicon glyphicon-remove floatright paddingLeft"></span>
-            </li>
-        </ul> -->
-    <!-- </div> -->
-
-    <!-- </div> -->
-</div>
 
 
