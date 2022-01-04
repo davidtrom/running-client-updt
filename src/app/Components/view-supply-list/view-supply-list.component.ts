@@ -17,17 +17,18 @@ export class ViewSupplyListComponent implements OnInit {
   userLists: SupplyList[];
   userId: number;
   noSupplyLists: boolean;
-  param: any;
-  myParam: string;
-
-
+  supplyListId: string;
 
   constructor(private route: ActivatedRoute, private listService: ListsService) { }
 
   ngOnInit(): void {
-    let supplyListId = +this.route.snapshot.paramMap.get('id');
+    // let supplyListId = +this.route.snapshot.paramMap.get('id');
+    // console.log(supplyListId)
 
-    this.listService.getListById(supplyListId).subscribe(data => {this.listToDisplay = data});
+    this.route.paramMap.subscribe(params => {
+      this.supplyListId = params.get('id');
+      this.listService.getListById(+(this.supplyListId)).subscribe(data => {this.listToDisplay = data});
+    });
 
     this.userId = 1;
 
@@ -36,16 +37,6 @@ export class ViewSupplyListComponent implements OnInit {
       this.checkForLists(this.userLists);
     });
 
-    this.route.paramMap.subscribe(params => {
-      console.log(this.param.get('myParam'));
-      this.myParam = params.get('myParam');
-
-    })
-  }
-
-  viewNewList(listId: number){
-    // this.router.navigate(['/view-list', this.listToDisplay.id]);
-    this.location.reload
   }
 
   checkForLists(supplyLists: SupplyList[]) {

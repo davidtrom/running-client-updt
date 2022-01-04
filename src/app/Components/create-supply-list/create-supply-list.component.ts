@@ -17,6 +17,9 @@ export class CreateSupplyListComponent implements OnInit {
   listNotCreated: boolean = true;
   showGif: boolean;
   listExists: boolean = false;
+  noSupplyLists: boolean;
+  supplyListId: string;
+  userLists: SupplyList[];
 
   constructor( private fb: FormBuilder, private router: Router, private listService: ListsService) { }
 
@@ -26,12 +29,26 @@ export class CreateSupplyListComponent implements OnInit {
     this.newListForm = this.fb.group({
       listName: ['', Validators.required]
     });
+
+    this.listService.getUserLists(this.userId).subscribe(data => {
+      this.userLists = data;
+      this.checkForLists(this.userLists);
+    });
   }
 
   get form() {return this.newListForm.controls;}
   
   submitListName(){
     this.listName = this.newListForm.controls.listName.value
+  }
+
+  checkForLists(supplyLists: SupplyList[]) {
+    if (supplyLists.length != 0){
+      this.noSupplyLists = false;
+    }
+    else {
+      this.noSupplyLists = true;
+    }
   }
 
   onSubmit(){
@@ -56,8 +73,4 @@ export class CreateSupplyListComponent implements OnInit {
        })
   }
   
-  createNewList(){
-
-  }
-
 }

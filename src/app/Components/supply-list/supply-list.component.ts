@@ -13,16 +13,11 @@ import { User } from 'src/app/Models/user.model';
   styleUrls: ['./supply-list.component.css']
 })
 export class SupplyListComponent implements OnInit {
-  status: boolean = false;
-  updateList: boolean;
-  listItem: ListItem;
-  listItems: ListItem[];
   userLists: SupplyList[];
   supplyList: SupplyList;
   noSupplyLists: boolean;
   userId: number;
-  collapsed: boolean = true;
-  user: User;
+  //user: User;
 
   constructor(private listService: ListsService, private router:Router) { }
 
@@ -35,16 +30,6 @@ export class SupplyListComponent implements OnInit {
     });
 
     
-  }
-
-  collapse(): boolean{
-    if(this.collapsed === true){
-      this.collapsed = false;
-    }
-    else{
-      this.collapsed = true;
-    }
-    return this.collapsed;
   }
 
   checkForLists(supplyLists: SupplyList[]) {
@@ -71,10 +56,6 @@ getMyUserLists(id:number){
 
 newListRoute(){
   this.router.navigate(['new-list']);
-}
-
-reroute(){
-  console.log("Rerouting")
 }
 
 }

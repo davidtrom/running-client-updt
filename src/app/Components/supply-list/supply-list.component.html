@@ -1,56 +1,41 @@
 <div class="d-flex" id="wrapper">
- 
-    <!-- Sidebar -->
-    
-    <!-- <div class="navbar navbar-expand-sm" (click)="collapsed = !collapsed">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" aria-controls="navbarContent" [attr.aria-expanded]="collapsed"
-                aria-label="Toggle navigation" (click)="collapse()">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-                    <div class="navbar-collapse bg-light border-right" [class.collapse]="collapsed" id="sidebar-wrapper">
-                      [ngClass]="status ? 'hide' : 'show'">
-                         <div class="sidebar-heading">Supply Lists:</div> 
-                        <div class="list-group list-group-flush">
-                        <a href="#" class="list-group-item list-group-item-action bg-light">New</a>
-                        <div class="flex-container" *ngFor="let userList of userLists">
-                            {{userList.name}}
-                            <div *ngIf="noSupplyLists">
-                                <div class="list-group-item list-group-item-action bg-light">Add A New List</div>
-                            </div>
-                        </div>
-                        
-
-                        <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-                        <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-                        <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-                        <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-                        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
-                        </div>
-                    </div>
-        </div>
-    </div> -->
-    <!-- /#sidebar-wrapper -->
 
     <!-- The sidebar -->
 <div class="sidebar">
-    <table class="table table-striped table-bordered">
-        <thead>
-            <tr>
-                <!-- <th>{{user.firstName}}'s Lists</th> -->
-                <th>User's Lists</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let list of userLists">
-                <td><a [routerLink]="['/view-list', list.id]">{{list.listDescription}}</a></td>
-            </tr>
-        </tbody>
-    </table>
-    <!-- <a class="active" href="#home">Home</a>
-    <a href="#news">News</a>
-    <a href="#contact">Contact</a>
-    <a href="#about">About</a> -->
+    <div class="sidebarNoLists" *ngIf="noSupplyLists else displayLists">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <!-- <th>{{user.firstName}}'s Lists</th> -->
+                    <th><h3>User's Lists</h3></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr>
+                    <td></td>
+                </tr> -->
+                <tr>
+                    <td><a [routerLink]="['/new-list']">Add New List</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <ng-template #displayLists>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <!-- <th>{{user.firstName}}'s Lists</th> -->
+                    <th>User's Lists</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let list of userLists">
+                    <td><a [routerLink]="['/view-list', list.id]">{{list.listDescription}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-template>
   </div>
 
 
@@ -71,13 +56,7 @@
                 <button type="button" class="btn btn-success" (click)="newListRoute()">New List</button>
             </div>
         </div>
-        
-
-        <div class="noLists" *ngIf="noSupplyLists">
-            <h2>You have no Supply Lists created at this time</h2>
-                <br>
-        </div>
-                
+                    
         
         <!-- insert picture? -->
 
