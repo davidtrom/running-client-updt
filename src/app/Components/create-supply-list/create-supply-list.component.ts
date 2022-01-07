@@ -64,7 +64,7 @@ export class CreateSupplyListComponent implements OnInit {
           this.showGif = true;
           setTimeout(() => {
             console.log('sleep');
-            this.router.navigate(['/view-list', this.supplyList.id]);
+            this.router.navigate(['/edit-list', this.supplyList.id]);
             // And any other code that should run only after 5s
             //add list_id to array to send to supply-lists
           }, 5000);

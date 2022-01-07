@@ -1,8 +1,10 @@
 export class ListItem {
     id: number;
-    name: string;
+    itemDescription: string;
+    listId: number;
 
-    constructor(name:string){
-        this.name = name;
+    constructor(itemDescription:string, listId: number){
+        this.itemDescription = itemDescription;
+        this.listId = listId;
     }
 }

@@ -24,6 +24,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { CreateSupplyListComponent } from './Components/create-supply-list/create-supply-list.component';
 import { EditProfileComponent } from './Components/edit-profile/edit-profile.component';
 import { ViewSupplyListComponent } from './Components/view-supply-list/view-supply-list.component';
+import { EditListComponent } from './Components/edit-list/edit-list.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { ViewSupplyListComponent } from './Components/view-supply-list/view-supp
   
     CreateSupplyListComponent,
        EditProfileComponent,
-       ViewSupplyListComponent
+       ViewSupplyListComponent,
+       EditListComponent
     
   ],
   imports: [

@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { ListItem } from 'src/app/Models/list-item.model';
 import { SupplyList } from 'src/app/Models/supply-list.model';
 import { ListsService } from 'src/app/Services/lists.service';
-import { SupplyListComponent } from '../supply-list/supply-list.component';
 
 @Component({
   selector: 'app-view-supply-list',
@@ -18,6 +17,8 @@ export class ViewSupplyListComponent implements OnInit {
   userId: number;
   noSupplyLists: boolean;
   supplyListId: string;
+  testArray: string[];
+  testItem: string
 
 
   constructor(private route: ActivatedRoute, private listService: ListsService) { }
@@ -25,6 +26,7 @@ export class ViewSupplyListComponent implements OnInit {
   ngOnInit(): void {
     // let supplyListId = +this.route.snapshot.paramMap.get('id');
     // console.log(supplyListId)
+    this.testArray = ["insoles", "plane ticket", "sunscreen"];
 
 
     this.route.paramMap.subscribe(params => {
@@ -58,10 +60,11 @@ export class ViewSupplyListComponent implements OnInit {
   }
 
   onClick(){
+    this.testArray.push()
     //this.listItems.push({name: this.listItem.name, strike: false});
-    this.listItems.push({id: null, name: this.listItem.name});
+    //this.listItems.push({id: null, name: this.listItem.name});
 
-this.listItem.name = '';
+//this.listItem.name = '';
 //this.listItem.id = 0;
  
 // this.listItem = {

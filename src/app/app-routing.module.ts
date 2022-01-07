@@ -17,6 +17,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { CreateSupplyListComponent } from './Components/create-supply-list/create-supply-list.component';
 import { EditProfileComponent } from './Components/edit-profile/edit-profile.component';
 import { ViewSupplyListComponent } from './Components/view-supply-list/view-supply-list.component';
+import { EditListComponent } from './Components/edit-list/edit-list.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path: 'edit-profile/:id', component: EditProfileComponent},
   {path: 'new-list', component: CreateSupplyListComponent},
   {path: 'view-list/:id', component: ViewSupplyListComponent},
+  {path: 'edit-list:/listId', component: EditListComponent},
   
 
   // if no route, redirect to home

@@ -25,9 +25,20 @@
         </h2>
     </div>
 
-<!-- <div *ngIf="updateList"> -->
-        <!-- <h2> Race List Manager </h2> -->
-        <!-- <h2> {{listName}} </h2> -->
+    <div class="itemsDisplay">
+        <div class="listTitle">
+            Items in List:
+        </div>
+        <ul class="list-group">
+            <!-- <li *ngFor="let item of listItems" class="list-group-item">
+                {{item.itemDescription}}
+            </li> -->
+            <li *ngFor="let item of testArray" class="list-group-item">
+                {{item}}
+            </li>
+        </ul>
+         
+    
 
         <div class="row">
             <div class="col-xs-6 col-md-4">
