@@ -11,11 +11,12 @@
         </thead>
         <tbody>
             <tr *ngFor="let list of userLists">
-                <td><a [routerLink]="['/view-list', list.id]">{{list.listDescription}}</a></td>
+                <!-- <td><a [routerLink]="['/view-list', list.id]">{{list.listDescription}}</a></td> -->
+                <td (click)="showNewList(list.id)">{{list.listDescription}}</td>
             </tr>
         </tbody>
     </table>
-  </div>
+</div>
 
 <div class="container">
 
@@ -37,33 +38,5 @@
                 {{item}}
             </li>
         </ul>
-         
-    
-
-        <div class="row">
-            <div class="col-xs-6 col-md-4">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Enter Race Items" id="txtSearch" [(ngModel)]="listItem" />
-                    <div class="input-group-btn">
-                        <button class="btn btn-primary" type="button" (click)="onClick()">
-                            <span class="glyphicon glyphicon-ok">OK</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <br />
-
-        <ul class="list-group">
-            <li *ngFor="let listItem of listItems" class="list-group-item">
-                <span (click)="onStrike(task)" [ngClass]="{'strike': task.strike}"> {{ listItem.name }} </span>
-                <span (click)="onEdit(task)" class="glyphicon glyphicon-pencil floatright"></span>
-                <span (click)="onDelete(task)" class="glyphicon glyphicon-remove floatright paddingLeft"></span>
-            </li>
-        </ul>
-    <!-- </div> -->
-
-    <!-- </div> -->
-
+    </div>
 </div>

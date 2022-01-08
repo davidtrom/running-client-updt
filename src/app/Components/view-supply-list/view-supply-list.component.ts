@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { ListItem } from 'src/app/Models/list-item.model';
 import { SupplyList } from 'src/app/Models/supply-list.model';
 import { ListsService } from 'src/app/Services/lists.service';
@@ -15,23 +16,24 @@ export class ViewSupplyListComponent implements OnInit {
   listItems: ListItem[];
   userLists: SupplyList[];
   userId: number;
-  noSupplyLists: boolean;
   supplyListId: string;
   testArray: string[];
   testItem: string
 
 
-  constructor(private route: ActivatedRoute, private listService: ListsService) { }
+  constructor(private route: ActivatedRoute, private listService: ListsService, private router: Router) {
+  //   this.router.routeReuseStrategy.shouldReuseRoute = () => {
+  //     return false;
+  //   }
+  //   this.router.events.pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd)).forEach(next => { });  
+   }
 
   ngOnInit(): void {
-    // let supplyListId = +this.route.snapshot.paramMap.get('id');
-    // console.log(supplyListId)
     this.testArray = ["insoles", "plane ticket", "sunscreen"];
 
-
-    this.route.paramMap.subscribe(params => {
-      this.supplyListId = params.get('id');
-      this.listService.getListById(+(this.supplyListId)).subscribe(data => {this.listToDisplay = data});
+    this.route.params.subscribe(routeParams => {
+      this.supplyListId = routeParams.id;
+      this.listService.getListById(+(routeParams.id)).subscribe(data => {this.listToDisplay = data;});
       this.listItems = this.listToDisplay.listItems;
     });
 
@@ -39,9 +41,13 @@ export class ViewSupplyListComponent implements OnInit {
 
     this.listService.getUserLists(this.userId).subscribe(data => {
       this.userLists = data;
-      this.checkForLists(this.userLists);
     });
+  }
 
+  showNewList(id:number){
+    this.listService.getListById(id).subscribe(data => {this.listToDisplay = data;});
+      console.log(this.listToDisplay.listDescription);
+      this.listItems = this.listToDisplay.listItems;
   }
 
   addItem(listId: number, item: string ){
@@ -50,14 +56,6 @@ export class ViewSupplyListComponent implements OnInit {
     })
   }
 
-  checkForLists(supplyLists: SupplyList[]) {
-    if (supplyLists.length != 0){
-      this.noSupplyLists = false;
-    }
-    else {
-      this.noSupplyLists = true;
-    }
-  }
 
   onClick(){
     this.testArray.push()

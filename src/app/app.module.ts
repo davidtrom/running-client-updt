@@ -45,11 +45,10 @@ import { EditListComponent } from './Components/edit-list/edit-list.component';
     SidebarNavComponent,
     CreateUserComponent,
     ProfileComponent,
-  
     CreateSupplyListComponent,
-       EditProfileComponent,
-       ViewSupplyListComponent,
-       EditListComponent
+    EditProfileComponent,
+    ViewSupplyListComponent,
+    EditListComponent
     
   ],
   imports: [
