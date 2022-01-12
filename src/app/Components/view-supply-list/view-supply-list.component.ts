@@ -9,6 +9,7 @@ import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { ReturnStatement } from '@angular/compiler';
 
 @Component({
   selector: 'app-view-supply-list',
@@ -30,6 +31,7 @@ export class ViewSupplyListComponent implements OnInit {
   testItem3: ListItem;
   newItem: ListItem;
   itemExists: boolean;
+  displayItems: string[];
   baseUrl = environment.baseUrl + "/supply-lists";
 
   httpOptions = {
@@ -54,13 +56,17 @@ export class ViewSupplyListComponent implements OnInit {
 
     //this.testArray = ["insoles", "plane ticket", "sunscreen"];
 
-    this.route.params.subscribe(routeParams => {
-      this.supplyListId = routeParams.id;
-      this.listService.getListById(+(routeParams.id)).subscribe(data => {this.listToDisplay = data;
-      this.listItems = this.listToDisplay.items;});
-      console.log("List Items: ", this.listToDisplay.items);
-      console.log("First item: ", this.listToDisplay.items[0]);
-    });
+    // this.route.params.subscribe(routeParams => {
+    //   this.supplyListId = routeParams.id;
+    //   this.listService.getListById(+(routeParams.id)).subscribe(data => {this.listToDisplay = data;
+    //   this.listItems = this.listToDisplay.items;
+    //   });
+    //   this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);
+    //   console.log("List Items: ", this.listToDisplay.items);
+    //   console.log("First item: ", this.listToDisplay.items[0]);
+    // });
+
+    this.getRouteParams();
 
     this.newItemForm = this.fb.group({
       newItemName: ['', Validators.required]
@@ -75,42 +81,49 @@ export class ViewSupplyListComponent implements OnInit {
 
   get form() {return this.newItemForm.controls;}
 
+getRouteParams(){
+  this.route.params.subscribe(routeParams => {
+    this.supplyListId = routeParams.id;
+    this.listService.getListById(+(routeParams.id)).subscribe(data => {this.listToDisplay = data;
+    this.showNewList(this.listToDisplay.id);
+    });
+    //this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);
+  });
+}
+
   showNewList(id:number){
-    this.listService.getListById(id).subscribe(data => {this.listToDisplay = data;});
+    this.listService.getListById(id).subscribe(data => {this.listToDisplay = data;
+      this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);});
       console.log(this.listToDisplay.listDescription);
       console.log("Inside show new List", this.listToDisplay.items.length);
-      //console.log("First item: ", this.listToDisplay.items[0].itemDescription);
-      // for(let i = 0; i < this.listToDisplay.items.length; i++){
-      //   console.log("Items");
-      //   this.listItems.push(this.listToDisplay.items[i])
-      // }
-      this.listItems = this.listToDisplay.items;
       console.log("List Items: ", this.listItems);
   }
 
-  async showNewListAlt(listId: number){
-    //listToDisplayAlt: SupplyList;
-    //const listToDisplayAlt = await firstValueFrom(this.http.post<SupplyList>(this.baseUrl+`/add-item/${listId}`, itemDescription, this.httpOptions))
-    const listToDisplayAlt = await this.http.get<SupplyList>(this.baseUrl+`/${listId}`);
-  }
-
   onSubmit(){
-    if(this.newItemForm.controls.newItemName.value == ""){
+    let itemExists = false;
+    let newItem =  this.newItemForm.get('newItemName').value;
+    if(newItem === ""){
       this.blankItem = true;
+      return;
     }
-    // 
-    for(let i = 0; i < this.listItems.length; i++){
-      console.log("inside for loop", this.listItems[i]);
-      if(this.newItemForm.controls.newItemName.value === this.listItems[i])
-      this.itemExists = true;
-      console.log(this.itemExists);
+    for(let i = 0; i < this.displayItems.length; i++){
+      console.log("inside for loop", this.displayItems[i]);
+      if(this.displayItems[i].toLowerCase() === newItem.toLowerCase()){
+        this.itemExists = true;
+        itemExists = true;
+        this.newItemForm.reset();
+        // are we breaking? if yes in for loop then return
+        break;
     }
+    return;
+  }
     
+    if(itemExists){
     this.listService.addItem(this.listToDisplay.id, this.newItemForm.controls.newItemName.value)
       .subscribe(data => {
           console.log('new item created');
           this.listToDisplay = data;
-          this.listItems = this.listToDisplay.items;
+          this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);
           //this.listNotCreated = false;
           //this.showGif = true;
           // setTimeout(() => {
@@ -119,40 +132,16 @@ export class ViewSupplyListComponent implements OnInit {
           //   // And any other code that should run only after 5s
           //   //add list_id to array to send to supply-lists
           // }, 4000);
-        }
-        
-       )
+        }  
+      )
+    }
+    else {
+      this.newItemForm.reset();
+      return;
+    }
   }
 
-  // async onSubmit(){
-  //   myListToDisplay: SupplyList = await this.listService.addItem(this.listToDisplay.id, this.newItemForm.controls.newItemName.value);
-    
-  //       if (this.listToDisplay == null){
-  //         this.itemExists = true;
-  //       }
-  //       else {
-  //         console.log('new item created');
-  //         this.listToDisplay = data;
-  //         this.listItems = this.listToDisplay.items;
-  //         //this.listNotCreated = false;
-  //         //this.showGif = true;
-  //         // setTimeout(() => {
-  //         //   console.log('sleep');
-  //         //   this.router.navigate(['/edit-list', this.supplyList.id]);
-  //         //   // And any other code that should run only after 5s
-  //         //   //add list_id to array to send to supply-lists
-  //         // }, 4000);
-  //       } 
-  //   }
-  
 
-  addItem(){
-    console.log("I currently do nothing");
-    // this.newItem = {itemDescription: this.listItem.itemDescription};
-    // this.listService.addItem(listId, this.newItem).subscribe(data => {
-    //   this.listToDisplay = data;
-    // })
-  }
 
   goEdit(){
     this.router.navigate(['edit-list', this.listToDisplay.id]);
@@ -204,10 +193,5 @@ for(var i = 0;i < this.listItems.length; i++){
 //     }
 //   }
 // }
-
-
-}
-function firstValueFrom(): SupplyList | PromiseLike<SupplyList> {
-  throw new Error('Function not implemented.');
 }
 

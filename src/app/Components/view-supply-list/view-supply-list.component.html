@@ -31,10 +31,12 @@
             Items in List:
         </div>
         <ul class="list-group">
-            <li *ngFor="let item of listItems; let i = index" class="list-group-item">
+            <!-- <li *ngFor="let item of listItems; let i = index" class="list-group-item"> -->
+            <li *ngFor="let item of displayItems; let i = index" class="list-group-item">
                 <!-- {{items[i].itemDescription}} -->
                 <!-- {{item.itemDescription}} -->
-                {{listToDisplay.items[i].itemDescription}}
+                <!-- {{listToDisplay.items[i].itemDescription}} -->
+                {{item}}
             </li>
             <!-- <li *ngFor="let item of testArray" class="list-group-item"> -->
                 <!-- {{item.itemDescription}} -->
@@ -62,7 +64,7 @@
     </div>
 
     <div class="blankItem" *ngIf="blankItem">
-        *Blank Items will not be added to your list.
+        *Blank Items cannot not be added to your list!
     </div>
 
     <!-- <div class="row">
