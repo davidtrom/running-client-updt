@@ -31,12 +31,55 @@
             Items in List:
         </div>
         <ul class="list-group">
-            <!-- <li *ngFor="let item of listItems" class="list-group-item">
-                {{item.itemDescription}}
-            </li> -->
-            <li *ngFor="let item of testArray" class="list-group-item">
-                {{item}}
+            <li *ngFor="let item of listItems; let i = index" class="list-group-item">
+                <!-- {{items[i].itemDescription}} -->
+                <!-- {{item.itemDescription}} -->
+                {{listToDisplay.items[i].itemDescription}}
             </li>
+            <!-- <li *ngFor="let item of testArray" class="list-group-item"> -->
+                <!-- {{item.itemDescription}} -->
+                <!-- <fa-icon [icon]="faPencilAlt" class="fa-fw" (click)="editItem(item.id)" ></fa-icon> -->
+                <!-- <i class="fas fa-pencil-alt"></i> -->
+            <!-- </li> -->
         </ul>
+    </div>
+
+    <form [formGroup]="newItemForm" (ngSubmit)="onSubmit()">
+        <div class="title">
+            <label for="newItem">Enter the Item to add to the Supply List:</label>
+            <input id="newItemName" formControlName="newItemName" type="newItemName" class="form-control" placeholder="Item to Add" [ngClass]="{'is-invalid': form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)}" >
+            <div *ngIf="form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)" class="invalid-feedback">
+                <div *ngIf='form.newItemName.errors.required'>*Item to Add is Required</div>
+            </div>
+        </div>
+        <div class="addItemBtn">
+            <button type="submit" class="btn btn-success">Add Item</button>
+        </div>
+    </form>
+
+    <div class="itemExists" *ngIf="itemExists">
+        *This item already exists in your list.
+    </div>
+
+    <div class="blankItem" *ngIf="blankItem">
+        *Blank Items will not be added to your list.
+    </div>
+
+    <!-- <div class="row">
+        <div class="col-xs-6 col-md-4">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Enter Race Items" id="txtSearch" [(ngModel)]="listItem.itemDescription" />
+                <div class="input-group-btn">
+                    <button class="btn btn-primary" type="button" (click)="addItem()">
+                        <span class="glyphicon glyphicon-ok">OK</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+    <div class="editBtn">
+        <button type="button" class="btn btn-success" (click)="goEdit()">Edit</button>
     </div>
 </div>

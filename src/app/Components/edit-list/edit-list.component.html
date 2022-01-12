@@ -25,7 +25,7 @@
     
         <div class="title">
             <h2>
-                {{listToDisplay.listDescription}}
+                {{listToDisplay.listDescription}} 
             </h2>
         </div>
     
@@ -38,7 +38,8 @@
                     {{item.itemDescription}}
                 </li> -->
                 <li *ngFor="let item of testArray" class="list-group-item">
-                    {{item}}
+                    <div>{{item}}</div>
+                    <span (click)="onEdit(task)" class="fa fa-search"></span>
                 </li>
             </ul>
              

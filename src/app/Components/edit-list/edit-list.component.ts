@@ -29,9 +29,9 @@ export class EditListComponent implements OnInit {
     // });
 
     this.route.params.subscribe(routeParams => {
-      this.supplyListId = routeParams.id;
-      this.listService.getListById(+(routeParams.id)).subscribe(data => {this.listToDisplay = data;});
-      this.listItems = this.listToDisplay.listItems;
+      this.supplyListId = routeParams.listIid;
+      this.listService.getListById(+(routeParams.listId)).subscribe(data => {this.listToDisplay = data;});
+      this.listItems = this.listToDisplay.items;
     });
 
     this.userId = 1;
@@ -44,14 +44,14 @@ export class EditListComponent implements OnInit {
   update(id:number){
     this.listService.getListById(id).subscribe(data => {this.listToDisplay = data;});
       console.log(this.listToDisplay.listDescription);
-      this.listItems = this.listToDisplay.listItems;
+      this.listItems = this.listToDisplay.items;
   }
 
-  addItem(listId: number, item: string ){
-    this.listService.addItem(listId, item).subscribe(data => {
-      this.listToDisplay = data;
-    })
-  }
+  // addItem(listId: number, item: string ){
+  //   this.listService.addItem(listId, item).subscribe(data => {
+  //     this.listToDisplay = data;
+  //   })
+  // }
 
 
   onClick(){

@@ -14,6 +14,11 @@
                 <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
                     <ul class="navbar-nav">
                         <li class="nav-item" ngbDropdown>
+                            <a class="nav-link" a [routerLink]="['/race-results']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
+                                Race Results
+                            </a>
+                        </li>
+                        <li class="nav-item" ngbDropdown>
                             <a class="nav-link" a [routerLink]="['/personal-records']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
                                 PR's
                             </a>
@@ -52,11 +57,11 @@
                             </a> 
                         </li>
 
-                        <li class="nav-item" ngbDropdown>
+                        <!-- <li class="nav-item" ngbDropdown>
                             <a class="nav-link" a [routerLink]="['/contact']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
                                 Training?
                             </a> 
-                        </li>
+                        </li> -->
 
                         <li class="nav-item" ngbDropdown>
                             <a class="nav-link" a [routerLink]="['/contact']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">

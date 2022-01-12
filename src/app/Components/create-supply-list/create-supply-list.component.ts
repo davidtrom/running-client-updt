@@ -67,7 +67,7 @@ export class CreateSupplyListComponent implements OnInit {
             this.router.navigate(['/edit-list', this.supplyList.id]);
             // And any other code that should run only after 5s
             //add list_id to array to send to supply-lists
-          }, 5000);
+          }, 4000);
         }
         
        })

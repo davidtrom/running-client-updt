@@ -11,6 +11,7 @@ import { SupplyList } from '../Models/supply-list.model';
 export class ListsService {
 
   nameOfList: string;
+  supplyListResponse: any;
 
   baseUrl = environment.baseUrl + "/supply-lists";
 
@@ -45,9 +46,16 @@ export class ListsService {
 
   addItem(listId: number, itemDescription: string) : Observable<SupplyList> {
     return this.http.post<SupplyList>(this.baseUrl+`/add-item/${listId}`, itemDescription, this.httpOptions)
-    .pipe(tap(data => console.log('adding item', itemDescription)),
+    .pipe(tap(data => console.log('adding item', data)),
     catchError(this.handleError<SupplyList>('error adding item', null)));
   }
+
+  // async addItem(listId: number, itemDescription: string) {
+  //   this.supplyListResponse = await this.http.post<SupplyList>(this.baseUrl+`/add-item/${listId}`, itemDescription, this.httpOptions).toPromise(),
+  //   catchError(this.handleError<SupplyList>('error adding item', null));
+  //   console.log(this.supplyListResponse);
+  //   return this.supplyListResponse;
+  // }
 
   // getUserLists(id:number) : Observable <SupplyList[]> {
   //   console.log("inside list service: ", this.baseUrl+`/get-lists/${id}`)

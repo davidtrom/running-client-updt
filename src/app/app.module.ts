@@ -25,6 +25,8 @@ import { CreateSupplyListComponent } from './Components/create-supply-list/creat
 import { EditProfileComponent } from './Components/edit-profile/edit-profile.component';
 import { ViewSupplyListComponent } from './Components/view-supply-list/view-supply-list.component';
 import { EditListComponent } from './Components/edit-list/edit-list.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RaceResultsComponent } from './Components/race-results/race-results.component';
 
 
 @NgModule({
@@ -48,7 +50,8 @@ import { EditListComponent } from './Components/edit-list/edit-list.component';
     CreateSupplyListComponent,
     EditProfileComponent,
     ViewSupplyListComponent,
-    EditListComponent
+    EditListComponent,
+    RaceResultsComponent
     
   ],
   imports: [
@@ -56,7 +59,8 @@ import { EditListComponent } from './Components/edit-list/edit-list.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
