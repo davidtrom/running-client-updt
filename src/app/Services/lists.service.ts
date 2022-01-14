@@ -50,20 +50,11 @@ export class ListsService {
     catchError(this.handleError<SupplyList>('error adding item', null)));
   }
 
-  // async addItem(listId: number, itemDescription: string) {
-  //   this.supplyListResponse = await this.http.post<SupplyList>(this.baseUrl+`/add-item/${listId}`, itemDescription, this.httpOptions).toPromise(),
-  //   catchError(this.handleError<SupplyList>('error adding item', null));
-  //   console.log(this.supplyListResponse);
-  //   return this.supplyListResponse;
+  // deleteItem(itemId: number, listId: number): Observable<SupplyList> {
+  //   return this.http.delete<SupplyList>(this.baseUrl + `/delete-item/${listId}`, this.httpOptions)
+  //   .pipe(tap(data => console.log('deleting item', data)),
+  //   catchError(this.handleError<SupplyList('error deleting item', null)));
   // }
-
-  // getUserLists(id:number) : Observable <SupplyList[]> {
-  //   console.log("inside list service: ", this.baseUrl+`/get-lists/${id}`)
-  //   return this.http.get<SupplyList[]>(this.baseUrl+`/get-lists/${id}`, this.httpOptions)
-  //   .pipe(tap(data => console.log('fetch lists', data)),
-  //     catchError(this.handleError<SupplyList[]>('error geting lists', null)));
-  // }
-
 
 
   /**

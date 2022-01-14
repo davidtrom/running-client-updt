@@ -37,6 +37,8 @@
                 <!-- {{item.itemDescription}} -->
                 <!-- {{listToDisplay.items[i].itemDescription}} -->
                 {{item}}
+                <fa-icon [icon]="faEraser" class="fas fa-eraser" (click)="deleteItem(this.listToDisplay.items[i].id)"></fa-icon>
+                <i class="fas fa-eraser"></i>
             </li>
             <!-- <li *ngFor="let item of testArray" class="list-group-item"> -->
                 <!-- {{item.itemDescription}} -->
@@ -57,10 +59,13 @@
         <div class="addItemBtn">
             <button type="submit" class="btn btn-success">Add Item</button>
         </div>
+        <!-- <div>
+            <button type="button" class="btn btn-warning" (click)="cancel()">Cancel</button>
+        </div> -->
     </form>
 
     <div class="itemExists" *ngIf="itemExists">
-        *This item already exists in your list.
+        *{{newItem}} already exists in your list.
     </div>
 
     <div class="blankItem" *ngIf="blankItem">

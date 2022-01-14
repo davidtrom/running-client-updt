@@ -55,6 +55,9 @@
     }
 }
 
+
+/* Non Sidebar elements */
+
 .title{
     padding-top: 2%;
 }
@@ -67,4 +70,17 @@
 .editBtn{
     padding-top: 2%;
 }
+
+.itemExists, .blankItem{
+    color: red;
+    padding-top: 1%;
+}
+
+.addItemBtn{
+    padding-top: 1%;
+}
+
+/* li{
+    width: 85%; 
+} */
 
