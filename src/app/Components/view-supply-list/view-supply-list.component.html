@@ -37,12 +37,14 @@
                 <!-- {{item.itemDescription}} -->
                 <!-- {{listToDisplay.items[i].itemDescription}} -->
                 {{item}}
-                <fa-icon [icon]="faEraser" class="fas fa-eraser" (click)="deleteItem(this.listToDisplay.items[i].id)"></fa-icon>
-                <i class="fas fa-eraser"></i>
+                <button><fa-icon [icon]="faTrashAlt" class="fas fa-trash-alt" (click)="deleteItem(listToDisplay.id, listToDisplay.items[i].id)"></fa-icon></button>
+                <button><fa-icon [icon]="faEraser" class="fas fa-eraser" (click)="deleteItem(listToDisplay.id, listToDisplay.items[i].id)"></fa-icon></button>
+                <button><fa-icon [icon]="faPencilAlt" class="fas fa-pencil-alt" (click)="editItem(item.id)" ></fa-icon></button>
+                
             </li>
             <!-- <li *ngFor="let item of testArray" class="list-group-item"> -->
                 <!-- {{item.itemDescription}} -->
-                <!-- <fa-icon [icon]="faPencilAlt" class="fa-fw" (click)="editItem(item.id)" ></fa-icon> -->
+                <!--  -->
                 <!-- <i class="fas fa-pencil-alt"></i> -->
             <!-- </li> -->
         </ul>

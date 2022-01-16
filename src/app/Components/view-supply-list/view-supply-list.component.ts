@@ -3,7 +3,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ListItem } from 'src/app/Models/list-item.model';
 import { SupplyList } from 'src/app/Models/supply-list.model';
 import { ListsService } from 'src/app/Services/lists.service';
-import { faEraser, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEraser, faPencilAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
@@ -28,10 +28,11 @@ export class ViewSupplyListComponent implements OnInit {
   newItem: string;
   itemExists: boolean = false;
   displayItems: string[];
+  //favicons
   faEraser = faEraser;
+  faTrashAlt = faTrashAlt;
 
-
-  faPencilAltListItem = faPencilAlt; 
+  faPencilAlt = faPencilAlt; 
   //Need an array for the ids of the items in the list to use in a map and then send for editing and updating
 
 
@@ -124,9 +125,11 @@ getRouteParams(){
     }
   }
 
-  deleteItem(itemId:number){
-    // console.log("delete item id ", itemId);
-    // this.listService.deleteItem(itemId)
+  deleteItem(listId: number, itemId:number){
+    console.log("LIST ID: ", listId);
+    console.log("ITEM ID: ", itemId);
+    this.listService.deleteItem(listId, itemId).subscribe(data => {this.listToDisplay = data;
+      this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);})
   }
 
   // isItemInList(){

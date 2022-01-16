@@ -50,11 +50,11 @@ export class ListsService {
     catchError(this.handleError<SupplyList>('error adding item', null)));
   }
 
-  // deleteItem(itemId: number, listId: number): Observable<SupplyList> {
-  //   return this.http.delete<SupplyList>(this.baseUrl + `/delete-item/${listId}`, this.httpOptions)
-  //   .pipe(tap(data => console.log('deleting item', data)),
-  //   catchError(this.handleError<SupplyList('error deleting item', null)));
-  // }
+  deleteItem(listId: number, itemId: number): Observable<SupplyList> {
+    return this.http.delete<SupplyList>(this.baseUrl + `/delete-item/${listId}/${itemId}`,  this.httpOptions)
+    .pipe(tap(data => console.log('deleting item', data)),
+    catchError(this.handleError<SupplyList>('error deleting item', null)));
+  }
 
 
   /**
