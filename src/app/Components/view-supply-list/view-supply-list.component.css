@@ -87,11 +87,11 @@
   padding-left: 1%;
 }
 
-#deleteItemBtn{
-  /* padding-right: 0%; */
+.deleteItemBtn{
+  padding-right: 0.5%;
 }
 
-#editItemBtn{
+.editItemBtn{
   /* padding-left: 0%; */
 }
 

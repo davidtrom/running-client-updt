@@ -38,11 +38,17 @@
                 <!-- {{listToDisplay.items[i].itemDescription}} -->
                 {{item}}
                 <span class="faviconCrudBtns">
-                    <button id="deleteItemBtn"><fa-icon [icon]="faTrashAlt" class="far fa-trash-alt" (click)="deleteItem(listToDisplay.id, listToDisplay.items[i].id)"></fa-icon></button>
-                    <button id="deleteItemBtn"><fa-icon [icon]="faEraser" class="fas fa-eraser" (click)="deleteItem(listToDisplay.id, listToDisplay.items[i].id)"></fa-icon></button>
-                    <button id="editItemBtn"><fa-icon [icon]="faPencilAlt" class="fas fa-pencil-alt" (click)="editItem(item.id)" ></fa-icon></button>
-                    <button id="strikeItemBtn"><fa-icon [icon]="faCheckSquare" class="far fa-check-square"></fa-icon> </button>
-                    <i class="far fa-check-square"></i>
+                    <!-- <button id="deleteItemBtn"><fa-icon [icon]="faTrashAlt" class="far fa-trash-alt" (click)="deleteItem(listToDisplay.id, listToDisplay.items[i].id)"></fa-icon></button> -->
+                    <!-- <button id="deleteItemBtn"><fa-icon [icon]="faEraser" class="fas fa-eraser" (click)="deleteItem(listToDisplay.id, listToDisplay.items[i].id)"></fa-icon></button> -->
+                    <!-- <button id="editItemBtn"><fa-icon [icon]="faPencilAlt" class="fas fa-pencil-alt" (click)="editItem(item.id)" ></fa-icon></button> -->
+                    <!-- <button id="strikeItemBtn"><fa-icon [icon]="faCheckSquare" class="far fa-check-square"></fa-icon> </button> -->
+                    <span class="deleteItemBtn"><button><i class="far fa-check-square"></i></button></span>
+                    <button><i class="far fa-trash-alt"></i></button>
+                    <!-- <button><i class="fas fa-trash-alt"></i></button> -->
+                    <button><i class="fas fa-pencil-alt"></i></button>
+                    <!-- <button><i class="far fa-edit"></i></button> -->
+
+
                 </span>
                 
             </li>
