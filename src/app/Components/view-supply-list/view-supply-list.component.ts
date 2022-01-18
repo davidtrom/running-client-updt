@@ -3,8 +3,9 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ListItem } from 'src/app/Models/list-item.model';
 import { SupplyList } from 'src/app/Models/supply-list.model';
 import { ListsService } from 'src/app/Services/lists.service';
-import { faEraser, faPencilAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCheckSquare, faEraser, faPencilAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { filter } from 'rxjs/operators';
 
 
 @Component({
@@ -31,16 +32,16 @@ export class ViewSupplyListComponent implements OnInit {
   //favicons
   faEraser = faEraser;
   faTrashAlt = faTrashAlt;
-
-  faPencilAlt = faPencilAlt; 
+  faPencilAlt = faPencilAlt;
+  faCheckSquare = faCheckSquare;
   //Need an array for the ids of the items in the list to use in a map and then send for editing and updating
 
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private listService: ListsService, private router: Router) {
-  //   this.router.routeReuseStrategy.shouldReuseRoute = () => {
-  //     return false;
-  //   }
-  //   this.router.events.pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd)).forEach(next => { });  
+    // this.router.routeReuseStrategy.shouldReuseRoute = () => {
+    //   return false;
+    // }
+    // this.router.events.pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd)).forEach(next => { });  
    }
 
   ngOnInit(): void {
@@ -88,7 +89,8 @@ getRouteParams(){
 
   showNewList(id:number){
     this.listService.getListById(id).subscribe(data => {this.listToDisplay = data;
-      this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);});
+      this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);
+      this.router.navigate(['view-list', this.listToDisplay.id]);});
       console.log(this.listToDisplay.listDescription);
       console.log("Inside show new List", this.listToDisplay.items.length);
       console.log("List Items: ", this.listItems);
