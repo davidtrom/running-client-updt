@@ -87,13 +87,14 @@
   padding-left: 1%;
 }
 
-.deleteItemBtn{
+.itemCrudBtn{
   padding-right: 0.5%;
 }
 
-.editItemBtn{
-  /* padding-left: 0%; */
+.strikethru{
+  text-decoration: line-through;
 }
+
 
 /* li{
     width: 85%; 

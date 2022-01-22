@@ -30,10 +30,10 @@ export class ViewSupplyListComponent implements OnInit {
   itemExists: boolean = false;
   displayItems: string[];
   //favicons
-  faEraser = faEraser;
-  faTrashAlt = faTrashAlt;
-  faPencilAlt = faPencilAlt;
-  faCheckSquare = faCheckSquare;
+  // faEraser = faEraser;
+  // faTrashAlt = faTrashAlt;
+  // faPencilAlt = faPencilAlt;
+  // faCheckSquare = faCheckSquare;
   //Need an array for the ids of the items in the list to use in a map and then send for editing and updating
 
 
@@ -97,13 +97,16 @@ getRouteParams(){
   }
 
   onSubmit(){
+    //while loop for while this.newItem = ""
     this.itemExists = false;
     this.newItem =  this.newItemForm.get('newItemName').value;
-    if(this.newItem === ""){
+    if(this.newItem == ""){
       this.blankItem = true;
+      this.newItemForm.reset();
       return;
     }
     for(let i = 0; i < this.displayItems.length; i++){
+      this.blankItem = false;
       console.log("inside for loop", this.displayItems[i]);
       if(this.displayItems[i].toLowerCase() === this.newItem.toLowerCase()){
         this.itemExists = true;
@@ -128,15 +131,18 @@ getRouteParams(){
   }
 
   deleteItem(listId: number, itemId:number){
-    console.log("LIST ID: ", listId);
-    console.log("ITEM ID: ", itemId);
     this.listService.deleteItem(listId, itemId).subscribe(data => {this.listToDisplay = data;
       this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);})
   }
 
-  // isItemInList(){
+  strikethruItem(listId: number, itemId: number){
+    this.listService.strikethruItem(listId, itemId).subscribe(data => {this.listToDisplay = data;
+      this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);})
+  }
 
-  // }
+  editItem(itemId: number){
+    console.log("item to be edited: ", itemId);
+  }
 
   // cancel(){
 
@@ -147,52 +153,5 @@ getRouteParams(){
   goEdit(){
     this.router.navigate(['edit-list', this.listToDisplay.id]);
   }
-
-  editItem(itemId: number){
-    console.log("item to be edited: ", itemId);
-  }
-
-
-  onClick(){
-    //this.listService.addItem()
-    //this.testArray.push()
-    //this.listItems.push({name: this.listItem.name, strike: false});
-    //this.listItems.push({id: null, name: this.listItem.name});
-
-//this.listItem.name = '';
-//this.listItem.id = 0;
- 
-// this.listItem = {
-//     name: '',
-//     id: 0
-// };
-}
-
-onEdit(item){
-this.listItem = item;
-}
-
-onDelete(item){
-for(var i = 0;i < this.listItems.length; i++){
-    if(item.id == this.listItems[i].id){
-        this.listItems.splice(i,1);
-        break;
-    }
-}
-}
-
-// onStrike(item){
-//   for(var i = 0;i < this.listItems.length; i++){
-//     if(item.id == this.listItems[i].id){
-//       if(this.listItems[i].strike){
-//         this.listItems[i].strike = false;
-//       }
-//       else{
-//         this.listItems[i].strike = true;
-//       }
-//       break;
-//     }
-//   }
-// }
 }
 

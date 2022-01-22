@@ -31,32 +31,17 @@
             Items in List:
         </div>
         <ul class="list-group">
-            <!-- <li *ngFor="let item of listItems; let i = index" class="list-group-item"> -->
-            <li *ngFor="let item of displayItems; let i = index" class="list-group-item">
+            <li *ngFor="let item of displayItems; let i = index" class="list-group-item" [ngClass]="listToDisplay.items[i].strikethru ? 'strikethru' : 'null'">
                 <!-- {{items[i].itemDescription}} -->
                 <!-- {{item.itemDescription}} -->
                 <!-- {{listToDisplay.items[i].itemDescription}} -->
                 {{item}}
                 <span class="faviconCrudBtns">
-                    <!-- <button id="deleteItemBtn"><fa-icon [icon]="faTrashAlt" class="far fa-trash-alt" (click)="deleteItem(listToDisplay.id, listToDisplay.items[i].id)"></fa-icon></button> -->
-                    <!-- <button id="deleteItemBtn"><fa-icon [icon]="faEraser" class="fas fa-eraser" (click)="deleteItem(listToDisplay.id, listToDisplay.items[i].id)"></fa-icon></button> -->
-                    <!-- <button id="editItemBtn"><fa-icon [icon]="faPencilAlt" class="fas fa-pencil-alt" (click)="editItem(item.id)" ></fa-icon></button> -->
-                    <!-- <button id="strikeItemBtn"><fa-icon [icon]="faCheckSquare" class="far fa-check-square"></fa-icon> </button> -->
-                    <span class="deleteItemBtn"><button><i class="far fa-check-square"></i></button></span>
-                    <button><i class="far fa-trash-alt"></i></button>
-                    <!-- <button><i class="fas fa-trash-alt"></i></button> -->
-                    <button><i class="fas fa-pencil-alt"></i></button>
-                    <!-- <button><i class="far fa-edit"></i></button> -->
-
-
+                    <span class="itemCrudBtn" ><button (click)="strikethruItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="far fa-check-square"></i></button></span>
+                    <span class="itemCrudBtn"><button (click)="deleteItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="far fa-trash-alt"></i></button></span>
+                    <span class="editItemBtn"><button (click="editItem(listToDisplay.id, listToDisplay.items[i].id)")><i class="fas fa-pencil-alt"></i></button></span>
                 </span>
-                
             </li>
-            <!-- <li *ngFor="let item of testArray" class="list-group-item"> -->
-                <!-- {{item.itemDescription}} -->
-                <!--  -->
-                <!-- <i class="fas fa-pencil-alt"></i> -->
-            <!-- </li> -->
         </ul>
     </div>
 
@@ -84,21 +69,25 @@
         *Blank Items cannot not be added to your list!
     </div>
 
-    <!-- <div class="row">
-        <div class="col-xs-6 col-md-4">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Enter Race Items" id="txtSearch" [(ngModel)]="listItem.itemDescription" />
-                <div class="input-group-btn">
-                    <button class="btn btn-primary" type="button" (click)="addItem()">
-                        <span class="glyphicon glyphicon-ok">OK</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-
+    
     <div class="editBtn">
         <button type="button" class="btn btn-success" (click)="goEdit()">Edit</button>
     </div>
+
+    <button class="btn btn-lg btn-outline-primary" (click)="open(mymodal)">Open My Modal</button>
+   
+    <ng-template #mymodal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        This is example from ItSolutionStuff.com
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+    </div>
+    </ng-template>
 </div>

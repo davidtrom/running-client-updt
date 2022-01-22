@@ -56,6 +56,17 @@ export class ListsService {
     catchError(this.handleError<SupplyList>('error deleting item', null)));
   }
 
+  strikethruItem(listId: number, itemId: number): Observable<SupplyList>{
+    console.log("inside service");
+    return this.http.put<SupplyList>(this.baseUrl + `/strike-thru/${listId}/${itemId}`, this.httpOptions)
+    .pipe(tap(data => console.log('striking item', data)),
+    catchError(this.handleError<SupplyList>('error striking item', null)));
+  }
+
+  //rapidapi.com
+  //weatherapi.com
+
+
 
   /**
    * Handle Http operation that failed.
