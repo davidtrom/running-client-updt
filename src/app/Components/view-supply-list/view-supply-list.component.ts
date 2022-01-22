@@ -3,9 +3,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ListItem } from 'src/app/Models/list-item.model';
 import { SupplyList } from 'src/app/Models/supply-list.model';
 import { ListsService } from 'src/app/Services/lists.service';
-import { faCheckSquare, faEraser, faPencilAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { filter } from 'rxjs/operators';
 
 
 @Component({
@@ -45,13 +43,6 @@ export class ViewSupplyListComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    // this.testItem1 = new ListItem("insoles", 50);
-    // this.testItem2 = new ListItem("plane ticket", 50);
-    // this.testItem3 = new ListItem("sunscreen", 50);
-    // this.testArray = [this.testItem1, this.testItem2, this.testItem3];
-    
-
-    //this.testArray = ["insoles", "plane ticket", "sunscreen"];
 
     // this.route.params.subscribe(routeParams => {
     //   this.supplyListId = routeParams.id;
@@ -144,9 +135,8 @@ getRouteParams(){
     console.log("item to be edited: ", itemId);
   }
 
-  // cancel(){
+  // cancel(){}
 
-  // }
 
 
 

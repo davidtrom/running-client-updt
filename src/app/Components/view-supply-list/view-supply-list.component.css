@@ -93,6 +93,7 @@
 
 .strikethru{
   text-decoration: line-through;
+  /* text-decoration-line: line-through; */
 }
 
 
