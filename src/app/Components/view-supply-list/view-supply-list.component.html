@@ -32,14 +32,39 @@
         </div>
         <ul class="list-group">
             <li *ngFor="let item of displayItems; let i = index" class="list-group-item" [ngClass]="listToDisplay.items[i].strikethru ? 'strikethru' : 'null'">
-                <!-- {{items[i].itemDescription}} -->
-                <!-- {{item.itemDescription}} -->
-                <!-- {{listToDisplay.items[i].itemDescription}} -->
-                {{item}}
+              
+                <!-- NOT ngIf here for inEDit -->
+                <span>{{item}}</span>
+
+                <!-- <div *ngIf="inEdit">
+                    <form [formGroup]="editItemForm" (ngSubmit)="editSubmit()">
+                        <div class="title">
+                            <label for="newItem">Update Item Details:</label>
+                            <input id="editItemName" formControlName="editItemName" type="text" class="form-control" [ngClass]="{'is-invalid': form.editItemName.errors && (form.editItemName.touched || form.editItemName.dirty)}" >
+                            <div *ngIf="form.editItemName.errors && (form.editItemName.touched || form.editItemName.dirty)" class="invalid-feedback">
+                                <div *ngIf='form.editItemName.errors.required'>*Please update details or Cancel</div>
+                            </div>
+                        </div>
+                        <div class="addItemBtn">
+                            <button type="submit" class="btn btn-success">Update Item</button>
+                        </div>-->
+                        <!-- <div>
+                            <button type="button" class="btn btn-warning" (click)="cancel()">Cancel</button>
+                        </div> -->
+                    <!-- </form>
+                </div>  -->
+
+
+                <!-- <div *ngIf="inEdit">
+                    <label for="newItem">Update Item Details:</label>
+                    <input id="editingItem" type="text" placeholder="{{item}}">
+                </div> -->
                 <span class="faviconCrudBtns">
                     <span class="itemCrudBtn" ><button (click)="strikethruItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="far fa-check-square"></i></button></span>
                     <span class="itemCrudBtn"><button (click)="deleteItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="far fa-trash-alt"></i></button></span>
                     <span class="editItemBtn"><button (click)="editItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="fas fa-pencil-alt"></i></button></span>
+                    
+                    <!-- <span class="editItemBtn"><button data-bs-toggle="modal" data-bs-target="#editModal" (click)="editItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="fas fa-pencil-alt"></i></button></span> -->
                 </span>
             </li>
         </ul>
@@ -74,30 +99,23 @@
         <button type="button" class="btn btn-success" (click)="goEdit()">Edit</button>
     </div>
 
-    <!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    User Login
-  </button> -->
   <!-- Modal -->
-  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title text-danger" id="exampleModalLabel">Login Form</h5>
+          <h5 class="modal-title text-danger" id="exampleModalLabel">Edit Item</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form>
             <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+              <label for="updateItem" class="form-label">New Item Description</label>
+              <input type="text" class="form-control" id="updateItem" aria-describedby="emailHelp">
+              
             </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+
+            <button type="submit" class="btn btn-primary">Save</button>
           </form>
         </div>
         <div class="modal-footer">

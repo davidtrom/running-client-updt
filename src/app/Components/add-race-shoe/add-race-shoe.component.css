@@ -2,7 +2,7 @@
 .sidebar {
     margin: 0;
     padding: 0;
-    width: 10%;
+    width: 15%;
     background-color: #f1f1f1;
     position: static;
     height: 100%;
@@ -10,8 +10,7 @@
   }
   
   /* Sidebar links */
-  /* .sidebar a { */
-  .sidebar td {
+  .sidebar a {
     display: block;
     color: black;
     padding: 16px;
@@ -19,15 +18,13 @@
   }
   
   /* Active/current link */
-  /* .sidebar a.active { */
-  .sidebar td.active {
+  .sidebar a.active {
     background-color: #04AA6D;
     color: white;
   }
   
   /* Links on mouse-over */
-  /* .sidebar a:hover:not(.active) { */
-  .sidebar td:hover:not(.active) {
+  .sidebar a:hover:not(.active) {
     background-color: #555;
     color: white;
   }
@@ -57,46 +54,3 @@
       float: none;
     }
 }
-
-
-/* Non Sidebar elements */
-
-.title{
-    padding-top: 2%;
-}
-
-.listTitle{
-    padding-top: 2%;
-    font-size: large;
-}
-
-.editBtn{
-    padding-top: 2%;
-}
-
-.itemExists, .blankItem{
-    color: red;
-    padding-top: 1%;
-}
-
-.addItemBtn{
-    padding-top: 1%;
-}
-
-.faviconCrudBtns{
-  padding-left: 1%;
-}
-
-.itemCrudBtn{
-  padding-right: 0.5%;
-}
-
-.strikethru{
-  text-decoration: line-through;
-}
-
-
-/* li{
-    width: 85%; 
-} */
-

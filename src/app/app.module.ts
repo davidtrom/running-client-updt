@@ -14,7 +14,6 @@ import { PersonalRecordsComponent } from './Components/personal-records/personal
 import { UpcomingRacesComponent } from './Components/upcoming-races/upcoming-races.component';
 import { SupplyListComponent } from './Components/supply-list/supply-list.component';
 import { ContactComponent } from './Components/contact/contact.component';
-import { RaceShoesComponent } from './Components/race-shoes/race-shoes.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { ForgotPasswordComponent } from './Components/forgot-password/forgot-password.component';
 import { ForgotUsernameComponent } from './Components/forgot-username/forgot-username.component';
@@ -27,6 +26,9 @@ import { ViewSupplyListComponent } from './Components/view-supply-list/view-supp
 import { EditListComponent } from './Components/edit-list/edit-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RaceResultsComponent } from './Components/race-results/race-results.component';
+import { AddRaceShoeComponent } from './Components/add-race-shoe/add-race-shoe.component';
+import { RaceShoeDetailComponent } from './Components/race-shoe-detail/race-shoe-detail.component';
+import { RaceShoesComponent } from './Components/race-shoes/race-shoes.component';
 
 
 @NgModule({
@@ -40,7 +42,6 @@ import { RaceResultsComponent } from './Components/race-results/race-results.com
     UpcomingRacesComponent,
     SupplyListComponent,
     ContactComponent,
-    RaceShoesComponent,
     RegisterComponent,
     ForgotPasswordComponent,
     ForgotUsernameComponent,
@@ -51,7 +52,10 @@ import { RaceResultsComponent } from './Components/race-results/race-results.com
     EditProfileComponent,
     ViewSupplyListComponent,
     EditListComponent,
-    RaceResultsComponent
+    RaceResultsComponent,
+    AddRaceShoeComponent,
+    RaceShoeDetailComponent,
+    RaceShoesComponent
     
   ],
   imports: [

@@ -19,6 +19,8 @@ import { EditProfileComponent } from './Components/edit-profile/edit-profile.com
 import { ViewSupplyListComponent } from './Components/view-supply-list/view-supply-list.component';
 import { EditListComponent } from './Components/edit-list/edit-list.component';
 import { RaceResultsComponent } from './Components/race-results/race-results.component';
+import { RaceShoeDetailComponent } from './Components/race-shoe-detail/race-shoe-detail.component';
+import { AddRaceShoeComponent } from './Components/add-race-shoe/add-race-shoe.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -28,6 +30,8 @@ const routes: Routes = [
   {path: 'supply-lists', component: SupplyListComponent},
   {path: 'upcoming-races', component: UpcomingRacesComponent},
   {path: 'race-shoes', component: RaceShoesComponent},
+  {path: 'shoe-detail/:shoeId', component: RaceShoeDetailComponent},
+  {path: 'add-shoe', component: AddRaceShoeComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'forgot-username', component: ForgotUsernameComponent},

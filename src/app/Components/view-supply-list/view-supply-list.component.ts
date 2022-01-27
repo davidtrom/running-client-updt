@@ -13,6 +13,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ViewSupplyListComponent implements OnInit {
   newItemForm: FormGroup;
+  editItemForm: FormGroup;
   listToDisplay: SupplyList;
   listItem: ListItem;
   listItems: ListItem[];
@@ -27,11 +28,16 @@ export class ViewSupplyListComponent implements OnInit {
   newItem: string;
   itemExists: boolean = false;
   displayItems: string[];
+  inEdit: boolean = false;
   //favicons
   // faEraser = faEraser;
   // faTrashAlt = faTrashAlt;
   // faPencilAlt = faPencilAlt;
   // faCheckSquare = faCheckSquare;
+
+
+  //While loop for blank item
+  //Turn off edit button if an item is crossed off?
   //Need an array for the ids of the items in the list to use in a map and then send for editing and updating
 
 
@@ -67,7 +73,10 @@ export class ViewSupplyListComponent implements OnInit {
     });
   }
 
+  // can try here to do if inEdit = true then return return this.editItemForm.controls;?
   get form() {return this.newItemForm.controls;}
+
+  //get editForm() {return this.editItemForm.controls;}
 
 getRouteParams(){
   this.route.params.subscribe(routeParams => {
@@ -91,13 +100,20 @@ getRouteParams(){
     //while loop for while this.newItem = ""
     this.itemExists = false;
     this.newItem =  this.newItemForm.get('newItemName').value;
-    if(this.newItem == ""){
+    // if(this.newItem == ""){
+    //   this.blankItem = true;
+    //   this.newItemForm.reset();
+    //   return;
+    // }
+    while (this.newItem == ""){
       this.blankItem = true;
-      this.newItemForm.reset();
-      return;
+      if(this.newItem != ""){
+        this.blankItem = false;
+        break;
+      }
     }
     for(let i = 0; i < this.displayItems.length; i++){
-      this.blankItem = false;
+      // this.blankItem = false;
       console.log("inside for loop", this.displayItems[i]);
       if(this.displayItems[i].toLowerCase() === this.newItem.toLowerCase()){
         this.itemExists = true;
@@ -131,9 +147,16 @@ getRouteParams(){
       this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);})
   }
 
-  editItem(itemId: number){
-    console.log("item to be edited: ", itemId);
+  editItem(){
+    //console.log("item to be edited: ", itemId);
+    this.inEdit=true;
   }
+
+  // editSubmit(){
+  //   this.editItemForm = this.fb.group({
+  //     newItemName: ['', Validators.required]
+  //   });
+  // }
 
   // cancel(){}
 
