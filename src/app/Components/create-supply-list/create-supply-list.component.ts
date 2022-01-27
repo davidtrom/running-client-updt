@@ -51,6 +51,10 @@ export class CreateSupplyListComponent implements OnInit {
     }
   }
 
+  listsHomeRoute(){
+    this.router.navigate(['supply-lists']);
+  }
+
   onSubmit(){
     this.listService.createNewList(this.userId, this.newListForm.controls.listName.value)
       .subscribe(data => {
@@ -67,7 +71,7 @@ export class CreateSupplyListComponent implements OnInit {
             this.router.navigate(['/edit-list', this.supplyList.id]);
             // And any other code that should run only after 5s
             //add list_id to array to send to supply-lists
-          }, 4000);
+          }, 3000);
         }
         
        })

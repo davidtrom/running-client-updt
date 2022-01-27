@@ -23,6 +23,10 @@ input{
     color: red;
 }
 
+#cancelBtn{
+  padding-left: 1%;
+}
+
 /* The side navigation menu */
 .sidebar {
     margin: 0;
