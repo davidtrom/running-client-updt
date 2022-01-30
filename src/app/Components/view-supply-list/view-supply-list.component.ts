@@ -3,7 +3,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ListItem } from 'src/app/Models/list-item.model';
 import { SupplyList } from 'src/app/Models/supply-list.model';
 import { ListsService } from 'src/app/Services/lists.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -14,21 +14,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ViewSupplyListComponent implements OnInit {
   newItemForm: FormGroup;
   editItemForm: FormGroup;
+  editItemName = new FormControl('', Validators.required);
   listToDisplay: SupplyList;
   listItem: ListItem;
   listItems: ListItem[];
   userLists: SupplyList[];
   userId: number;
   supplyListId: string;
-  blankItem: boolean;
-  testArray: ListItem[];
-  testItem1: ListItem;
-  testItem2: ListItem;
-  testItem3: ListItem;
   newItem: string;
   itemExists: boolean = false;
   displayItems: string[];
   inEdit: boolean = false;
+  itemToEdit: string = "";
   //favicons
   // faEraser = faEraser;
   // faTrashAlt = faTrashAlt;
@@ -36,7 +33,6 @@ export class ViewSupplyListComponent implements OnInit {
   // faCheckSquare = faCheckSquare;
 
 
-  //While loop for blank item
   //Turn off edit button if an item is crossed off?
   //Need an array for the ids of the items in the list to use in a map and then send for editing and updating
 
@@ -63,8 +59,13 @@ export class ViewSupplyListComponent implements OnInit {
     this.getRouteParams();
 
     this.newItemForm = this.fb.group({
-      newItemName: ['', Validators.required]
-    });
+      newItemName: ['', Validators.required],
+      });
+    
+
+    // this.editItemForm = this.fb.group({
+    //   editItemName: ['', Validators.required]
+    // })
 
     this.userId = 1;
 
@@ -73,10 +74,7 @@ export class ViewSupplyListComponent implements OnInit {
     });
   }
 
-  // can try here to do if inEdit = true then return return this.editItemForm.controls;?
   get form() {return this.newItemForm.controls;}
-
-  //get editForm() {return this.editItemForm.controls;}
 
 getRouteParams(){
   this.route.params.subscribe(routeParams => {
@@ -97,44 +95,36 @@ getRouteParams(){
   }
 
   onSubmit(){
-    //while loop for while this.newItem = ""
     this.itemExists = false;
-    this.newItem =  this.newItemForm.get('newItemName').value;
-    // if(this.newItem == ""){
-    //   this.blankItem = true;
-    //   this.newItemForm.reset();
-    //   return;
-    // }
-    while (this.newItem == ""){
-      this.blankItem = true;
-      if(this.newItem != ""){
-        this.blankItem = false;
-        break;
-      }
-    }
-    for(let i = 0; i < this.displayItems.length; i++){
-      // this.blankItem = false;
-      console.log("inside for loop", this.displayItems[i]);
-      if(this.displayItems[i].toLowerCase() === this.newItem.toLowerCase()){
-        this.itemExists = true;
-        this.newItemForm.reset();
-        break;
-    }
-  }
-    if(!this.itemExists){
-    this.listService.addItem(this.listToDisplay.id, this.newItemForm.controls.newItemName.value)
-      .subscribe(data => {
-          console.log('new item created');
-          this.listToDisplay = data;
-          this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);
+    
+      if(this.newItemForm.valid){
+        this.newItem =  this.newItemForm.get('newItemName').value;
+        for(let i = 0; i < this.displayItems.length; i++){
+          console.log("inside for loop", this.displayItems[i]);
+          if(this.displayItems[i].toLowerCase() === this.newItem.toLowerCase()){
+            this.itemExists = true;
+            this.newItemForm.reset();
+            break;
+          }
+        }
+        if(!this.itemExists){
+        this.listService.addItem(this.listToDisplay.id, this.newItemForm.controls.newItemName.value)
+          .subscribe(data => {
+              console.log('new item created');
+              this.listToDisplay = data;
+              this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);
+              this.newItemForm.reset();
+            }  
+          )
+        }
+        else {
           this.newItemForm.reset();
-        }  
-      )
-    }
-    else {
-      this.newItemForm.reset();
-      return;
-    }
+          return;
+        }
+      } 
+      else{
+        this.newItemForm.markAllAsTouched();
+      }
   }
 
   deleteItem(listId: number, itemId:number){
@@ -147,21 +137,54 @@ getRouteParams(){
       this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);})
   }
 
-  editItem(){
-    //console.log("item to be edited: ", itemId);
+  editItem(listId: number, itemId: number, itemDescription: string){
+    console.log("item to be edited: ", itemId);
+    console.log("list to be edited: ", listId);
+    this.router.navigate(['edit-list', listId, itemId]);
+    //this.itemToEdit = itemDescription;
+    this.itemToEdit = "balls";
+    console.log("itemDescription: ", itemDescription)
     this.inEdit=true;
   }
 
-  // editSubmit(){
-  //   this.editItemForm = this.fb.group({
-  //     newItemName: ['', Validators.required]
-  //   });
-  // }
+  editSubmit(){
+    console.log(this.editItemForm.get('editItemName').value);
+    // this.itemExists = false;
+    
+    //   if(this.editItemForm.valid){
+    //     this.newItem =  this.editItemForm.get('editItemName').value;
+    //     for(let i = 0; i < this.displayItems.length; i++){
+    //       console.log("inside for loop", this.displayItems[i]);
+    //       if(this.displayItems[i].toLowerCase() === this.newItem.toLowerCase()){
+    //         this.itemExists = true;
+    //         this.editItemForm.reset();
+    //         break;
+    //       }
+    //     }
+    //     if(!this.itemExists){
+    //     this.listService.addItem(this.listToDisplay.id, this.editItemForm.controls.newItemName.value)
+    //       .subscribe(data => {
+    //           console.log('new item created');
+    //           this.listToDisplay = data;
+    //           this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);
+    //           this.editItemForm.reset();
+    //         }  
+    //       )
+    //     }
+    //     else {
+    //       this.editItemForm.reset();
+    //       return;
+    //     }
+    //   } 
+    //   else{
+    //     this.editItemForm.markAllAsTouched();
+    //   }
+  
+  }
 
-  // cancel(){}
-
-
-
+  cancel(){
+    this.inEdit = false;
+  }
 
   goEdit(){
     this.router.navigate(['edit-list', this.listToDisplay.id]);

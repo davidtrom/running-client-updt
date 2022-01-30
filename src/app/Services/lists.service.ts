@@ -63,6 +63,13 @@ export class ListsService {
     catchError(this.handleError<SupplyList>('error striking item', null)));
   }
 
+  editItem(listId: number, itemId: number): Observable<SupplyList>{
+    return this.http.put<SupplyList>(this.baseUrl + `/edit-item/${listId}/${itemId}`, this.httpOptions)
+    .pipe(tap(data => console.log('editing item', data)),
+    catchError(this.handleError<SupplyList>('error editing item', null)));
+
+  }
+
   //rapidapi.com
   //weatherapi.com
 

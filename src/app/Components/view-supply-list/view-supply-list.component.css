@@ -46,13 +46,13 @@
       height: auto;
       position: relative;
     }
-    .sidebar a {float: left;}
+    .sidebar td {float: left;}
     div.content {margin-left: 0;}
   }
   
   /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
   @media screen and (max-width: 400px) {
-    .sidebar a {
+    .sidebar td {
       text-align: center;
       float: none;
     }
@@ -95,6 +95,9 @@
   text-decoration: line-through;
 }
 
+#cancelBtn{
+  padding-left: 1.5%;
+}
 
 /* li{
     width: 85%; 

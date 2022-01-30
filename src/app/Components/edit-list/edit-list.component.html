@@ -1,6 +1,3 @@
-<p>edit-list works!</p>
-
-
 <div class="d-flex" id="wrapper">
 
     <!-- The sidebar -->
@@ -14,8 +11,8 @@
             </thead>
             <tbody>
                 <tr *ngFor="let list of userLists">
-                    <!-- <td><a [routerLink]="['/view-list', list.id]">{{list.listDescription}}</a></td> -->
-                    <td (click)="update(list.id)">{{list.listDescription}}</td>
+                    <td><a [routerLink]="['/view-list', list.id]">{{list.listDescription}}</a></td>
+                    <!-- <td (click)="showNewList(list.id)">{{list.listDescription}}</td> -->
                 </tr>
             </tbody>
         </table>
@@ -25,7 +22,7 @@
     
         <div class="title">
             <h2>
-                {{listToDisplay.listDescription}} 
+                {{listToDisplay.listDescription}}
             </h2>
         </div>
     
@@ -34,41 +31,87 @@
                 Items in List:
             </div>
             <ul class="list-group">
-                <!-- <li *ngFor="let item of listItems" class="list-group-item">
-                    {{item.itemDescription}}
-                </li> -->
-                <li *ngFor="let item of testArray" class="list-group-item">
-                    <div>{{item}}</div>
-                    <span (click)="onEdit(task)" class="fa fa-search"></span>
+                <li *ngFor="let item of displayItems; let i = index" class="list-group-item" [ngClass]="listToDisplay.items[i].strikethru ? 'strikethru' : 'null'">
+                  
+                    <!-- NOT ngIf here for inEDit -->
+                    <span *ngIf="!inEdit">{{item}}</span>
+
+    
+                    <div *ngIf="inEdit">
+                        <form [formGroup]="editItemForm" (ngSubmit)="editSubmit()">
+                            <div class="title">
+                                <label for="editItemName">Update Item:</label>
+                                <input id="editItemName" formControlName="editItemName" type="text" class="form-control" [ngClass]="{'is-invalid': form.editItemName.errors && (form.editItemName.touched || form.editItemName.dirty)}" >
+                                <div *ngIf="form.editItemName.errors && (form.editItemName.touched || form.editItemName.dirty)" class="invalid-feedback">
+                                    <div *ngIf='form.editItemName.errors.required'>*Please update item details or Cancel</div>
+                                </div>
+                                <div class="itemExists" *ngIf="itemExists">
+                                    *{{newItem}} already exists in your list.
+                                </div>
+                            </div>
+                            <div class="editItemBtn">
+                                <button type="submit" class="btn btn-success">Update</button>
+                                <span><button type="button" class="btn btn-warning" (click)="cancel()">Cancel</button></span>
+                            </div>
+                        </form>
+                    </div> 
+    
+                    <!-- <span class="faviconCrudBtns">
+                        <span class="itemCrudBtn" ><button (click)="strikethruItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="far fa-check-square"></i></button></span>
+                        <span class="itemCrudBtn"><button (click)="deleteItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="far fa-trash-alt"></i></button></span>
+                        <span class="editItemBtn"><button (click)="editItem(listToDisplay.items[i].itemDescription)"><i class="fas fa-pencil-alt"></i></button></span> -->
+                        
+                        <!-- <span class="editItemBtn"><button data-bs-toggle="modal" data-bs-target="#editModal" (click)="editItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="fas fa-pencil-alt"></i></button></span> -->
+                    <!-- </span> -->
                 </li>
             </ul>
-             
+        </div>
         
+        <div class="editBtn">
+            <button type="button" class="btn btn-success" (click)="goEdit()">Edit</button>
+        </div>
     
-            <div class="row">
-                <div class="col-xs-6 col-md-4">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Enter Race Items" id="txtSearch" [(ngModel)]="listItem" />
-                        <div class="input-group-btn">
-                            <button class="btn btn-primary" type="button" (click)="onClick()">
-                                <span class="glyphicon glyphicon-ok">OK</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+      <!-- Modal -->
+      <!-- <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-danger" id="exampleModalLabel">Edit Item</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="updateItem" class="form-label">New Item Description</label>
+                  <input type="text" class="form-control" id="updateItem" aria-describedby="emailHelp">
+                  
+                </div>
     
-            <br />
+                <button type="submit" class="btn btn-primary">Save</button>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div> -->
     
-            <ul class="list-group">
-                <li *ngFor="let listItem of listItems" class="list-group-item">
-                    <span (click)="onStrike(task)" [ngClass]="{'strike': task.strike}"> {{ listItem.name }} </span>
-                    <span (click)="onEdit(task)" class="glyphicon glyphicon-pencil floatright"></span>
-                    <span (click)="onDelete(task)" class="glyphicon glyphicon-remove floatright paddingLeft"></span>
-                </li>
-            </ul>
-        <!-- </div> -->
     
-        <!-- </div> -->
     
-    </div>
+        <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(mymodal)">Open My Modal</button>
+       
+        <ng-template #mymodal let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            This is example from ItSolutionStuff.com
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+        </div>
+        </ng-template> -->

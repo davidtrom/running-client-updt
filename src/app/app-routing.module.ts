@@ -40,7 +40,7 @@ const routes: Routes = [
   {path: 'edit-profile/:id', component: EditProfileComponent},
   {path: 'new-list', component: CreateSupplyListComponent},
   {path: 'view-list/:id', component: ViewSupplyListComponent},
-  {path: 'edit-list/:listId', component: EditListComponent},
+  {path: 'edit-list/:listId/:itemId', component: EditListComponent},
   {path: 'race-results/:userId', component: RaceResultsComponent},
   
 

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ListItem } from 'src/app/Models/list-item.model';
 import { SupplyList } from 'src/app/Models/supply-list.model';
 import { ListsService } from 'src/app/Services/lists.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-list',
@@ -10,29 +11,30 @@ import { ListsService } from 'src/app/Services/lists.service';
   styleUrls: ['./edit-list.component.css']
 })
 export class EditListComponent implements OnInit {
+  newItemForm: FormGroup;
+  editItemForm: FormGroup;
+  editItemName = new FormControl('', Validators.required);
   listToDisplay: SupplyList;
   listItem: ListItem;
   listItems: ListItem[];
   userLists: SupplyList[];
   userId: number;
   supplyListId: string;
-  testArray: string[];
-  testItem: string
+  newItem: string;
+  itemExists: boolean = false;
+  displayItems: string[];
+  inEdit: boolean = true;
+  itemToEdit: string = "";
+  itemId: number;
 
-  constructor(private route: ActivatedRoute, private listService: ListsService) { }
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private listService: ListsService, private router: Router) { }
 
   ngOnInit(): void {
-    // this.route.paramMap.subscribe(params => {
-    //   this.supplyListId = params.get('listId');
-    //   this.listService.getListById(+(this.supplyListId)).subscribe(data => {this.listToDisplay = data});
-    //   this.listItems = this.listToDisplay.listItems;
-    // });
+    this.getRouteParams();
 
-    this.route.params.subscribe(routeParams => {
-      this.supplyListId = routeParams.listIid;
-      this.listService.getListById(+(routeParams.listId)).subscribe(data => {this.listToDisplay = data;});
-      this.listItems = this.listToDisplay.items;
-    });
+    this.editItemForm = this.fb.group({
+      editItemName: [, Validators.required]
+    })
 
     this.userId = 1;
 
@@ -41,58 +43,123 @@ export class EditListComponent implements OnInit {
     });
   }
 
-  update(id:number){
-    this.listService.getListById(id).subscribe(data => {this.listToDisplay = data;});
+  get form() {return this.editItemForm.controls;}
+
+getRouteParams(){
+  this.route.params.subscribe(routeParams => {
+    this.supplyListId = routeParams.listId;
+    console.log(this.supplyListId);
+    this.itemId = routeParams.itemId;
+    console.log(this.itemId);
+    //GET ONE ITEM DESCRIPTION
+    this.listService.getListById(+(routeParams.listId)).subscribe(data => {this.listToDisplay = data;
+    this.showNewList(this.listToDisplay.id);
+    });
+  });
+}
+
+  showNewList(id:number){
+    this.listService.getListById(id).subscribe(data => {this.listToDisplay = data;
+      this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);
+      //this.router.navigate(['view-list', this.listToDisplay.id]);
+    });
       console.log(this.listToDisplay.listDescription);
-      this.listItems = this.listToDisplay.items;
+      console.log("Inside show new List", this.listToDisplay.items.length);
+      console.log("List Items: ", this.listItems);
   }
 
-  // addItem(listId: number, item: string ){
-  //   this.listService.addItem(listId, item).subscribe(data => {
-  //     this.listToDisplay = data;
-  //   })
-  // }
+  onSubmit(){
+    this.itemExists = false;
+    
+      if(this.newItemForm.valid){
+        this.newItem =  this.newItemForm.get('newItemName').value;
+        for(let i = 0; i < this.displayItems.length; i++){
+          console.log("inside for loop", this.displayItems[i]);
+          if(this.displayItems[i].toLowerCase() === this.newItem.toLowerCase()){
+            this.itemExists = true;
+            this.newItemForm.reset();
+            break;
+          }
+        }
+        if(!this.itemExists){
+        this.listService.addItem(this.listToDisplay.id, this.newItemForm.controls.newItemName.value)
+          .subscribe(data => {
+              console.log('new item created');
+              this.listToDisplay = data;
+              this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);
+              this.newItemForm.reset();
+            }  
+          )
+        }
+        else {
+          this.newItemForm.reset();
+          return;
+        }
+      } 
+      else{
+        this.newItemForm.markAllAsTouched();
+      }
+  }
+
+  deleteItem(listId: number, itemId:number){
+    this.listService.deleteItem(listId, itemId).subscribe(data => {this.listToDisplay = data;
+      this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);})
+  }
+
+  strikethruItem(listId: number, itemId: number){
+    this.listService.strikethruItem(listId, itemId).subscribe(data => {this.listToDisplay = data;
+      this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);})
+  }
+
+  editItem(itemDescription: string){
+    //console.log("item to be edited: ", itemId);
+    this.inEdit=true;
+  }
+
+  editSubmit(){
+    console.log(this.editItemForm.get('editItemName').value);
+    // this.itemExists = false;
+    
+    //   if(this.editItemForm.valid){
+    //     this.newItem =  this.editItemForm.get('editItemName').value;
+    //     for(let i = 0; i < this.displayItems.length; i++){
+    //       console.log("inside for loop", this.displayItems[i]);
+    //       if(this.displayItems[i].toLowerCase() === this.newItem.toLowerCase()){
+    //         this.itemExists = true;
+    //         this.editItemForm.reset();
+    //         break;
+    //       }
+    //     }
+    //     if(!this.itemExists){
+    //     this.listService.addItem(this.listToDisplay.id, this.editItemForm.controls.newItemName.value)
+    //       .subscribe(data => {
+    //           console.log('new item created');
+    //           this.listToDisplay = data;
+    //           this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);
+    //           this.editItemForm.reset();
+    //         }  
+    //       )
+    //     }
+    //     else {
+    //       this.editItemForm.reset();
+    //       return;
+    //     }
+    //   } 
+    //   else{
+    //     this.editItemForm.markAllAsTouched();
+    //   }
+  
+  }
+
+  cancel(){
+    this.inEdit = false;
+  }
 
 
-  onClick(){
-    this.testArray.push()
-    //this.listItems.push({name: this.listItem.name, strike: false});
-    //this.listItems.push({id: null, name: this.listItem.name});
 
-//this.listItem.name = '';
-//this.listItem.id = 0;
- 
-// this.listItem = {
-//     name: '',
-//     id: 0
-// };
+
+  goEdit(){
+    this.router.navigate(['edit-list', this.listToDisplay.id]);
+  }
 }
 
-onEdit(item){
-this.listItem = item;
-}
-
-onDelete(item){
-for(var i = 0;i < this.listItems.length; i++){
-    if(item.id == this.listItems[i].id){
-        this.listItems.splice(i,1);
-        break;
-    }
-}
-}
-
-// onStrike(item){
-//   for(var i = 0;i < this.listItems.length; i++){
-//     if(item.id == this.listItems[i].id){
-//       if(this.listItems[i].strike){
-//         this.listItems[i].strike = false;
-//       }
-//       else{
-//         this.listItems[i].strike = true;
-//       }
-//       break;
-//     }
-//   }
-// }
-
-}

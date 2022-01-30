@@ -26,73 +26,52 @@
         </h2>
     </div>
 
-    <div class="itemsDisplay">
-        <div class="listTitle">
-            Items in List:
+    <div *ngIf="!inEdit">
+        <div class="itemsDisplay">
+            <div class="listTitle">
+                Items in List:
+            </div>
+            <ul class="list-group">
+                <li *ngFor="let item of displayItems; let i = index" class="list-group-item" [ngClass]="listToDisplay.items[i].strikethru ? 'strikethru' : 'null'">
+                
+                    <!-- NOT ngIf here for inEDit -->
+                    <span  (click)="editItem(listToDisplay.id, listToDisplay.items[i].id, listToDisplay.items[i].itemDescription)">{{item}}</span>
+
+                    <span class="faviconCrudBtns">
+                        <span class="itemCrudBtn" ><button (click)="strikethruItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="far fa-check-square"></i></button></span>
+                        <span class="itemCrudBtn"><button (click)="deleteItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="far fa-trash-alt"></i></button></span>
+                        <span class="editItemBtn"><button (click)="editItem(listToDisplay.items[i].itemDescription)"><i class="fas fa-pencil-alt"></i></button></span>
+                        
+                        <!-- <span class="editItemBtn"><button data-bs-toggle="modal" data-bs-target="#editModal" (click)="editItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="fas fa-pencil-alt"></i></button></span> -->
+                    </span>
+                </li>
+            </ul>
         </div>
-        <ul class="list-group">
-            <li *ngFor="let item of displayItems; let i = index" class="list-group-item" [ngClass]="listToDisplay.items[i].strikethru ? 'strikethru' : 'null'">
-              
-                <!-- NOT ngIf here for inEDit -->
-                <span>{{item}}</span>
-
-                <!-- <div *ngIf="inEdit">
-                    <form [formGroup]="editItemForm" (ngSubmit)="editSubmit()">
-                        <div class="title">
-                            <label for="newItem">Update Item Details:</label>
-                            <input id="editItemName" formControlName="editItemName" type="text" class="form-control" [ngClass]="{'is-invalid': form.editItemName.errors && (form.editItemName.touched || form.editItemName.dirty)}" >
-                            <div *ngIf="form.editItemName.errors && (form.editItemName.touched || form.editItemName.dirty)" class="invalid-feedback">
-                                <div *ngIf='form.editItemName.errors.required'>*Please update details or Cancel</div>
-                            </div>
-                        </div>
-                        <div class="addItemBtn">
-                            <button type="submit" class="btn btn-success">Update Item</button>
-                        </div>-->
-                        <!-- <div>
-                            <button type="button" class="btn btn-warning" (click)="cancel()">Cancel</button>
-                        </div> -->
-                    <!-- </form>
-                </div>  -->
-
-
-                <!-- <div *ngIf="inEdit">
-                    <label for="newItem">Update Item Details:</label>
-                    <input id="editingItem" type="text" placeholder="{{item}}">
-                </div> -->
-                <span class="faviconCrudBtns">
-                    <span class="itemCrudBtn" ><button (click)="strikethruItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="far fa-check-square"></i></button></span>
-                    <span class="itemCrudBtn"><button (click)="deleteItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="far fa-trash-alt"></i></button></span>
-                    <span class="editItemBtn"><button (click)="editItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="fas fa-pencil-alt"></i></button></span>
-                    
-                    <!-- <span class="editItemBtn"><button data-bs-toggle="modal" data-bs-target="#editModal" (click)="editItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="fas fa-pencil-alt"></i></button></span> -->
-                </span>
-            </li>
-        </ul>
     </div>
+
+
 
     <form [formGroup]="newItemForm" (ngSubmit)="onSubmit()">
         <div class="title">
-            <label for="newItem">Enter the Item to add to the Supply List:</label>
-            <input id="newItemName" formControlName="newItemName" type="newItemName" class="form-control" placeholder="Item to Add" [ngClass]="{'is-invalid': form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)}" >
+            <label *ngIf="!inEdit" for="newItem">Enter the Item to add to the Supply List:</label>
+            <label *ngIf="inEdit" for="newItem" >Update Item:</label>
+            <input *ngIf="!inEdit"id="newItemName" formControlName="newItemName" type="newItemName" class="form-control" placeholder="Item to Add" [ngClass]="{'is-invalid': form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)}" >
+            <input *ngIf="inEdit" #update  id="newItemName" formControlName="newItemName" type="newItemName" class="form-control" [ngClass]="{'is-invalid': form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)}">
             <div *ngIf="form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)" class="invalid-feedback">
-                <div *ngIf='form.newItemName.errors.required'>*Item to Add is Required</div>
+                <div *ngIf='form.newItemName.errors.required'>*An Item to Add is Required</div>
+            </div>
+            <div class="itemExists" *ngIf="itemExists">
+                *{{newItem}} already exists in your list.
             </div>
         </div>
         <div class="addItemBtn">
-            <button type="submit" class="btn btn-success">Add Item</button>
+            <button *ngIf="!inEdit" type="submit" class="btn btn-success">Add Item</button>
+            <span *ngIf="inEdit">
+                <button type="submit" class="btn btn-success">Update Item</button>
+                <span id="cancelBtn"><button type="button" class="btn btn-warning" (click)="cancel()">Cancel</button></span>
+            </span>
         </div>
-        <!-- <div>
-            <button type="button" class="btn btn-warning" (click)="cancel()">Cancel</button>
-        </div> -->
     </form>
-
-    <div class="itemExists" *ngIf="itemExists">
-        *{{newItem}} already exists in your list.
-    </div>
-
-    <div class="blankItem" *ngIf="blankItem">
-        *Blank Items cannot not be added to your list!
-    </div>
 
     
     <div class="editBtn">
