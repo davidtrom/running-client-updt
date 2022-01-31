@@ -25,16 +25,19 @@
                 {{listToDisplay.listDescription}}
             </h2>
         </div>
+
+        <div>Item to Edit: {{itemToEdit}}</div>
     
         <div class="itemsDisplay">
-            <div class="listTitle">
-                Items in List:
-            </div>
-            <ul class="list-group">
-                <li *ngFor="let item of displayItems; let i = index" class="list-group-item" [ngClass]="listToDisplay.items[i].strikethru ? 'strikethru' : 'null'">
+            <!-- <div class="listTitle">
+                Items To Update:
+            </div> -->
+            <!-- <ul class="list-group"> -->
+                <!-- <li *ngFor="let item of displayItems; let i = index" class="list-group-item" [ngClass]="listToDisplay.items[i].strikethru ? 'strikethru' : 'null'"> -->
+                <!-- <li class="list-group-item"> -->
                   
                     <!-- NOT ngIf here for inEDit -->
-                    <span *ngIf="!inEdit">{{item}}</span>
+                    <!-- <span *ngIf="!inEdit">{{item}}</span> -->
 
     
                     <div *ngIf="inEdit">
@@ -63,13 +66,13 @@
                         
                         <!-- <span class="editItemBtn"><button data-bs-toggle="modal" data-bs-target="#editModal" (click)="editItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="fas fa-pencil-alt"></i></button></span> -->
                     <!-- </span> -->
-                </li>
-            </ul>
+                <!-- </li> -->
+            <!-- </ul> -->
         </div>
         
-        <div class="editBtn">
+        <!-- <div class="editBtn">
             <button type="button" class="btn btn-success" (click)="goEdit()">Edit</button>
-        </div>
+        </div> -->
     
       <!-- Modal -->
       <!-- <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

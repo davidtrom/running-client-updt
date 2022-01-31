@@ -38,7 +38,7 @@
     </ng-template>
   </div>
 
-  <!-- <div class="flex-container">
+  <div class="flex-container">
     <div class="container">
         <div class="panel-heading">
             <h2 class="panel-title">Add a New Shoe To Your Closet</h2>
@@ -49,26 +49,24 @@
                 <div class="panel-body">
                     <div class="form-row">
                         
-                        <label for="brand">Shoe Brand:*</label>
-                        <input id="brand" formControlName="brand" type="text" class="form-control" placeholder="Brand Name" [ngClass]="{'is-invalid': form.brand.errors && (form.brand.touched || form.brand.dirty)}">
-                        <div *ngIf="form.brand.errors && (form.brand.touched || form.brand.dirty)" class="invalid-feedback">
-                            <div *ngIf='form.brand.errors.required'>*A Shoe Brand is Required</div>    
-                        </div>
+                        <div>
+                            <label for="brand">Shoe Brand:*</label>
+                            <input id="brand" formControlName="brand" type="text" class="form-control" placeholder="Brand Name" [ngClass]="{'is-invalid': form.brand.errors && (form.brand.touched || form.brand.dirty)}">
+                            <div *ngIf="form.brand.errors && (form.brand.touched || form.brand.dirty)" class="invalid-feedback">
+                                <div *ngIf='form.brand.errors.required'>*A Shoe Brand is Required</div>    
+                            </div>
+                        </div>  
                         
                         
                         <label for="model">Shoe Model:*</label>
-                        <input id="model" formControlName="model" type="text" class="form-control" placeholder="Last Name" [ngClass]="{'is-invalid': form.model.errors && (form.model.touched || form.model.dirty)}">
+                        <input id="model" formControlName="model" type="text" class="form-control" placeholder="Model" [ngClass]="{'is-invalid': form.model.errors && (form.model.touched || form.model.dirty)}">
                         <div *ngIf="form.model.errors && (form.model.touched || form.model.dirty)" class="invalid-feedback">
                             <div *ngIf='form.model.errors.required'>*A Shoe Model is Required</div>
-                        </div> -->
-
-                        <!-- Make this one a TEXTBOX -->
-                        <!-- <label for="shoeDescription">Shoe Description:</label>
-                        <input id="shoeDescription" formControlName="shoeDescription" type="text" class="form-control" placeholder="Description">
+                        </div> 
               
                         
                         <label for="numOfMiles">Number Of Miles:*</label>
-                        <input id="numOfMiles" formControlName="numOfMiles" type="text" class="form-control" placeholder="Number of Miles" [ngClass]="{'is-invalid': form.numOfMiles.errors && (form.numOfMiles.touched || form.numOfMiles.dirty)}">
+                        <input id="numOfMiles" formControlName="numOfMiles" type="text" class="form-control" placeholder="Miles" [ngClass]="{'is-invalid': form.numOfMiles.errors && (form.numOfMiles.touched || form.numOfMiles.dirty)}">
                         <div *ngIf="form.numOfMiles.errors && (form.numOfMiles.touched || form.numOfMiles.dirty)" class="invalid-feedback">
                             <div *ngIf='form.numOfMiles.errors.required'>*Please Enter the Number of Miles on the Shoe</div>
                         </div>
@@ -80,19 +78,23 @@
                         </div> 
 
                         
-                        <label for="flexRadioDefault">Profile Status:</label>
+                        <label for="flexRadioDefault">Shoe Status:</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="profileStatus" value=true id="public" checked (change)="changeStatus($event)">
+                            <input class="form-check-input" type="radio" name="shoeStatus" value=true id="active" checked (change)="changeStatus($event)">
                             <div class="form-check-label" for="flexRadioDefault1">
-                                Public
+                                Active
                             </div>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="profileStatus" value=false id="private" (change)="changeStatus($event)"> 
+                            <input class="form-check-input" type="radio" name="shoeStatus" value=false id="retired" (change)="changeStatus($event)"> 
                             <div class="form-check-label" for="flexRadioDefault2">
-                                Private
+                                Retired
                             </div>
                         </div>
+
+                        <!-- Make this one a TEXTBOX -->
+                        <label for="shoeDescription" class="form-label">Shoe Description:</label>
+                        <textarea id="shoeDescription" formControlName="shoeDescription" rows="3" class="form-control" placeholder="Optional Description"></textarea>
                         
                         <div *ngIf="formNotValid" class="formNotValid">
                             *Please enter all required fields before submitting
@@ -105,9 +107,8 @@
                             <button type="submit" class="btn btn-success">Register</button>
                             <button type="button" class="btn btn-warning" (click)="mainShoesRoute()">Cancel</button>  
                         </div>
-                </div>
+                    </div>
             </div>
-          </form>  -->
-
-
-
+        </form>
+    </div>
+</div> 

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ListItem } from 'src/app/Models/list-item.model';
 import { SupplyList } from 'src/app/Models/supply-list.model';
 import { ListsService } from 'src/app/Services/lists.service';
@@ -24,24 +24,36 @@ export class EditListComponent implements OnInit {
   itemExists: boolean = false;
   displayItems: string[];
   inEdit: boolean = true;
-  itemToEdit: string = "";
+  
   itemId: number;
+  listNames: string[];
+  @Input() itemToEdit: string;
+  
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private listService: ListsService, private router: Router) { }
 
   ngOnInit(): void {
-    this.getRouteParams();
+    this.initializeForm();
 
-    this.editItemForm = this.fb.group({
-      editItemName: [, Validators.required]
-    })
+    this.getRouteParams();
 
     this.userId = 1;
 
     this.listService.getUserLists(this.userId).subscribe(data => {
       this.userLists = data;
     });
+
+    //this.initializeForm();
+    //this.itemToEdit = "Fresh Foam Vongo";
+
+    console.log("value of itemToEdit: ", this.itemToEdit);
   }
+
+initializeForm(){
+  this.editItemForm = this.fb.group({
+    editItemName: [this.itemToEdit, Validators.required]
+  });
+}
 
   get form() {return this.editItemForm.controls;}
 
@@ -52,6 +64,9 @@ getRouteParams(){
     this.itemId = routeParams.itemId;
     console.log(this.itemId);
     //GET ONE ITEM DESCRIPTION
+    // this.listService.getOneItem(+(routeParams.listId), +(routeParams.itemId)).subscribe(data => {this.itemToEdit = data;
+    //   });
+      //this.initializeForm()
     this.listService.getListById(+(routeParams.listId)).subscribe(data => {this.listToDisplay = data;
     this.showNewList(this.listToDisplay.id);
     });

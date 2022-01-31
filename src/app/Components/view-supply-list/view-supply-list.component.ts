@@ -141,8 +141,7 @@ getRouteParams(){
     console.log("item to be edited: ", itemId);
     console.log("list to be edited: ", listId);
     this.router.navigate(['edit-list', listId, itemId]);
-    //this.itemToEdit = itemDescription;
-    this.itemToEdit = "balls";
+    this.itemToEdit = itemDescription;
     console.log("itemDescription: ", itemDescription)
     this.inEdit=true;
   }

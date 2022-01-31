@@ -13,6 +13,7 @@
             <tr *ngFor="let list of userLists">
                 <!-- <td><a [routerLink]="['/view-list', list.id]">{{list.listDescription}}</a></td> -->
                 <td (click)="showNewList(list.id)">{{list.listDescription}}</td>
+                
             </tr>
         </tbody>
     </table>
@@ -44,6 +45,7 @@
                         
                         <!-- <span class="editItemBtn"><button data-bs-toggle="modal" data-bs-target="#editModal" (click)="editItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="fas fa-pencil-alt"></i></button></span> -->
                     </span>
+                    <app-edit-list [itemToEdit]=""></app-edit-list>
                 </li>
             </ul>
         </div>

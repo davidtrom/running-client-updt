@@ -22,7 +22,6 @@ export class ListsService {
   constructor(private http: HttpClient) { }
 
   getUserLists(id:number) : Observable <SupplyList[]> {
-    console.log("inside list service: ", this.baseUrl+`/get-lists/${id}`)
     return this.http.get<SupplyList[]>(this.baseUrl+`/get-lists/${id}`, this.httpOptions)
     .pipe(tap(data => console.log('fetch lists', data)),
       catchError(this.handleError<SupplyList[]>('error geting lists', null)));
@@ -68,6 +67,19 @@ export class ListsService {
     .pipe(tap(data => console.log('editing item', data)),
     catchError(this.handleError<SupplyList>('error editing item', null)));
 
+  }
+
+  getListNames(userId: number): Observable<string[]>{
+    return this.http.get<string[]>(this.baseUrl+`/get-list-names/${userId}`, this.httpOptions)
+    .pipe(tap(data => console.log('fetch list names', data)),
+      catchError(this.handleError<string[]>('error geting list names', null)));
+  }
+
+
+  getOneItem(listId: number, itemId: number): Observable<string>{
+    return this.http.get<string>(this.baseUrl + `/get-item/${listId}/${itemId}`, this.httpOptions)
+    .pipe(tap(data => console.log('updating item', data)),
+    catchError(this.handleError<string>('error updating item', null)));
   }
 
   //rapidapi.com

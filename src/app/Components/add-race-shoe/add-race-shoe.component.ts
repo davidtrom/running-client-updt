@@ -59,12 +59,12 @@ export class AddRaceShoeComponent implements OnInit {
   changeStatus(e){
     console.log('Change Status: ', e.target.value);
     if(e.target.value == "true"){
-      this.newShoeForm.patchValue({profileStatus: ProfileStatus.Public});
-      console.log("Status is now Public");
+      this.newShoeForm.patchValue({isActive: true});
+      console.log("Status is now True");
     }
     else{
-      this.newShoeForm.patchValue({profileStatus: ProfileStatus.Private});
-      console.log("Status is now Private");
+      this.newShoeForm.patchValue({isActive: false});
+      console.log("Status is now False");
     }
   }
 
