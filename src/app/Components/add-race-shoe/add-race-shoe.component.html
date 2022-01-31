@@ -1,6 +1,3 @@
-<p>add-race-shoe works!</p>
-
-
 <div class="d-flex" id="wrapper">
 
     <!-- The sidebar -->
@@ -25,8 +22,8 @@
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <!-- <th>{{user.firstName}}'s Lists</th> -->
-                    <th>User's Shoes</th>
+                    <th>{{user.firstName}}'s Lists</th>
+                    <!-- <th>User's Shoes</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -43,42 +40,46 @@
         <div class="panel-heading">
             <h2 class="panel-title">Add a New Shoe To Your Closet</h2>
         </div>
+
+        <div *ngIf="loading" class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+
         <form [formGroup]="newShoeForm" (ngSubmit)="onSubmit()">
             <div class="panel panel-default">
                 
                 <div class="panel-body">
                     <div class="form-row">
                         
-                        <div>
-                            <label for="brand">Shoe Brand:*</label>
-                            <input id="brand" formControlName="brand" type="text" class="form-control" placeholder="Brand Name" [ngClass]="{'is-invalid': form.brand.errors && (form.brand.touched || form.brand.dirty)}">
-                            <div *ngIf="form.brand.errors && (form.brand.touched || form.brand.dirty)" class="invalid-feedback">
-                                <div *ngIf='form.brand.errors.required'>*A Shoe Brand is Required</div>    
-                            </div>
-                        </div>  
                         
+                        <label class="form-label" for="brand">Shoe Brand:*</label>
+                        <input id="brand" formControlName="brand" type="text" class="form-control" placeholder="Brand Name" [ngClass]="{'is-invalid': form.brand.errors && (form.brand.touched || form.brand.dirty)}">
+                        <div *ngIf="form.brand.errors && (form.brand.touched || form.brand.dirty)" class="invalid-feedback">
+                            <div *ngIf='form.brand.errors.required'>*A Shoe Brand is Required</div>    
+                        </div>
+        
                         
-                        <label for="model">Shoe Model:*</label>
+                        <label class="form-label" for="model">Shoe Model:*</label>
                         <input id="model" formControlName="model" type="text" class="form-control" placeholder="Model" [ngClass]="{'is-invalid': form.model.errors && (form.model.touched || form.model.dirty)}">
                         <div *ngIf="form.model.errors && (form.model.touched || form.model.dirty)" class="invalid-feedback">
                             <div *ngIf='form.model.errors.required'>*A Shoe Model is Required</div>
                         </div> 
               
                         
-                        <label for="numOfMiles">Number Of Miles:*</label>
+                        <label class="form-label" for="numOfMiles">Number Of Miles:*</label>
                         <input id="numOfMiles" formControlName="numOfMiles" type="text" class="form-control" placeholder="Miles" [ngClass]="{'is-invalid': form.numOfMiles.errors && (form.numOfMiles.touched || form.numOfMiles.dirty)}">
                         <div *ngIf="form.numOfMiles.errors && (form.numOfMiles.touched || form.numOfMiles.dirty)" class="invalid-feedback">
                             <div *ngIf='form.numOfMiles.errors.required'>*Please Enter the Number of Miles on the Shoe</div>
                         </div>
 
-                        <label for="beginUse">Begin Shoe Use:*</label>
+                        <label class="form-label" for="beginUse">Begin Shoe Use:*</label>
                         <input type="date" formControlName="beginUse" class="form-control" id="beginUse" placeholder="yyyy-mm-dd" [ngClass]="{'is-invalid': form.beginUse.errors && (form.beginUse.touched || form.beginUse.dirty)}">
                         <div *ngIf="form.beginUse.errors && (form.beginUse.touched || form.beginUse.dirty)" class="invalid-feedback">
                             <div *ngIf='form.beginUse.errors.required'>*A Shoe Use Start Date is Required</div>
                         </div> 
 
                         
-                        <label for="flexRadioDefault">Shoe Status:</label>
+                        <label class="form-label" for="flexRadioDefault">Shoe Status*:</label>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="shoeStatus" value=true id="active" checked (change)="changeStatus($event)">
                             <div class="form-check-label" for="flexRadioDefault1">
@@ -92,7 +93,7 @@
                             </div>
                         </div>
 
-                        <!-- Make this one a TEXTBOX -->
+                        
                         <label for="shoeDescription" class="form-label">Shoe Description:</label>
                         <textarea id="shoeDescription" formControlName="shoeDescription" rows="3" class="form-control" placeholder="Optional Description"></textarea>
                         
@@ -103,9 +104,9 @@
                 </div>
                 
                     <div class="form-group">                 
-                        <div class="form-row grid-container">
+                        <div class="form-row grid-container btns">
                             <button type="submit" class="btn btn-success">Register</button>
-                            <button type="button" class="btn btn-warning" (click)="mainShoesRoute()">Cancel</button>  
+                            <span id="cancelBtn"><button type="button" class="btn btn-warning" (click)="mainShoesRoute()">Cancel</button></span>
                         </div>
                     </div>
             </div>

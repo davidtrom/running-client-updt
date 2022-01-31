@@ -13,31 +13,36 @@ import { ShoeService } from 'src/app/Services/shoe.service';
 export class AddRaceShoeComponent implements OnInit {
   noShoes: boolean;
   userShoes: RaceShoe[];
-  userId: number;
   newShoeForm: FormGroup;
   formNotValid: boolean;
+  loading: boolean;
+  
+  //USER ID FOR TESTING:
+  userId: number;
 
 
   constructor(private fb: FormBuilder, private router: Router, private shoeService: ShoeService) { }
 
   ngOnInit(): void {
 
+    this.userId = 1;
+
     this.shoeService.getUserShoes(this.userId).subscribe(data => {
       this.userShoes = data;
-      this.checkForShoes(this.userShoes);
+      this.checkForShoes();
     });
 
     this.newShoeForm = this.fb.group({
       brand: ['', Validators.required],
       model: ['', Validators.required],
-      shoeDescription: [''],
       numOfMiles: ['', Validators.required], 
       beginUse: ['', Validators.required],
-      isActive: ['', Validators.required]
+      isActive: ['', Validators.required],
+      shoeDescription: ['']
     })
   }
 
-  checkForShoes(shoes: RaceShoe[]) {
+  checkForShoes() {
     if (this.userShoes.length != 0){
       this.noShoes = false;
     }
@@ -47,10 +52,6 @@ export class AddRaceShoeComponent implements OnInit {
   }
 
   get form() { return this.newShoeForm.controls; }
-
-  onSubmit(){
-
-  }
 
   mainShoesRoute(){
     this.router.navigate(['race-shoes']);
@@ -66,6 +67,31 @@ export class AddRaceShoeComponent implements OnInit {
       this.newShoeForm.patchValue({isActive: false});
       console.log("Status is now False");
     }
+  }
+
+  onSubmit(){
+    if(this.newShoeForm.valid){
+      let shoe: RaceShoe = new RaceShoe(
+        this.userId,
+        this.newShoeForm.controls.brand.value,
+        this.newShoeForm.controls.model.value,
+        this.newShoeForm.controls.numOfMiles.value,
+        this.newShoeForm.controls.beginUse.value,
+        this.newShoeForm.controls.isActive.value,
+        this.newShoeForm.controls.shoeDescription.value,
+        );
+
+      this.shoeService.createUserShoe(shoe).subscribe(data => {
+        while(data ==null){
+          this.loading = true;
+        }
+        console.log(data)})
+    }
+    else{
+      this.newShoeForm.markAllAsTouched();
+      this.formNotValid = true;
+    }
+
   }
 
 }

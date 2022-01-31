@@ -54,3 +54,23 @@
       float: none;
     }
 }
+
+/* Non Side Bar Items */
+
+#cancelBtn{
+  padding-left: 1.5%;
+}
+
+.btns{
+  padding-top: 2%;
+  padding-bottom: 3%;
+}
+
+.flex-container{
+  padding-top: 2%;
+}
+
+.form-label{
+  padding-top: 2%;
+}
+
