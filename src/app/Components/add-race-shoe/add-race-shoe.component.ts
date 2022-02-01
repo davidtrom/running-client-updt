@@ -16,6 +16,7 @@ export class AddRaceShoeComponent implements OnInit {
   newShoeForm: FormGroup;
   formNotValid: boolean;
   loading: boolean;
+  shoeBrands: string[];
   
   //USER ID FOR TESTING:
   userId: number;
@@ -33,13 +34,16 @@ export class AddRaceShoeComponent implements OnInit {
     });
 
     this.newShoeForm = this.fb.group({
-      brand: ['', Validators.required],
+      brand: ['Brand', Validators.required],
       model: ['', Validators.required],
       numOfMiles: ['', Validators.required], 
       beginUse: ['', Validators.required],
-      isActive: ['', Validators.required],
+      isActive: [true, Validators.required],
       shoeDescription: ['']
     })
+
+    this.shoeBrands = ["Adidas", "Altra", "ASICS", "Brooks", "Hoka", "Merrell", "Mizuno", "New Balance", "Nike", "Saucony", "Sketchers", "Newton", "On", "Reebok", "Salomon", "Under Armour", "Vibram"]
+
   }
 
   checkForShoes() {
@@ -82,10 +86,8 @@ export class AddRaceShoeComponent implements OnInit {
         );
 
       this.shoeService.createUserShoe(shoe).subscribe(data => {
-        while(data ==null){
-          this.loading = true;
-        }
-        console.log(data)})
+        console.log(data);})
+        this.mainShoesRoute();
     }
     else{
       this.newShoeForm.markAllAsTouched();

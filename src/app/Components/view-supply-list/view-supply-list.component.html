@@ -42,10 +42,13 @@
                         <span class="itemCrudBtn" ><button (click)="strikethruItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="far fa-check-square"></i></button></span>
                         <span class="itemCrudBtn"><button (click)="deleteItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="far fa-trash-alt"></i></button></span>
                         <span class="editItemBtn"><button (click)="editItem(listToDisplay.items[i].itemDescription)"><i class="fas fa-pencil-alt"></i></button></span>
-                        
+                        <span><i class="bi bi-check2"></i></span>
+                        <i class="bi bi-check2"></i>
+
+
                         <!-- <span class="editItemBtn"><button data-bs-toggle="modal" data-bs-target="#editModal" (click)="editItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="fas fa-pencil-alt"></i></button></span> -->
                     </span>
-                    <app-edit-list [itemToEdit]=""></app-edit-list>
+                    <!-- <app-edit-list [itemToEdit]=""></app-edit-list> -->
                 </li>
             </ul>
         </div>

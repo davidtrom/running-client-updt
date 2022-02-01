@@ -25,7 +25,7 @@ export class ShoeService {
       catchError(this.handleError<RaceShoe[]>('error geting lists', null)));
   }
 
-  createUserShoe(newShoe: RaceShoe){
+  createUserShoe(newShoe: RaceShoe): Observable<RaceShoe>{
     return this.http.post<RaceShoe>(this.baseUrl+`/add-shoe`, newShoe, this.httpOptions)
     .pipe(tap(data=> console.log("creating new shoe", data)),
     catchError(this.handleError<RaceShoe>('error creating shoe', null)));

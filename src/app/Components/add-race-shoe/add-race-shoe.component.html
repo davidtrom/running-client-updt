@@ -22,13 +22,13 @@
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <th>{{user.firstName}}'s Lists</th>
-                    <!-- <th>User's Shoes</th> -->
+                    <!-- <th>{{user.firstName}}'s Lists</th> -->
+                    <th>User's Shoes</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let shoe of userShoes">
-                    <td><a [routerLink]="['/shoe-detail', shoe.id]">{{list.listDescription}}</a></td>
+                    <td><a [routerLink]="['/shoe-detail', shoe.shoeId]">{{shoe.brand}} {{shoe.model}}</a></td>
                 </tr>
             </tbody>
         </table>
@@ -41,9 +41,9 @@
             <h2 class="panel-title">Add a New Shoe To Your Closet</h2>
         </div>
 
-        <div *ngIf="loading" class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+        <!-- <div *ngIf="loading" class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
             <span class="visually-hidden">Loading...</span>
-        </div>
+        </div> -->
 
         <form [formGroup]="newShoeForm" (ngSubmit)="onSubmit()">
             <div class="panel panel-default">
