@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ProfileStatus } from 'src/app/Models/ProfileStatus';
 import { RaceShoe } from 'src/app/Models/race-shoe.model';
 import { ShoeService } from 'src/app/Services/shoe.service';
 
@@ -15,7 +14,7 @@ export class AddRaceShoeComponent implements OnInit {
   userShoes: RaceShoe[];
   newShoeForm: FormGroup;
   formNotValid: boolean;
-  loading: boolean;
+  //loading: boolean;
   shoeBrands: string[];
   
   //USER ID FOR TESTING:
@@ -36,6 +35,7 @@ export class AddRaceShoeComponent implements OnInit {
     this.newShoeForm = this.fb.group({
       brand: ['Brand', Validators.required],
       model: ['', Validators.required],
+      maxMiles: [''],
       numOfMiles: ['', Validators.required], 
       beginUse: ['', Validators.required],
       isActive: [true, Validators.required],
@@ -80,6 +80,7 @@ export class AddRaceShoeComponent implements OnInit {
         this.newShoeForm.controls.brand.value,
         this.newShoeForm.controls.model.value,
         this.newShoeForm.controls.numOfMiles.value,
+        this.newShoeForm.controls.maxMiles.value,
         this.newShoeForm.controls.beginUse.value,
         this.newShoeForm.controls.isActive.value,
         this.newShoeForm.controls.shoeDescription.value,

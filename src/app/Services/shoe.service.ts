@@ -18,17 +18,23 @@ export class ShoeService {
 
   constructor(private http: HttpClient) { }
 
-  getUserShoes(id:number) : Observable <RaceShoe[]> {
-    console.log("inside shoe service: ", this.baseUrl+`/closet/${id}`)
-    return this.http.get<RaceShoe[]>(this.baseUrl+`/closet/${id}`, this.httpOptions)
-    .pipe(tap(data => console.log('fetch lists', data)),
-      catchError(this.handleError<RaceShoe[]>('error geting lists', null)));
+  getUserShoes(userId:number) : Observable <RaceShoe[]> {
+    console.log("inside shoe service: ", this.baseUrl+`/closet/${userId}`)
+    return this.http.get<RaceShoe[]>(this.baseUrl+`/closet/${userId}`, this.httpOptions)
+    .pipe(tap(data => console.log('fetch user shoes', data)),
+      catchError(this.handleError<RaceShoe[]>('error getting shoes', null)));
   }
 
   createUserShoe(newShoe: RaceShoe): Observable<RaceShoe>{
     return this.http.post<RaceShoe>(this.baseUrl+`/add-shoe`, newShoe, this.httpOptions)
     .pipe(tap(data=> console.log("creating new shoe", data)),
     catchError(this.handleError<RaceShoe>('error creating shoe', null)));
+  }
+
+  getShoeById(shoeId: number): Observable<RaceShoe> {
+    return this.http.get<RaceShoe>(this.baseUrl + `/shoe-detail/${shoeId}`, this.httpOptions)
+    .pipe(tap(data=> console.log("getting shoe by id", data)),
+    catchError(this.handleError<RaceShoe>('error getting shoe', null)));
   }
 
 

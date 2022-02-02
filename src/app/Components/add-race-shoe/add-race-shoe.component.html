@@ -66,10 +66,16 @@
                         </div> 
               
                         
-                        <label class="form-label" for="numOfMiles">Number Of Miles:*</label>
-                        <input id="numOfMiles" formControlName="numOfMiles" type="text" class="form-control" placeholder="Miles" [ngClass]="{'is-invalid': form.numOfMiles.errors && (form.numOfMiles.touched || form.numOfMiles.dirty)}">
+                        <label class="form-label" for="numOfMiles">Current Number Of Miles:*</label>
+                        <input id="numOfMiles" formControlName="numOfMiles" type="text" class="form-control" placeholder="Current Miles" [ngClass]="{'is-invalid': form.numOfMiles.errors && (form.numOfMiles.touched || form.numOfMiles.dirty)}">
                         <div *ngIf="form.numOfMiles.errors && (form.numOfMiles.touched || form.numOfMiles.dirty)" class="invalid-feedback">
                             <div *ngIf='form.numOfMiles.errors.required'>*Please Enter the Number of Miles on the Shoe</div>
+                        </div>
+
+                        <label class="form-label" for="maxMiles">Max Number Of Miles: (Optional)</label>
+                        <input id="maxMiles" formControlName="maxMiles" type="text" class="form-control" placeholder="Maximum Miles" [ngClass]="{'is-invalid': form.maxMiles.errors && (form.maxMiles.touched || form.maxMiles.dirty)}">
+                        <div *ngIf="form.maxMiles.errors && (form.maxMiles.touched || form.maxMiles.dirty)" class="invalid-feedback">
+                            <div *ngIf='form.maxMiles.errors.required'>*Please Enter the Number of Miles on the Shoe</div>
                         </div>
 
                         <label class="form-label" for="beginUse">Begin Shoe Use:*</label>
@@ -94,7 +100,7 @@
                         </div>
 
                         
-                        <label for="shoeDescription" class="form-label">Shoe Description:</label>
+                        <label for="shoeDescription" class="form-label">Shoe Description: (Optional)</label>
                         <textarea id="shoeDescription" formControlName="shoeDescription" rows="3" class="form-control" placeholder="Optional Description"></textarea>
                         
                         <div *ngIf="formNotValid" class="formNotValid">
