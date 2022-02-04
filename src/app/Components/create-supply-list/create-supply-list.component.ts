@@ -20,6 +20,7 @@ export class CreateSupplyListComponent implements OnInit {
   noSupplyLists: boolean;
   supplyListId: string;
   userLists: SupplyList[];
+  invalidForm: boolean;
 
   constructor( private fb: FormBuilder, private router: Router, private listService: ListsService) { }
 
@@ -56,25 +57,30 @@ export class CreateSupplyListComponent implements OnInit {
   }
 
   onSubmit(){
-    this.listService.createNewList(this.userId, this.newListForm.controls.listName.value)
-      .subscribe(data => {
-        if (data == null){
-          this.listExists = true;
-        }
-        else {
-          console.log('new list created');
-          this.supplyList = data;
-          this.listNotCreated = false;
-          this.showGif = true;
-          setTimeout(() => {
-            console.log('sleep');
-            this.router.navigate(['/edit-list', this.supplyList.id]);
-            // And any other code that should run only after 5s
-            //add list_id to array to send to supply-lists
-          }, 3000);
-        }
-        
-       })
+    if(this.newListForm.valid){
+      this.listService.createNewList(this.userId, this.newListForm.controls.listName.value)
+        .subscribe(data => {
+          if (data == null){
+            this.listExists = true;
+          }
+          else {
+            console.log('new list created');
+            this.supplyList = data;
+            this.listNotCreated = false;
+            this.showGif = true;
+            setTimeout(() => {
+              console.log('sleep');
+              this.router.navigate(['/edit-list', this.supplyList.id]);
+              // And any other code that should run only after 5s
+              //add list_id to array to send to supply-lists
+            }, 3000);
+          }
+      })
+    }
+    else{
+      this.invalidForm = true;
+      this.newListForm.reset();
+    }
   }
   
 }

@@ -25,14 +25,14 @@
 
             <div class="card mb-3" style="max-width: 540px;" *ngFor="let shoe of userShoes; let i = index">
                 <div class="row g-0">
-                  <div class="col-md-4">
+                  <!-- <div class="col-md-4">
                     <img src="../../../assets/ChecklistGif.gif" class="img-fluid rounded-start" alt="...">
-                  </div>
+                  </div> -->
                   <div class="col-md-8">
                     <div class="card-body" >
                       <h4 class="card-title">{{shoe.brand}} {{shoe.model}}</h4>
                       <p class="card-text"><strong><u>Begin Use Date:</u></strong> {{shoe.beginUse | date:'shortDate'}}</p>
-                      <div class="card-text"><strong><u>Current Mileage:</u></strong> {{shoe.numOfMiles}}</div>
+                      <p class="card-text"><strong><u>Current Mileage:</u></strong> {{shoe.numOfMiles}}</p>
                       <p><button class="btn btn-warning">Edit</button></p>
                     </div>
                   </div>

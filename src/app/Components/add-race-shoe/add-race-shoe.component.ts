@@ -33,7 +33,7 @@ export class AddRaceShoeComponent implements OnInit {
     });
 
     this.newShoeForm = this.fb.group({
-      brand: ['Brand', Validators.required],
+      brand: ['', Validators.required],
       model: ['', Validators.required],
       maxMiles: [''],
       numOfMiles: ['', Validators.required], 
@@ -58,7 +58,7 @@ export class AddRaceShoeComponent implements OnInit {
   get form() { return this.newShoeForm.controls; }
 
   mainShoesRoute(){
-    this.router.navigate(['race-shoes']);
+    this.router.navigate(['race-shoes', this.userId]);
   }
 
   changeStatus(e){

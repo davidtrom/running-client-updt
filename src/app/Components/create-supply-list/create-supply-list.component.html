@@ -49,6 +49,14 @@
                     <div *ngIf='form.listName.errors.required'>*Supply List Name is Required</div>
                 </div>
             </div>
+
+            <div class="listExists" *ngIf="listExists">
+                *This list already exists.  To edit the {{listName}}, go back to the Supply List page.
+            </div>
+        
+            <div class="listExists" *ngIf="invalidForm">
+                *Please Enter a List Name or Description
+            </div>
             <div class="createListBtn">
                 <button type="submit" class="btn btn-success" (click)="submitListName()">Create List</button>
                 <span id="cancelBtn"><button class="btn btn-warning" (click)="listsHomeRoute()">Cancel</button></span>
@@ -56,9 +64,7 @@
         </form>
     </div>
 
-    <div class="listExists" *ngIf="listExists">
-        *This list already exists.  To edit the {{listName}}, go back to the Supply List page.
-    </div>
+    
 
     <div class="showGif" *ngIf="showGif">
         <img src="../../../assets/ChecklistGif.gif" class="responsive">
