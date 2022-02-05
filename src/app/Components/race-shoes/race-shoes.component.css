@@ -62,12 +62,22 @@
     padding-bottom: 2%;
 }
 
-.card{
+
+
+.title{
+   padding-bottom: 1.5%;
+}
+
+.tableHeader{
+    font-size: larger;
+}
+
+/* .cardSpace{
+    padding-right: 1.5%;
+} */
+
+/* .card{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-}
-
-.title{
-    padding-bottom: 1.5%;
-}
+} */
