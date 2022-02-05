@@ -42,17 +42,71 @@
     </ng-template>
   </div>
 
-  <div class="flex-container">
+    <!-- <div class="flex-container"> -->
     <div class="container">
-        <div class="card" *ngFor="let activeShoe of activeShoes">
-            <h5 class="card-header">{{activeShoe.brand}} {{activeShoe.model}}</h5>
-            <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div class="displayShoes">
+            <div *ngIf="showActive; else showRetired">
+                <div class="title">
+                    <h3>Active Shoes:</h3>
+                </div>
+                <div class="card" *ngFor="let activeShoe of activeShoes; let i = index">
+                    
+                        <div class="col">
+                            <h5 class="card-header">{{activeShoe.brand}} {{activeShoe.model}}</h5>
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                        <a href="#" class="btn btn-success">More Detail</a>
+                                    </div>
+                                    <div class="col">
+                                        Begin Use: {{activeShoe.beginUse | date: 'shortDate'}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                       
+                        <!-- <div class="col">
+                            <h5 class="card-header">{{activeShoe.brand}} {{activeShoe.model}}</h5>
+                            <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div> -->
+                    <!-- </div>     -->
+                </div>
+                <!-- <br> -->
             </div>
+
+            <ng-template #showRetired>
+                <div class="card" *ngFor="let retiredShoe of retiredShoes; let i = index">
+                    <!-- <div class="row"> -->
+                        <div class="col">
+                            <h5 class="card-header">{{retiredShoe.brand}} {{retiredShoe.model}}</h5>
+                            <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <button class="btn btn-success" (click)="detailRoute()">More Detail</button>
+                            </div>
+                        </div>
+                        
+                        <!-- <div class="col">
+                            <h5 class="card-header">{{activeShoe.brand}} {{activeShoe.model}}</h5>
+                            <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div> -->
+                    <!-- </div>     -->
+                </div>
+                <!-- <br> -->
+            </ng-template>
         </div>
     </div>
-  </div>
+    <!-- </div> -->
+  
     
 </div>

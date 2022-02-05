@@ -56,3 +56,18 @@
 }
 
 /* NON SIDE BAR ITEMS */
+
+.displayShoes{
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.card{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.title{
+    padding-bottom: 1.5%;
+}

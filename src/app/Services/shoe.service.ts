@@ -37,6 +37,17 @@ export class ShoeService {
     catchError(this.handleError<RaceShoe>('error getting shoe', null)));
   }
 
+  getActiveShoes(userId: number): Observable<RaceShoe[]>{
+    return this.http.get<RaceShoe[]>(this.baseUrl + `/get-active/${userId}`, this.httpOptions)
+    .pipe(tap(data => console.log("getting active shoes for user", data)),
+    catchError(this.handleError<RaceShoe[]>('error getting active shoes for user', null)));
+  }
+
+  getRetiredShoes(userId: number): Observable<RaceShoe[]>{
+    return this.http.get<RaceShoe[]>(this.baseUrl + `/get-retired/${userId}`, this.httpOptions)
+    .pipe(tap(data => console.log("getting retired shoes for user", data)),
+    catchError(this.handleError<RaceShoe[]>('error getting retired shoes for user', null)));
+  }
 
 
   /**

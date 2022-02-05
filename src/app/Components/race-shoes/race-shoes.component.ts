@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
 import { RaceShoe } from 'src/app/Models/race-shoe.model';
 import { ShoeService } from 'src/app/Services/shoe.service';
 
@@ -10,18 +10,29 @@ import { ShoeService } from 'src/app/Services/shoe.service';
 })
 export class RaceShoesComponent implements OnInit {
   noShoes: boolean;
-  activeShoes: RaceShoe[] = [];
+  activeShoes: RaceShoe[];
   retiredShoes: RaceShoe[] = [];
   allShoes: RaceShoe [] = [];
+  showActive: boolean = true;
+  showRetired: boolean = false;
+  activeClicks: number = 0;
+  retiredClicks: number = 0;
+
 
   //FOR TESTING PURPOSES:
   userId: number;
 
-  constructor(private shoeService: ShoeService, private router: Router) { }
+  constructor(private shoeService: ShoeService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.userId = 1;
+    this.getUserShoes();
+    //this.getRouteParams();
+  }
 
+
+
+  getUserShoes(){
     this.shoeService.getUserShoes(this.userId).subscribe(data => {
       this.allShoes = data;
       console.log("allShoes", data);
@@ -33,21 +44,29 @@ export class RaceShoesComponent implements OnInit {
       }
     })
     console.log("All Shoes: ", this.activeShoes);
-    
   }
 
   getActiveShoes(){
-    for (let i = 0; i<this.allShoes.length; i++){
-      console.log("in loop ", i);
-      if(this.allShoes[i].isActive === true){
-        this.activeShoes.push(this.allShoes[i]);
-      }
-      else{
-        this.retiredShoes.push(this.allShoes[i]);
-      }
+    this.showActive = true;
+    this.showRetired = false;
+    if(this.activeClicks === 0){
+      this.shoeService.getActiveShoes(this.userId).subscribe(data => this.activeShoes = data);
+      this.retiredClicks++;
+      console.log(this.retiredClicks);
     }
-    console.log("Active Shoes: ", this.activeShoes);
-    console.log("Retired Shoes: ", this.retiredShoes);
+  }
+
+  getRetiredShoes(){
+    this.showRetired = true;
+    this.showActive = false;
+    this.shoeService.getRetiredShoes(this.userId).subscribe(data => this.retiredShoes = data);
+  }
+
+  getRouteParams(){
+    this.route.params.subscribe(routeParams => {
+      this.userId = routeParams.userId;
+      this.getUserShoes();
+      });
   }
 
   addShoeRoute(){

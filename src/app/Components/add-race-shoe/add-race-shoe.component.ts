@@ -58,7 +58,7 @@ export class AddRaceShoeComponent implements OnInit {
   get form() { return this.newShoeForm.controls; }
 
   mainShoesRoute(){
-    this.router.navigate(['race-shoes', this.userId]);
+    this.router.navigate(['race-shoes']);
   }
 
   changeStatus(e){
