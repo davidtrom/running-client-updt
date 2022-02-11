@@ -56,10 +56,15 @@ export class ListsService {
   }
 
   strikethruItem(listId: number, itemId: number): Observable<SupplyList>{
-    console.log("inside service");
     return this.http.put<SupplyList>(this.baseUrl + `/strike-thru/${listId}/${itemId}`, this.httpOptions)
     .pipe(tap(data => console.log('striking item', data)),
     catchError(this.handleError<SupplyList>('error striking item', null)));
+  }
+
+  unstrikeAllItems(listId: number): Observable<SupplyList>{
+    return this.http.put<SupplyList>(this.baseUrl + `/unstrike-all/${listId}`, this.httpOptions)
+    .pipe(tap(data => console.log('striking item', data)),
+    catchError(this.handleError<SupplyList>('error unstriking all items', null)));
   }
 
   editItem(listId: number, itemId: number): Observable<SupplyList>{

@@ -139,6 +139,11 @@ getRouteParams(){
       this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);})
   }
 
+  unstrikeAllItems(listId: number){
+    this.listService.unstrikeAllItems(listId).subscribe(data => {this.listToDisplay = data;
+      this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);})
+  }
+
   editItem(listId: number, itemId: number, itemDescription: string){
     console.log("item to be edited: ", itemId);
     console.log("list to be edited: ", listId);
