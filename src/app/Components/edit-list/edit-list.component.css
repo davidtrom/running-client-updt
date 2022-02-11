@@ -95,6 +95,10 @@
   text-decoration: line-through;
 }
 
+.tableHeader{
+  font-size: larger;
+}
+
 
 /* li{
     width: 85%; 

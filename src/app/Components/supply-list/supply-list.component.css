@@ -144,3 +144,9 @@ div.content {
     float: none;
   }
 }
+
+/* NON SIDEBAR ITEMS: */
+
+.tableHeader{
+  font-size: larger;
+}

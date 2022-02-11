@@ -62,14 +62,16 @@
     padding-bottom: 2%;
 }
 
-
-
 .title{
    padding-bottom: 1.5%;
 }
 
 .tableHeader{
     font-size: larger;
+}
+
+.card-body{
+    font-size: large;
 }
 
 /* .cardSpace{
@@ -80,4 +82,8 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+} */
+
+/* .leftCol{
+    padding-top: 4.5%;
 } */

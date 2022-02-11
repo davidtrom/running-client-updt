@@ -62,12 +62,12 @@ export class RaceShoesComponent implements OnInit {
     this.shoeService.getRetiredShoes(this.userId).subscribe(data => this.retiredShoes = data);
   }
 
-  getRouteParams(){
-    this.route.params.subscribe(routeParams => {
-      this.userId = routeParams.userId;
-      this.getUserShoes();
-      });
-  }
+  // getRouteParams(){
+  //   this.route.params.subscribe(routeParams => {
+  //     this.userId = routeParams.userId;
+  //     this.getUserShoes();
+  //     });
+  // }
 
   addShoeRoute(){
     this.router.navigate(['add-shoe']);

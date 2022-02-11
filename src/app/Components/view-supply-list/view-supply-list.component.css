@@ -99,6 +99,9 @@
   padding-left: 1.5%;
 }
 
+.tableHeader{
+  font-size: larger;
+}
 /* li{
     width: 85%; 
 } */

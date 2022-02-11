@@ -32,6 +32,8 @@ export class ViewSupplyListComponent implements OnInit {
   // faPencilAlt = faPencilAlt;
   // faCheckSquare = faCheckSquare;
 
+  //Uncheck all button
+
 
   //Turn off edit button if an item is crossed off?
   //Need an array for the ids of the items in the list to use in a map and then send for editing and updating
