@@ -96,6 +96,14 @@ getRouteParams(){
       console.log("List Items: ", this.listItems);
   }
 
+  activateAddItem(){
+    this.inEdit = true;
+  }
+
+  deactivateAddItem(){
+    this.inEdit = false;
+  }
+
   onSubmit(){
     this.itemExists = false;
     

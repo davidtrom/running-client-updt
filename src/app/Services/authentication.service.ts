@@ -13,6 +13,7 @@ export class AuthenticationService {
   baseUrl=environment.baseUrl;
   private isUserLoggedIn$: BehaviorSubject<boolean>;
   private loginUrl: string = this.baseUrl + "/authenticate";
+  private userUrl: string = this.baseUrl + "/user"
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type' : 'application/json'})

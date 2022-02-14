@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/Models/user.model';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { UserService } from 'src/app/Services/user.service';
@@ -11,12 +12,16 @@ import { UserService } from 'src/app/Services/user.service';
 export class ProfileComponent implements OnInit {
 
   user: User;
+  userId: number;
 
-  constructor(private authService: AuthenticationService, private userService: UserService) { }
+  constructor(private userService: UserService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
 
-    this.userService.getUserById(1).subscribe(userData => {this.user = userData;})
+    //FOR TESTING PURPOSES
+    this.userId = 1;
+
+    this.userService.getUserById(this.userId).subscribe(data => {this.user = data;});
 
     // this.userService.getUserByEmail('davidtrom@hotmail.com').subscribe(userData => {
     //   this.user = userData;
@@ -26,5 +31,12 @@ export class ProfileComponent implements OnInit {
     //   this.user = userData;
     // });
   }
+
+  // getRouteParams(){
+  //   console.log("userId: ", this.userId);
+  //   this.route.params.subscribe(routeParams => {
+  //     this.userService.getUserById(this.userId).subscribe(data => {this.user = data;})
+  //   });
+  // }
 
 }

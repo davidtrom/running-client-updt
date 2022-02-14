@@ -19,117 +19,132 @@
     </table>
 </div>
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col">
-    <div class="title">
-        <h2>
-            {{listToDisplay.listDescription}} 
-        </h2>
-    </div>
-
-    <div *ngIf="!inEdit">
-        <div class="itemsDisplay">
-            <div class="listTitle">
-                Items in List:
-            </div>
-            <ul class="list-group">
-                <li *ngFor="let item of displayItems; let i = index" class="list-group-item" [ngClass]="listToDisplay.items[i].strikethru ? 'strikethru' : 'null'">
+            
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="leftColTitles">
+                        <h2>
+                            {{listToDisplay.listDescription}} 
+                        </h2>
+                    </div>
+                </div>
                 
-                    <!-- NOT ngIf here for inEDit -->
-                    <span  (click)="editItem(listToDisplay.id, listToDisplay.items[i].id, listToDisplay.items[i].itemDescription)">{{item}}</span>
-
-                    <span class="faviconCrudBtns">
-                        <span class="itemCrudBtn" ><button (click)="strikethruItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="far fa-check-square"></i></button></span>
-                        <span class="itemCrudBtn"><button (click)="deleteItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="far fa-trash-alt"></i></button></span>
-                        <span class="editItemBtn"><button (click)="editItem(listToDisplay.items[i].itemDescription)"><i class="fas fa-pencil-alt"></i></button></span>
-                        <span><i class="bi bi-check2"></i></span>
-                        <i class="bi bi-check2"></i>
-
-
-                        <!-- <span class="editItemBtn"><button data-bs-toggle="modal" data-bs-target="#editModal" (click)="editItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="fas fa-pencil-alt"></i></button></span> -->
-                    </span>
-                    <!-- <app-edit-list [itemToEdit]=""></app-edit-list> -->
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-
-<div class="col">
-    <div><button type="button" class="btn btn-warning" (click)="unstrikeAllItems(listToDisplay.id)">Uncheck All</button></div>
-    <form [formGroup]="newItemForm" (ngSubmit)="onSubmit()">
-        <div class="title">
-            <label *ngIf="!inEdit" for="newItem">Enter the Item to add to the Supply List:</label>
-            <label *ngIf="inEdit" for="newItem" >Update Item:</label>
-            <input *ngIf="!inEdit"id="newItemName" formControlName="newItemName" type="newItemName" class="form-control" placeholder="Item to Add" [ngClass]="{'is-invalid': form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)}" >
-            <input *ngIf="inEdit" #update  id="newItemName" formControlName="newItemName" type="newItemName" class="form-control" [ngClass]="{'is-invalid': form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)}">
-            <div *ngIf="form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)" class="invalid-feedback">
-                <div *ngIf='form.newItemName.errors.required'>*An Item to Add is Required</div>
+                <div class="col-sm-4">
+                    <div *ngIf="!inEdit"class="leftColTitles">
+                        <button class="btn btn-success" (click)="activateAddItem()">Add Item</button>
+                    </div>
+                    <div *ngIf="inEdit" class="leftColTitles">
+                        <button class="btn btn-success" (click)="deactivateAddItem()">Close Add Item</button>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="leftColTitles">
+                        <button type="button" class="btn btn-warning" (click)="unstrikeAllItems(listToDisplay.id)">Uncheck All</button>
+                    </div>
+                </div>
             </div>
-            <div class="itemExists" *ngIf="itemExists">
-                *{{newItem}} already exists in your list.
+
+            
+            <div class="itemsDisplay">
+                <div class="listTitle">
+                    Items in List:
+                </div>
+                <ul class="list-group">
+                    <li *ngFor="let item of displayItems; let i = index" class="list-group-item" [ngClass]="listToDisplay.items[i].strikethru ? 'strikethru' : 'null'">
+                    
+                        <!-- NOT ngIf here for inEDit -->
+                        <span  (click)="editItem(listToDisplay.id, listToDisplay.items[i].id, listToDisplay.items[i].itemDescription)">{{item}}</span>
+
+                        <span class="faviconCrudBtns">
+                            
+                            <span class="itemCrudBtn" ><button (click)="strikethruItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="far fa-check-square fa-fw"></i></button></span>
+                            <span class="itemCrudBtn"><button (click)="deleteItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="far fa-trash-alt fa-fw"></i></button></span>
+                            <span class="editItemBtn"><button (click)="editItem(listToDisplay.items[i].itemDescription)"><i class="fas fa-pencil-alt fa-fw"></i></button></span>
+                            <!-- <span><i class="bi bi-check2"></i></span>
+                            <i class="bi bi-check2"></i> -->
+                        
+
+
+                            <!-- <span class="editItemBtn"><button data-bs-toggle="modal" data-bs-target="#editModal" (click)="editItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="fas fa-pencil-alt"></i></button></span> -->
+                        </span>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="addItemBtn">
-            <button *ngIf="!inEdit" type="submit" class="btn btn-success">Add Item</button>
-            <span *ngIf="inEdit">
-                <button type="submit" class="btn btn-success">Update Item</button>
-                <span id="cancelBtn"><button type="button" class="btn btn-warning" (click)="cancel()">Cancel</button></span>
-            </span>
+
+        
+        <div class="col align-self-center">
+            <div *ngIf="inEdit">
+                <form [formGroup]="newItemForm" (ngSubmit)="onSubmit()">
+                    <div class="title">
+                        <label for="newItem">Enter the Item to add to the Supply List:</label>
+                        
+                        <input id="newItemName" formControlName="newItemName" type="text" class="form-control" placeholder="Item to Add" [ngClass]="{'is-invalid': form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)}" >
+                        <div *ngIf="form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)" class="invalid-feedback">
+                            <div *ngIf='form.newItemName.errors.required'>*An Item to Add is Required</div>
+                        </div>
+                        <div class="itemExists" *ngIf="itemExists">
+                            *{{newItem}} already exists in your list.
+                        </div>
+                    </div>
+                    <div class="addItemBtn">
+                        <button type="submit" class="btn btn-success">Add Item</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </form>
-</div>
-</div>
 
     
-    <div class="editBtn">
-        <button type="button" class="btn btn-success" (click)="goEdit()">Edit</button>
-    </div>
+        <!-- <div class="editBtn">
+            <button type="button" class="btn btn-success" (click)="goEdit()">Edit</button>
+        </div> -->
 
-  <!-- Modal -->
-  <!-- <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-danger" id="exampleModalLabel">Edit Item</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-3">
-              <label for="updateItem" class="form-label">New Item Description</label>
-              <input type="text" class="form-control" id="updateItem" aria-describedby="emailHelp">
-              
+        <!-- Modal -->
+        <!-- <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title text-danger" id="exampleModalLabel">Edit Item</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                    <label for="updateItem" class="form-label">New Item Description</label>
+                    <input type="text" class="form-control" id="updateItem" aria-describedby="emailHelp">
+                    
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
-
-            <button type="submit" class="btn btn-primary">Save</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div> -->
+            </div>
+        </div> -->
 
 
 
-    <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(mymodal)">Open My Modal</button>
-   
-    <ng-template #mymodal let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">×</span>
-        </button>
+            <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(mymodal)">Open My Modal</button>
+        
+            <ng-template #mymodal let-modal>
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                This is example from ItSolutionStuff.com
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+            </div>
+            </ng-template> -->
     </div>
-    <div class="modal-body">
-        This is example from ItSolutionStuff.com
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
-    </div>
-    </ng-template> -->
 </div>

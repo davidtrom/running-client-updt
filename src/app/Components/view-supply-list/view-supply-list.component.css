@@ -61,9 +61,9 @@
 
 /* Non Sidebar elements */
 
-.title{
+/* .title{
     padding-top: 2%;
-}
+} */
 
 .listTitle{
     padding-top: 2%;
@@ -102,6 +102,19 @@
 .tableHeader{
   font-size: larger;
 }
+
+.leftColTitles{
+  padding-top: 8%;
+}
+
+.itemsDisplay{
+  padding-bottom: 4%;
+}
+
+.shrinkCol{
+  
+}
+
 /* li{
     width: 85%; 
 } */

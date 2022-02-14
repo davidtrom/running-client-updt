@@ -21,6 +21,7 @@ import { EditListComponent } from './Components/edit-list/edit-list.component';
 import { RaceResultsComponent } from './Components/race-results/race-results.component';
 import { RaceShoeDetailComponent } from './Components/race-shoe-detail/race-shoe-detail.component';
 import { AddRaceShoeComponent } from './Components/add-race-shoe/add-race-shoe.component';
+import { ViewProfileComponent } from './Components/view-profile/view-profile.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -36,12 +37,13 @@ const routes: Routes = [
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'forgot-username', component: ForgotUsernameComponent},
   {path: 'new-user', component: CreateUserComponent},
-  {path: 'profile/:id', component: ProfileComponent},
+  {path: 'profile', component: ProfileComponent},
   {path: 'edit-profile/:id', component: EditProfileComponent},
   {path: 'new-list', component: CreateSupplyListComponent},
   {path: 'view-list/:id', component: ViewSupplyListComponent},
   {path: 'edit-list/:listId/:itemId', component: EditListComponent},
   {path: 'race-results/:userId', component: RaceResultsComponent},
+  {path: 'view-profile/:id', component: ViewProfileComponent},
   
 
   // if no route, redirect to home
