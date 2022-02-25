@@ -1,86 +1,79 @@
 <div class="flex-container">
-    <div class="card w-75 p-3 mx-auto">
+    <div class="card w-50 p-3 mx-auto">
         <div class="card-header">
         User Profile:
         </div>
         <div class="card-body">
-            <div class="row">
-                <div class="col-md-4">
-                    <u>First Name:</u>
-                </div>
-                <div class="col-md-8">
-                    {{user.firstName}}
-                </div>
-            </div>
+           
 
-            <div class="row">
-                <div class="col-md-4">
-                    <u>Last Name:</u>
+            <div class ="row">
+                <div class= "col-md-3">
+                    <u><strong>Name:</strong></u>
                 </div>
-                <div class="col-md-8">
-                    {{user.lastName}}
+                <div class= "col-md-3">
+                    {{user.firstName}} {{user.lastName}}
                 </div>
             </div>
 
             <div class ="row">
-                <div class= "col-md-4">
-                    <u>Birthday:</u>
+                <div class= "col-md-3">
+                    <u><strong>Birthday:</strong></u>
                 </div>
-                <div class= "col-md-8">
+                <div class= "col-md-3">
                     {{user.birthday | date:'mediumDate'}}
                 </div>
             </div>
-
+            
             <div class ="row">
-                <div class= "col-md-4">
-                    <u>Username/Email:</u>
+                <div class= "col-md-3">
+                    <u><strong>Username/Email:</strong></u>
                 </div>
-                <div class= "col-md-8">
+                <div class= "col-md-3">
                     {{user.email}}
                 </div>
             </div>
 
             <div class ="row">
-                <div class= "col-md-4">
-                    <u>City:</u>
+                <div class= "col-md-3">
+                    <u><strong>City:</strong></u>
                 </div>
-                <div class= "col-md-8">
+                <div class= "col-md-3">
                     {{user.locationCity}}
                 </div>
             </div>
 
             <div class ="row">
-                <div class= "col-md-4">
-                    <u>State:</u>
+                <div class= "col-md-3">
+                    <u><strong>State:</strong></u>
                 </div>
-                <div class= "col-md-8">
+                <div class= "col-md-3">
                     {{user.locationState}}
                 </div>
             </div>
 
             <div class ="row">
-                <div class= "col-md-4">
-                    <u>Country:</u>
+                <div class= "col-md-3">
+                    <u><strong>Country:</strong></u>
                 </div>
-                <div class= "col-md-8">
+                <div class= "col-md-3">
                     {{user.locationCountry}}
                 </div>
             </div>
 
             <div class ="row">
-                <div class= "col-md-4">
-                    <u>Gender:</u>
+                <div class= "col-md-3">
+                    <u><strong>Gender:</strong></u>
                 </div>
-                <div class= "col-md-8">
+                <div class= "col-md-3">
                     {{user.gender}}
                 </div>
             </div>
 
             <div class = "row" id="bottomRow">
-                <div class= "col-md-4">
-                    <u>Profile Status:</u>
+                <div class= "col-md-3">
+                    <u><strong>Profile Status:</strong></u>
                 </div>
-                <div class= "col-md-8">
+                <div class= "col-md-3">
                     {{user.profileStatus}}
                 </div>
             </div>

@@ -1,5 +1,167 @@
-
 <div class="flex-container">
+    <div class="title">
+        <h2>Edit User Profile:</h2>
+    </div>
+    <form [formGroup]="editUserForm" (ngSubmit)="onSubmit()">
+        <div class="card p-3 mx-auto">
+            <div class="card-header">
+            User Profile:
+            </div>
+            <div class="card-body">
+            
+                <div class ="row">
+                    <div class= "col-md-3">
+                        <u><strong>First Name:</strong></u>
+                    </div>
+                    <div class= "col-md-3">
+                        <input id="firstName" formControlName="firstName" type="text" class="form-control" placeholder="First name" [ngClass]="{'is-invalid': form.firstName.errors && (form.firstName.touched || form.firstName.dirty)}">
+                            <div *ngIf="form.firstName.errors && (form.firstName.touched || form.firstName.dirty)" class="invalid-feedback">
+                                <div *ngIf='form.firstName.errors.required'>*First Name is Required</div>    
+                                <div *ngIf='form.firstName.errors.pattern'>*Please Enter a Valid First Name</div>
+                            </div>
+                    </div>
+                </div>
+
+                <div class ="row">
+                    <div class= "col-md-3">
+                        <u><strong>Last Name:</strong></u>
+                    </div>
+                    <div class= "col-md-3">
+                        <input id="lastName" formControlName="lastName" type="text" class="form-control" placeholder="Last name" [ngClass]="{'is-invalid': form.lastName.errors && (form.lastName.touched || form.lastName.dirty)}">
+                            <div *ngIf="form.lastName.errors && (form.lastName.touched || form.lastName.dirty)" class="invalid-feedback">
+                                <div *ngIf='form.lastName.errors.required'>*First Name is Required</div>    
+                                <div *ngIf='form.lastName.errors.pattern'>*Please Enter a Valid First Name</div>
+                            </div>
+                    </div>
+                </div>
+
+                <div class ="row">
+                    <div class= "col-md-3">
+                        <u><strong>Birthday:</strong></u>
+                    </div>
+                    <div class= "col-md-3">
+                        <input type="date" formControlName="birthDate" class="form-control" id="birthDate" placeholder="yyyy-mm-dd" [ngClass]="{'is-invalid': form.birthDate.errors && (form.birthDate.touched || form.birthDate.dirty)}">
+                        <div *ngIf="form.birthDate.errors && (form.birthDate.touched || form.birthDate.dirty)" class="invalid-feedback">
+                            <div *ngIf='form.birthDate.errors.required'>*Birthday is Required</div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class ="row">
+                    <div class= "col-md-3">
+                        <u><strong>City:</strong></u>
+                    </div>
+                    <div class= "col-md-3">
+                        <input id="city" formControlName="city" type="text" class="form-control" placeholder="City" [ngClass]="{'is-invalid': form.city.errors && (form.city.touched || form.city.dirty)}">
+                        <div *ngIf="form.city.errors && (form.city.touched || form.city.dirty)" class="invalid-feedback">
+                            <div *ngIf='form.city.errors.required'>*City is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class ="row">
+                    <div class= "col-md-3">
+                        <u><strong>State:</strong></u>
+                    </div>
+                    <div class= "col-md-3">
+                        <input id="state" formControlName="state" type="text" class="form-control" placeholder="State" [ngClass]="{'is-invalid': form.state.errors && (form.state.touched || form.state.dirty)}">
+                        <div *ngIf="form.state.errors && (form.state.touched || form.state.dirty)" class="invalid-feedback">
+                            <div *ngIf='form.state.errors.required'>*State is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class ="row">
+                    <div class= "col-md-3">
+                        <u><strong>Country:</strong></u>
+                    </div>
+                    <div class= "col-md-3">
+                        <input id="country" formControlName="country" type="text" class="form-control" placeholder="Country" [ngClass]="{'is-invalid': form.country.errors && (form.country.touched || form.country.dirty)}">
+                        <div *ngIf="form.country.errors && (form.country.touched || form.country.dirty)" class="invalid-feedback">
+                            <div *ngIf='form.country.errors.required'>*Country is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class ="row">
+                    <div class= "col-md-3">
+                        <u><strong>Gender:</strong></u>
+                    </div>
+                    <div class= "col-md-3">
+                        <select class="form-control" id="gender" formControlName="gender"(change)="setGender($event)" [ngClass]="{'is-invalid': form.gender.errors && form.gender.touched}">
+                        <option value="Male" data-name="Male">Male</option>
+                        <option value="Female" data-name="Female">Female</option>
+                        <option value="Transgender" data-name="Transgender">Transgender</option>
+                        <option value="Other" data-name="Other">Other</option>
+                        <option value="Undisclosed" data-name="Undisclosed">Prefer Not to Disclose</option>
+                        </select>
+                        <div *ngIf="form.gender.errors && (form.gender.touched || form.gender.dirty)" class="invalid-feedback">
+                            <div *ngIf='form.gender.errors.required'>*Gender is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class = "row" id="bottomRow">
+                    <div class= "col-md-3">
+                        <u><strong>Profile Status:</strong></u>
+                    </div>
+                    <div class= "col-md-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="profileStatus" value=true id="public" checked (change)="changeStatus($event)">
+                            <div class="form-check-label" for="flexRadioDefault1">
+                                Public
+                            </div>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="profileStatus" value=false id="private" (change)="changeStatus($event)"> 
+                            <div class="form-check-label" for="flexRadioDefault2">
+                                Private
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <!-- <div class="row"> -->
+                    <!-- <div class="col-md-3"> -->
+                        <div id="editProfBtn">
+                            <button type="button" class="btn btn-primary">Update</button>
+                            <span class="cancelBtn"><button type="button" class="btn btn-warning" (click)="profileRoute()">Cancel</button></span>
+                            <!-- <a [routerLink]="['/edit-profile', user$.id]" type="button" class="btn btn-info ">Edit Profile</a> -->
+                        </div>
+                    <!-- </div> -->
+                    <!-- <div class="col-md-3">
+                        <div id="editLoginBtn"> -->
+                            
+                            <!-- <a [routerLink]="['/edit-login', user$.id]" type="button" class="btn btn-info">Edit Login</a> -->
+                        <!-- </div>
+                    </div> -->
+                <!-- </div>    -->
+            </div>
+        
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="flex-container">
     <div class="container">
         <div class="form-row">
             <div class="col-md-8">
@@ -11,7 +173,7 @@
                             <div class="form-row">
                                 
                                 <label for="firstName">First Name:*</label>
-                                <input id="firstName" formControlName="firstName" type="text" class="form-control" placeholder="First Name" [ngClass]="{'is-invalid': form.firstName.errors && (form.firstName.touched || form.firstName.dirty)}">
+                                <input id="firstName" formControlName="firstName" type="text" class="form-control" placeholder="First name" [ngClass]="{'is-invalid': form.firstName.errors && (form.firstName.touched || form.firstName.dirty)}">
                                 <div *ngIf="form.firstName.errors && (form.firstName.touched || form.firstName.dirty)" class="invalid-feedback">
                                     <div *ngIf='form.firstName.errors.required'>*First Name is Required</div>    
                                     <div *ngIf='form.firstName.errors.pattern'>*Please Enter a Valid First Name</div>
@@ -31,18 +193,6 @@
                                 <div *ngIf="form.birthDate.errors && (form.birthDate.touched || form.birthDate.dirty)" class="invalid-feedback">
                                     <div *ngIf='form.birthDate.errors.required'>*Birthday is Required</div>
                                 </div>
-                                
-                                
-                                <!-- <label for="email">Email Address:*</label>
-                                <input type="email" formControlName="email" class="form-control" id="email" placeholder="yourAddress@email.com" [ngClass]="{'is-invalid': form.email.errors && (form.email.touched || form.email.dirty)}">
-                                <div *ngIf="form.email.errors && (form.email.touched || form.email.dirty)" class="invalid-feedback">
-                                    <div *ngIf='form.email.errors.required'>*Email is Required</div>
-                                    <div *ngIf='form.email.errors.pattern'>*Please Enter a Valid Email Address</div>
-                                </div>
-                              
-                                <div *ngIf="emailAlreadyTaken" class="alert alert-danger"> 
-                                    *This username already exists!
-                                </div> -->
                             
                                 
                                 <label for="city">City:*</label>
@@ -74,20 +224,6 @@
                                     <div *ngIf='form.gender.errors.required'>*Gender is Required</div>
                                 </div>
         
-                                <!-- <label for="password">Password: (Password Details?) </label>
-                                <input type="password" formControlName="password" class="form-control" id="password" [ngClass]="{ 'is-invalid': form.password.errors && (form.password.touched || form.password.dirty)}" placeholder="Password">
-                                <div *ngIf="form.password.errors && (form.password.touched || form.password.dirty)" class="invalid-feedback">
-                                    <div *ngIf="form.password.errors.pattern">Password needs lowercase, uppercase, number, and symbol: 8 characters minimum</div>
-                                    <div *ngIf="form.password.errors.required">*Password is required</div>
-                                </div> 
-        
-                                <label for="passwordConfirm">Password Confirm:</label>
-                                <input type="password" formControlName="passwordConfirm" class="form-control" id="passwordConfirm" [ngClass]="{ 'is-invalid': form.passwordConfirm.errors && (form.passwordConfirm.touched || form.passwordConfirm.dirty)}" placeholder="Confirm Password">
-                                <div *ngIf="form.passwordConfirm.errors && (form.passwordConfirm.touched || form.passwordConfirm.dirty)" class="invalid-feedback">
-                                    <div *ngIf="form.passwordConfirm.errors.confirmedValidator">*Passwords do not match</div>
-                                    <div *ngIf="form.passwordConfirm.errors.required">*Please Confirm your Password</div>
-                                </div>
-                                 -->
                                 <label for="flexRadioDefault">Profile Status:</label>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="profileStatus" value=true id="public" checked (change)="changeStatus($event)">
@@ -116,44 +252,7 @@
                         </div>
                     </div>
                   </form>
-                <!-- <form [formGroup]="editVolunteerForm" (ngSubmit)="onSubmitProfile()">
-                    <div class="heading">
-                        <h2 class="title">Volunteer: Edit Profile</h2>
-                    </div>
-        
-                    <label for="firstName">First Name:</label>
-                    <input id="firstName" formControlName="firstName" type="text" class="form-control" [ngClass]="{ 'is-invalid': form.firstName.errors }" placeholder="First Name">
-                    <div *ngIf="submitted && form.firstName.errors" class="invalid-feedback">
-                        <div *ngIf="form.firstName.errors.pattern">First name not valid</div>
-                        <div *ngIf="form.firstName.errors.required">First Name is required</div>
-                    </div>
-                
-                    <label for="lastName">Last Name:</label>
-                    <input id="lastName" formControlName="lastName" type="text" class="form-control" [ngClass]="{ 'is-invalid': form.lastName.errors }" placeholder="Last Name">
-                    <div *ngIf="submitted && form.lastName.errors" class="invalid-feedback">
-                        <div *ngIf="form.lastName.errors.pattern">Last name not valid</div>
-                        <div *ngIf="form.lastName.errors.required">Last Name is required</div>
-                    </div>
-                
-                    <label for="phoneNum">Phone Number:</label>
-                    <input type="text" formControlName="phoneNum" class="form-control" id="phoneNum" [ngClass]="{ 'is-invalid': form.phoneNum.errors }" placeholder="302-555-7890">
-                    <div *ngIf="submitted && form.phoneNum.errors" class="invalid-feedback">
-                        <div *ngIf="form.phoneNum.errors.minlength">Phone number needs to be 10 characters minimum</div>
-                        <div *ngIf="form.phoneNum.errors.required">Phone number is required</div>
-                    </div>
-                
-                    <label for="link">A link to a social media account for identification purposes:</label>
-                    <input type="text" formControlName="link" class="form-control" id="link" placeholder="Social Media Link">  
-            
-                    <div class="form-group" id="btnSubmit">                 
-                    <button type="submit" class="btn btn-primary">Update</button>
-                </div>
-            </form> -->
-            <div id="backBtn">
-                <a type="button" class="btn btn-primary" [routerLink]="['/view-profile']">Back</a>
-            </div>
-
             </div>
         </div>
     </div>
-</div>
+</div> -->

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { EditUser } from '../Models/edit-user.model';
 import { User } from '../Models/user.model';
 
 @Injectable({
@@ -15,7 +16,7 @@ export class UserService {
   private checkEmailUrl: string = this.baseUrl + "/user/check-email";
   private getUserByEmailUrl: string = this.baseUrl +"/user/get-by-email/";
   private getUserByIdUrl: string = this.baseUrl + "/user/";
-  private emailJson;
+  private updateUserUrl: string = this.baseUrl + "/user/update-user/"
   private email: string;
 
   httpOptions = {
@@ -31,10 +32,17 @@ export class UserService {
     )
   }
 
+  updateUser(userToUpdate:EditUser): Observable<User> {
+    return this.http.post<User>(this.updateUserUrl, userToUpdate, this.httpOptions)
+      .pipe(tap(data => {console.log("updating user");}), 
+      catchError(this.handleError<User>('error updating user', null))
+    )
+  }
+
   getUserByEmail(email: string): Observable<User>{
     console.log(email)
     return this.http.get<User>(this.getUserByEmailUrl + email, this.httpOptions)
-    .pipe(tap(data => {console.log("fetching userr");}),
+    .pipe(tap(data => {console.log("fetching use r");}),
     catchError(this.handleError<User>('error fetching user', null)))
   }
 

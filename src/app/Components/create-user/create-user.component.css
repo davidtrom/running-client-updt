@@ -9,11 +9,10 @@
     /* border: medium groove rgb(228, 86, 86) */
 }
 
-.flex-container{
+/* .flex-container{
     padding-top: 2%;
     padding-bottom: 2%;
-    /* max-height: ; */
-}
+} */
 
 #modal{
     max-height: max-content;
@@ -21,9 +20,17 @@
     
 }
 
-h2{
-    padding-bottom: 1%;
+.title{
     text-align: center;
+    padding-bottom: 1%;
+    padding-top: 1.5%;
+}
+
+.panel-heading{
+    padding-bottom: 1%;
+    font-style: italic;
+    color: rgb(91, 197, 157)
+    /* text-align: center; */
     /* padding-left: 20%;
     padding-right: 20%; */
 }
@@ -47,3 +54,46 @@ label{
 .form-check{
     padding-top: 0.5%;
 }
+
+.formNotValid{
+    color: red;
+    padding-top: 1.5%;
+    padding-bottom: 1%;
+}
+
+.cancelBtn{
+    padding-left: 10%;
+}
+
+#btnGroup{
+    padding-top: 3%;
+}
+
+.noModal{
+    padding-bottom: 2%;
+}
+
+/* .form-group{
+    padding-top: 2%;
+} */
+
+
+
+/* .button{
+    padding-top: 2%;
+} */
+
+@media screen and (max-width: 5900px) {
+    .container {
+       width: 50%;
+       padding-top: 2%;
+       padding-bottom: 2%;
+    }
+ }
+ @media screen and (max-width: 600px) {
+    .container {
+       width: 100%;
+       padding-top: 2%;
+       padding-bottom: 2%;
+    }
+ }

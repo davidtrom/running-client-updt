@@ -66,3 +66,23 @@ label{
 .title{
     text-align: center;
 }
+
+.card-header{
+    font-size: larger;
+    font-weight: bold;
+}
+
+.cancelBtn{
+    padding-left: 10%;
+}
+
+@media screen and (max-width: 5900px) {
+    .card {
+       width: 50%;
+    }
+ }
+ @media screen and (max-width: 600px) {
+    .card {
+       width: 100%;
+    }
+ }

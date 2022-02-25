@@ -43,7 +43,6 @@ const routes: Routes = [
   {path: 'view-list/:id', component: ViewSupplyListComponent},
   {path: 'edit-list/:listId/:itemId', component: EditListComponent},
   {path: 'race-results/:userId', component: RaceResultsComponent},
-  {path: 'view-profile/:id', component: ViewProfileComponent},
   
 
   // if no route, redirect to home

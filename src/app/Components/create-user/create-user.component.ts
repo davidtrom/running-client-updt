@@ -65,6 +65,9 @@ export class CreateUserComponent implements OnInit {
       this.createUserForm.patchValue({gender: Gender.Female});
       console.log("Gender is Female");
     }
+    else if(e.target.value =="Transgender"){
+      this.createUserForm.patchValue({gender: Gender.Transgender});
+    }
     else if (e.target.value == "Other"){
       this.createUserForm.patchValue({gender: Gender.Other});
       console.log("Gender is Other");

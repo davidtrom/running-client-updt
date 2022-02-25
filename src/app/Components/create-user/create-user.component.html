@@ -1,14 +1,18 @@
-<div class="container-fluid">
+<!-- <div class="container-fluid"> -->
 <div *ngIf="successModal" class="alert alert-success alert-dismissible fade show" role="alert" id="modal">
     <strong>Congratulations!</strong> You have been signed up successfully
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="homePageRoute()"></button>
   </div>
-</div>
+<!-- </div> -->
 
-<div *ngIf="noModal" class="flex-container">
+<div *ngIf="noModal" class="noModal">
+<!-- class="flex-container"> -->
+    <div class="title">
+        <h2>New User Registration</h2>
+    </div>
     <div class="container">
         <div class="panel-heading">
-            <h2 class="panel-title">New User Registration</h2>
+            <h2 class="panel-title">All Fields Are Required</h2>
         </div>
         <form [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
             <div class="panel panel-default">
@@ -73,6 +77,7 @@
                         <select class="form-control" id="gender" formControlName="gender"(change)="setGender($event)" [ngClass]="{'is-invalid': form.gender.errors && form.gender.touched}">
                           <option value="Male" data-name="Male">Male</option>
                           <option value="Female" data-name="Female">Female</option>
+                          <option value="Transgender" data-name="Transgender">Transgender</option>
                           <option value="Other" data-name="Other">Other</option>
                           <option value="Undisclosed" data-name="Undisclosed">Prefer Not to Disclose</option>
                         </select>
@@ -80,21 +85,21 @@
                             <div *ngIf='form.gender.errors.required'>*Gender is Required</div>
                         </div>
 
-                        <label for="password">Password: (Password Details?) </label>
+                        <label for="password">Password:*</label>
                         <input type="password" formControlName="password" class="form-control" id="password" [ngClass]="{ 'is-invalid': form.password.errors && (form.password.touched || form.password.dirty)}" placeholder="Password">
                         <div *ngIf="form.password.errors && (form.password.touched || form.password.dirty)" class="invalid-feedback">
                             <div *ngIf="form.password.errors.pattern">Password needs lowercase, uppercase, number, and symbol: 8 characters minimum</div>
                             <div *ngIf="form.password.errors.required">*Password is required</div>
                         </div> 
 
-                        <label for="passwordConfirm">Password Confirm:</label>
+                        <label for="passwordConfirm">Password Confirm:*</label>
                         <input type="password" formControlName="passwordConfirm" class="form-control" id="passwordConfirm" [ngClass]="{ 'is-invalid': form.passwordConfirm.errors && (form.passwordConfirm.touched || form.passwordConfirm.dirty)}" placeholder="Confirm Password">
                         <div *ngIf="form.passwordConfirm.errors && (form.passwordConfirm.touched || form.passwordConfirm.dirty)" class="invalid-feedback">
                             <div *ngIf="form.passwordConfirm.errors.confirmedValidator">*Passwords do not match</div>
                             <div *ngIf="form.passwordConfirm.errors.required">*Please Confirm your Password</div>
                         </div>
                         
-                        <label for="flexRadioDefault">Profile Status:</label>
+                        <label for="flexRadioDefault">Profile Status:*</label>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="profileStatus" value=true id="public" checked (change)="changeStatus($event)">
                             <div class="form-check-label" for="flexRadioDefault1">
@@ -112,14 +117,36 @@
                             *Please enter all required fields before submitting
                         </div>  
                     </div>
+
+                    <div id="btnGroup">
+                        <button type="submit" class="btn btn-success">Register</button>
+                        <span class="cancelBtn"><button type="button" class="btn btn-warning" (click)="homePageRoute()">Cancel</button></span>
+                        <!-- <a [routerLink]="['/edit-profile', user$.id]" type="button" class="btn btn-info ">Edit Profile</a> -->
+                    </div>
+
                 </div>
+
                 
-                    <div class="form-group">                 
-                        <div class="form-row grid-container">
+
+                <!-- <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
                             <button type="submit" class="btn btn-success">Register</button>
-                            <button type="button" class="btn btn-warning" (click)="homePageRoute()">Cancel</button>  
-                        </div>
-                </div>
+                        </div> -->
+                        <!-- <span class="cancelBtn"> -->
+                        <!-- <div class="col-md-3">
+                            <button type="button" class="btn btn-warning" (click)="homePageRoute()">Cancel</button>   
+                        </div> -->
+                        <!-- </span>  -->
+                    <!-- </div>  
+                </div> -->
+                
+                <!-- <div class="form-group">                 
+                    <div class="form-row grid-container">
+                        <button type="submit" class="btn btn-success">Register</button>
+                        <button type="button" class="btn btn-warning" (click)="homePageRoute()">Cancel</button>  
+                    </div>
+                </div> -->
             </div>
           </form>
     </div>

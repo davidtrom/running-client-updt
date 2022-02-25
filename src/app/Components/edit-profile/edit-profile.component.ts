@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Gender } from 'src/app/Models/Gender';
 import { ProfileStatus } from 'src/app/Models/ProfileStatus';
 import { User } from 'src/app/Models/user.model';
 import { UserService } from 'src/app/Services/user.service';
+import {formatDate} from '@angular/common'
+import { EditUser } from 'src/app/Models/edit-user.model';
 
 @Component({
   selector: 'app-edit-profile',
@@ -19,31 +21,58 @@ export class EditProfileComponent implements OnInit {
   newEmail: string;
   isEmailDifferent: boolean;
   formNotValid: boolean;
+  dateString: string;
 
-  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) { }
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router, @Inject(LOCALE_ID) private locale: string) { }
 
   ngOnInit(): void {
     //this.userService.getCurrentUser().subscribe(data => {this.user$ = data});
-    this.userService.getUserById(1).subscribe(userData => {this.user$ = userData;})
-    
-    this.editUserForm = this.fb.group({
-      firstName: [this.user$.firstName, [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
-      lastName: [this.user$.lastName, [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
-      birthDate: [this.user$.birthday, Validators.required],
-      //email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%$!#+\-]+@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$')]],
-      city: [this.user$.locationCity, Validators.required],
-      state: [this.user$.locationState, Validators.required],
-      country: [this.user$.locationCountry, Validators.required],
-      gender: [this.user$.gender, Validators.required],
-      //password: ['', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!_.@$%^&*-]).{8,}$')]],
-      //passwordConfirm: ['', Validators.required],
-      profileStatus: [this.userService, Validators.required]
-    });
+    this.userService.getUserById(1).subscribe(userData => {this.user$ = userData;
+      this.dateString = formatDate(this.user$.birthday, 'yyyy-MM-dd', this.locale);
+      this.editUserForm = this.fb.group({
+        firstName: [this.user$.firstName, [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+        lastName: [this.user$.lastName, [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+        birthDate: [this.dateString, Validators.required],
+        city: [this.user$.locationCity, Validators.required],
+        state: [this.user$.locationState, Validators.required],
+        country: [this.user$.locationCountry, Validators.required],
+        gender: [this.user$.gender, Validators.required],
+        profileStatus: [this.user$.profileStatus, Validators.required]
+      });
+    })    
   }
 
   get form() { return this.editUserForm.controls; }
 
   onSubmit(){
+    if (this.editUserForm.valid){
+      let editUser: EditUser = new EditUser(
+        this.user$.id,
+        this.editUserForm.controls.firstName.value,
+        this.editUserForm.controls.lastName.value,
+        this.editUserForm.controls.birthDate.value,
+        this.editUserForm.controls.city.value,
+        this.editUserForm.controls.state.value,
+        this.editUserForm.controls.country.value,
+        this.editUserForm.controls.gender.value,
+        this.editUserForm.controls.profileStatus.value
+      );
+
+      this.userService.updateUser(editUser).subscribe(data => this.user$ = data);
+      this.profileRoute();
+    }
+    else{
+      this.editUserForm.markAllAsTouched();
+      this.formNotValid = true;
+    }
+  }
+
+
+  // userProfileRoute(){
+  //   this.router.navigate(['profile']);
+  // }
+
+
       // this.userService.updateUserProfile(this.user$.id, this.editUserForm.controls.firstName.value, this.editUserForm.controls.lastName.value, this.editUserForm.controls.phoneNum.value, this.editUserForm.controls.link.value).subscribe(
       //     data => {console.log("updating user", data);
       //           if(data !== null){
@@ -55,7 +84,7 @@ export class EditProfileComponent implements OnInit {
       //             alert('There was an error, please try again');
       //           }
       //         });
-      }
+      // }
 
   profileRoute(){
     this.router.navigate(['profile/:id']);
@@ -83,6 +112,9 @@ export class EditProfileComponent implements OnInit {
       this.editUserForm.patchValue({gender: Gender.Female});
       console.log("Gender is Female");
     }
+    else if(e.target.value =="Transgender"){
+      this.editUserForm.patchValue({gender: Gender.Transgender});
+    }
     else if (e.target.value == "Other"){
       this.editUserForm.patchValue({gender: Gender.Other});
       console.log("Gender is Other");
@@ -92,5 +124,4 @@ export class EditProfileComponent implements OnInit {
       console.log("Gender is Undisclosed");
     }
  }
-
 }
