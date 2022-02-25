@@ -2,6 +2,7 @@
 
 <!-- The sidebar -->
 <div class="sidebar">
+    <!-- <button class="sidebar-toggle"><i class="fa fa-plus icon"></i></button> -->
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
@@ -11,9 +12,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let list of userLists">
-                <!-- <td><a [routerLink]="['/view-list', list.id]">{{list.listDescription}}</a></td> -->
                 <td (click)="showNewList(list.id)">{{list.listDescription}}</td>
-                
             </tr>
         </tbody>
     </table>
@@ -24,7 +23,7 @@
         <div class="col">
             
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="leftColTitles">
                         <h2>
                             {{listToDisplay.listDescription}} 
@@ -32,7 +31,7 @@
                     </div>
                 </div>
                 
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div *ngIf="!inEdit"class="leftColTitles">
                         <button class="btn btn-success" (click)="activateAddItem()">Add Item</button>
                     </div>
@@ -40,9 +39,14 @@
                         <button class="btn btn-success" (click)="deactivateAddItem()">Close Add Item</button>
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="leftColTitles">
                         <button type="button" class="btn btn-warning" (click)="unstrikeAllItems(listToDisplay.id)">Uncheck All</button>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="leftColTitles">
+                        <button type="button" class="btn btn-danger" (click)="clearItems(listToDisplay.id)">Clear List</button>
                     </div>
                 </div>
             </div>

@@ -71,7 +71,6 @@ export class ListsService {
     return this.http.put<SupplyList>(this.baseUrl + `/edit-item/${listId}/${itemId}`, this.httpOptions)
     .pipe(tap(data => console.log('editing item', data)),
     catchError(this.handleError<SupplyList>('error editing item', null)));
-
   }
 
   getListNames(userId: number): Observable<string[]>{
@@ -85,6 +84,12 @@ export class ListsService {
     return this.http.get<string>(this.baseUrl + `/get-item/${listId}/${itemId}`, this.httpOptions)
     .pipe(tap(data => console.log('updating item', data)),
     catchError(this.handleError<string>('error updating item', null)));
+  }
+
+  clearList(listId: number): Observable<SupplyList>{
+    return this.http.put<SupplyList>(this.baseUrl + `/remove-items/${listId}`, this.httpOptions)
+    .pipe(tap(data => console.log('clearing items', data)),
+    catchError(this.handleError<SupplyList>('error clearing items', null)));
   }
 
   //rapidapi.com

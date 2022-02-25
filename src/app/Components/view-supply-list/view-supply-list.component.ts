@@ -161,6 +161,14 @@ getRouteParams(){
     this.inEdit=true;
   }
 
+  clearItems(listId: number){
+    console.log(listId);
+    this.listService.clearList(listId).subscribe(data => {
+      console.log(data);
+      this.listToDisplay = data;
+      this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);})
+  }
+
   editSubmit(){
     console.log(this.editItemForm.get('editItemName').value);
     // this.itemExists = false;
