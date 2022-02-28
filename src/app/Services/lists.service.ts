@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { SupplyList } from '../Models/supply-list.model';
@@ -11,7 +11,7 @@ import { SupplyList } from '../Models/supply-list.model';
 export class ListsService {
 
   nameOfList: string;
-  supplyListResponse: any;
+  listItemToEdit$: BehaviorSubject<string>;
 
   baseUrl = environment.baseUrl + "/supply-lists";
 
@@ -19,7 +19,17 @@ export class ListsService {
     headers: new HttpHeaders({'Content-Type' : 'application/json'})
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.listItemToEdit$ = new BehaviorSubject<string>("");
+   }
+
+   getListItemToEdit(): Observable<string>{
+     return this.listItemToEdit$.asObservable();
+   }
+
+   setListItemToEdit(newItem: string){
+    this.listItemToEdit$.next(newItem);
+   }
 
   getUserLists(id:number) : Observable <SupplyList[]> {
     return this.http.get<SupplyList[]>(this.baseUrl+`/get-lists/${id}`, this.httpOptions)
