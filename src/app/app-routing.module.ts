@@ -21,7 +21,7 @@ import { EditListComponent } from './Components/edit-list/edit-list.component';
 import { RaceResultsComponent } from './Components/race-results/race-results.component';
 import { RaceShoeDetailComponent } from './Components/race-shoe-detail/race-shoe-detail.component';
 import { AddRaceShoeComponent } from './Components/add-race-shoe/add-race-shoe.component';
-import { ViewProfileComponent } from './Components/view-profile/view-profile.component';
+// import { ViewProfileComponent } from './Components/view-profile/view-profile.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -41,9 +41,9 @@ const routes: Routes = [
   {path: 'edit-profile/:id', component: EditProfileComponent},
   {path: 'new-list', component: CreateSupplyListComponent},
   {path: 'view-list/:id', component: ViewSupplyListComponent},
-  {path: 'edit-list/:listId/:itemId', component: EditListComponent},
+  {path: 'edit-list', component: EditListComponent},
   {path: 'race-results/:userId', component: RaceResultsComponent},
-  
+    
 
   // if no route, redirect to home
   { path: '**', redirectTo: '' }

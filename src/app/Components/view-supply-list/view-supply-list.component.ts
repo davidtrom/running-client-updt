@@ -25,7 +25,7 @@ export class ViewSupplyListComponent implements OnInit {
   itemExists: boolean = false;
   displayItems: string[];
   inEdit: boolean = false;
-  itemToEdit: string = "";
+  //itemToEdit: string = "";
   //favicons
   // faEraser = faEraser;
   // faTrashAlt = faTrashAlt;
@@ -152,11 +152,14 @@ getRouteParams(){
       this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);})
   }
 
-  editItem(listId: number, itemId: number, itemDescription: string){
-    console.log("item to be edited: ", itemId);
+  editItem(listId: number, itemName: number, itemDescription: string){
+    console.log("item to be edited: ", itemName);
     console.log("list to be edited: ", listId);
-    this.router.navigate(['edit-list', listId, itemId]);
-    this.itemToEdit = itemDescription;
+    // this.router.navigate(['edit-list', listId, itemId]);
+    
+    this.listService.setListItemToEdit(itemDescription);
+    this.router.navigate(['edit-item'])
+    
     console.log("itemDescription: ", itemDescription)
     this.inEdit=true;
   }

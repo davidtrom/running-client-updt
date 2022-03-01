@@ -15,7 +15,7 @@ export class UserService {
   private createUserUrl: string = this.baseUrl + "/user/new";
   private checkEmailUrl: string = this.baseUrl + "/user/check-email";
   private getUserByEmailUrl: string = this.baseUrl +"/user/get-by-email/";
-  private getUserByIdUrl: string = this.baseUrl + "/user/";
+  private getUserByIdUrl: string = this.baseUrl + "/user/get-user/";
   private updateUserUrl: string = this.baseUrl + "/user/update-user/"
   private email: string;
 
@@ -48,7 +48,7 @@ export class UserService {
 
   getUserById(id: number): Observable<User>{
     return this.http.get<User>(this.getUserByIdUrl + id, this.httpOptions)
-    .pipe(tap(data => {console.log("fetching user");}),
+    .pipe(tap(data => {console.log(data, "fetching user");}),
     catchError(this.handleError<User>('error fetching user')))
   }
 
