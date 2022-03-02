@@ -18,38 +18,50 @@
     </table>
 </div>
 
-<div class="container-fluid">
-    <!-- <div class="row">
-        <div class="col">
+<div class="container">
+    <div class="row flexibleRow">
+        <!-- <div class="col"> -->
             
-            <div class="row">
-                <div class="col-sm-3"> -->
-                    <div class="leftColTitles">
-                        <h2>
-                            {{listToDisplay.listDescription}} 
-                        </h2>
-                    </div>
+            <!-- <div class="row"> -->
+                <!-- <div class="col-sm-3"> -->
+                    <!-- <div class="leftColTitles"> -->
+                        
+                        <div>
+                            <div class="title">
+                                <h2>{{listToDisplay.listDescription}} </h2>
+                            </div>
+                        
+
+                            <div class="title">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Dropdown button
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                                        <li><button class="dropdown-item" (click)="activateAddItem()">Add Item(s)</button></li>
+                                        <li><button class="dropdown-item" (click)="unstrikeAllItems(listToDisplay.id)">Uncheck All Items</button></li>
+                                        <li><button class="dropdown-item" (click)="clearItems(listToDisplay.id)">Clear List</button></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        
+                    <!-- </div> -->
+
+                    <!-- <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">Warning!</h4>
+                        <p>You are about to clear all the items out of this list! Do you wish to proceed?</p>
+                        <hr>
+                        <p class="mb-0">
+                            <span><button class="btn btn-danger">Clear List</button></span>
+                            <span><button class="btn btn-danger">Cancel</button></span>
+                        </p>
+                    </div> -->
                 <!-- </div> -->
-                
-               <!-- <div class="col-sm-3">
-                    <div *ngIf="!inEdit"class="leftColTitles">
-                        <button class="btn btn-success" (click)="activateAddItem()">Add Item</button>
-                    </div>
-                    <div *ngIf="inEdit" class="leftColTitles">
-                        <button class="btn btn-success" (click)="deactivateAddItem()">Close Add Item</button>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="leftColTitles">
-                        <button type="button" class="btn btn-warning" (click)="unstrikeAllItems(listToDisplay.id)">Uncheck All</button>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="leftColTitles">
-                        <button type="button" class="btn btn-danger" (click)="clearItems(listToDisplay.id)">Clear List</button>
-                    </div>
-                </div>
-            </div> -->
+            <!-- </div> -->
 
             
             <div class="itemsDisplay">
@@ -80,7 +92,7 @@
         <!-- </div> -->
 
         
-        <div class="col align-self-center">
+        <!-- <div class="col align-self-center"> -->
             <div *ngIf="inEdit">
                 <form [formGroup]="newItemForm" (ngSubmit)="onSubmit()">
                     <div class="title">
@@ -99,7 +111,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+        <!-- </div> -->
 
     
         <!-- <div class="editBtn">
@@ -150,5 +162,5 @@
                 <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
             </div>
             </ng-template> -->
-    <!-- </div> -->
+    </div>
 </div>

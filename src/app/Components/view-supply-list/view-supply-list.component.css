@@ -65,9 +65,15 @@
     padding-top: 2%;
 } */
 
+
+
 .listTitle{
     padding-top: 2%;
     font-size: large;
+}
+
+.title{
+  display: inline-block;
 }
 
 .editBtn{
@@ -109,6 +115,20 @@
 
 .itemsDisplay{
   padding-bottom: 4%;
+}
+
+@media screen and (max-width: 5900px) {
+  .container-fluid {
+     /* width: 50%; */
+  }
+  /* .flexibleRow{
+   width: 50%;    
+  } */
+}
+@media screen and (max-width: 600px) {
+  .container-fluid {
+     width: 100%;
+  }
 }
 
 /* .shrinkCol{
