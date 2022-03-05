@@ -65,7 +65,15 @@
     padding-top: 2%;
 } */
 
+.headerWrapper{
+  padding-top: 2%;
+}
 
+
+
+#dropdownBtn{
+  padding-left: 15%;
+}
 
 .listTitle{
     padding-top: 2%;
@@ -74,6 +82,10 @@
 
 .title{
   display: inline-block;
+}
+
+#renameListBtn{
+  padding-left: 5%;
 }
 
 .editBtn{
@@ -118,15 +130,15 @@
 }
 
 @media screen and (max-width: 5900px) {
-  .container-fluid {
-     /* width: 50%; */
+  .container {
+     width: 65%;
   }
   /* .flexibleRow{
    width: 50%;    
   } */
 }
 @media screen and (max-width: 600px) {
-  .container-fluid {
+  .container {
      width: 100%;
   }
 }

@@ -11,7 +11,6 @@ import { RaceShoesComponent } from './Components/race-shoes/race-shoes.component
 import { RegisterComponent } from './Components/register/register.component';
 import { ForgotPasswordComponent } from './Components/forgot-password/forgot-password.component';
 import { ForgotUsernameComponent } from './Components/forgot-username/forgot-username.component';
-import { SidebarNavComponent } from './Components/sidebar-nav/sidebar-nav.component';
 import { CreateUserComponent } from './Components/create-user/create-user.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { CreateSupplyListComponent } from './Components/create-supply-list/create-supply-list.component';
@@ -21,6 +20,7 @@ import { EditListComponent } from './Components/edit-list/edit-list.component';
 import { RaceResultsComponent } from './Components/race-results/race-results.component';
 import { RaceShoeDetailComponent } from './Components/race-shoe-detail/race-shoe-detail.component';
 import { AddRaceShoeComponent } from './Components/add-race-shoe/add-race-shoe.component';
+import { ViewListNamesComponent } from './Components/view-list-names/view-list-names.component';
 // import { ViewProfileComponent } from './Components/view-profile/view-profile.component';
 
 const routes: Routes = [
@@ -43,6 +43,7 @@ const routes: Routes = [
   {path: 'view-list/:id', component: ViewSupplyListComponent},
   {path: 'edit-list', component: EditListComponent},
   {path: 'race-results/:userId', component: RaceResultsComponent},
+  {path: 'view-lists', component: ViewListNamesComponent},
     
 
   // if no route, redirect to home

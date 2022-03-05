@@ -30,6 +30,7 @@ import { AddRaceShoeComponent } from './Components/add-race-shoe/add-race-shoe.c
 import { RaceShoeDetailComponent } from './Components/race-shoe-detail/race-shoe-detail.component';
 import { RaceShoesComponent } from './Components/race-shoes/race-shoes.component';
 import { ViewProfileComponent } from './Components/view-profile/view-profile.component';
+import { ViewListNamesComponent } from './Components/view-list-names/view-list-names.component';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { ViewProfileComponent } from './Components/view-profile/view-profile.com
     AddRaceShoeComponent,
     RaceShoeDetailComponent,
     RaceShoesComponent,
-    ViewProfileComponent
+    ViewProfileComponent,
+    ViewListNamesComponent
     
   ],
   imports: [

@@ -165,11 +165,15 @@ getRouteParams(){
   }
 
   clearItems(listId: number){
-    console.log(listId);
     this.listService.clearList(listId).subscribe(data => {
-      console.log(data);
       this.listToDisplay = data;
-      this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);})
+      this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);
+    })
+  }
+
+  renameList(listId: number){
+    this.router.navigate(['view-lists']);
+    //set List names in list service and get list name in rename component
   }
 
   editSubmit(){
