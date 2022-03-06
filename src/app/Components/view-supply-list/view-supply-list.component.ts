@@ -176,6 +176,10 @@ getRouteParams(){
     //set List names in list service and get list name in rename component
   }
 
+  newListPath(){
+    this.router.navigate(['new-list']);
+  }
+
   editSubmit(){
     console.log(this.editItemForm.get('editItemName').value);
     // this.itemExists = false;

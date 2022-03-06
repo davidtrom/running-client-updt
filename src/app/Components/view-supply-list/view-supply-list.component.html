@@ -15,7 +15,10 @@
         <tbody>
             <tr *ngFor="let list of userLists">
                 <td (click)="showNewList(list.id)">{{list.listDescription}}</td>
-                <!-- <td (click)="renameList(list.id)">Rename a List</td> -->
+            </tr>
+            <tr>
+                <!-- <td><a [routerLink]="['/new-list']">Add New List</a></td> -->
+                <td (click)="newListPath()">Add New List</td>
             </tr>
         </tbody>
     </table>
@@ -50,19 +53,30 @@
                                 </div>   
                             </div>
                         </div>
+
+                        <div *ngIf="inEdit">
+                            <form [formGroup]="newItemForm" (ngSubmit)="onSubmit()">
+                                <div class="inputForm">
+                                    <label for="newItem">New Item:</label>
+                                    <!-- Enter the Item to add to the Supply List: -->
+                                    
+                                    <input id="newItemName" formControlName="newItemName" type="text" class="form-control" placeholder="Item to Add" [ngClass]="{'is-invalid': form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)}" >
+                                    <div *ngIf="form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)" class="invalid-feedback">
+                                        <div *ngIf='form.newItemName.errors.required'>*An Item to Add is Required</div>
+                                    </div>
+                                    <div class="itemExists" *ngIf="itemExists">
+                                        *{{newItem}} already exists in your list.
+                                    </div>
+                                </div>
+                                <div class="addItemBtn">
+                                    <span><button type="submit" class="btn btn-success">Add Item</button></span>
+                                    <span class="closeEditBtn"><button type="button" class="btn btn-warning">Close</button></span>
+                                </div>
+                            </form>
+                        </div>
                     
                         
                     <!-- </div> -->
-
-                    <!-- <div class="alert alert-danger" role="alert">
-                        <h4 class="alert-heading">Warning!</h4>
-                        <p>You are about to clear all the items out of this list! Do you wish to proceed?</p>
-                        <hr>
-                        <p class="mb-0">
-                            <span><button class="btn btn-danger">Clear List</button></span>
-                            <span><button class="btn btn-danger">Cancel</button></span>
-                        </p>
-                    </div> -->
                 <!-- </div> -->
             <!-- </div> -->
 
@@ -94,60 +108,31 @@
             </div>
         <!-- </div> -->
 
-        
-        <!-- <div class="col align-self-center"> -->
-            <div *ngIf="inEdit">
-                <form [formGroup]="newItemForm" (ngSubmit)="onSubmit()">
-                    <div class="title">
-                        <label for="newItem">Enter the Item to add to the Supply List:</label>
-                        
-                        <input id="newItemName" formControlName="newItemName" type="text" class="form-control" placeholder="Item to Add" [ngClass]="{'is-invalid': form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)}" >
-                        <div *ngIf="form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)" class="invalid-feedback">
-                            <div *ngIf='form.newItemName.errors.required'>*An Item to Add is Required</div>
-                        </div>
-                        <div class="itemExists" *ngIf="itemExists">
-                            *{{newItem}} already exists in your list.
-                        </div>
-                    </div>
-                    <div class="addItemBtn">
-                        <button type="submit" class="btn btn-success">Add Item</button>
-                    </div>
-                </form>
-            </div>
-        <!-- </div> -->
-
     
         <!-- <div class="editBtn">
             <button type="button" class="btn btn-success" (click)="goEdit()">Edit</button>
         </div> -->
 
-        <!-- Button trigger modal -->
-
-  
+       
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title text-danger" id="exampleModalLabel">Login Form</h5>
+          <h5 class="modal-title text-danger" id="exampleModalLabel"><strong>Warning!</strong></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
             <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                <!-- <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                You are about to clear all the items out of this list! Do you wish to proceed?
             </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
+            <div class="modalBtns">
+                <button type="button" class="btn btn-secondary" (click)="clearItems(listToDisplay.id)">Clear List</button>
+                <span class="closeModalBtn"><button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button></span>
             </div>
-            <button type="button" class="btn btn-primary" (click)="clearItems(listToDisplay.id)">Login</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

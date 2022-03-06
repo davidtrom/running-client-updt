@@ -71,9 +71,6 @@
 
 
 
-#dropdownBtn{
-  padding-left: 15%;
-}
 
 .listTitle{
     padding-top: 2%;
@@ -84,21 +81,17 @@
   display: inline-block;
 }
 
-#renameListBtn{
-  padding-left: 5%;
-}
-
-.editBtn{
+/* .editBtn{
     padding-top: 2%;
-}
+} */
 
 .itemExists, .blankItem{
     color: red;
     padding-top: 1%;
 }
 
-.addItemBtn{
-    padding-top: 1%;
+.inputForm{
+  padding-top: 2%;
 }
 
 .faviconCrudBtns{
@@ -121,26 +114,58 @@
   font-size: larger;
 }
 
-.leftColTitles{
+/* .leftColTitles{
   padding-top: 2%;
-}
+} */
 
 .itemsDisplay{
   padding-bottom: 4%;
 }
 
-@media screen and (max-width: 5900px) {
+.closeModalBtn{
+  padding-left: 10%;
+}
+
+.closeEditBtn{
+  padding-left: 10%;
+}
+
+
+
+
+
+@media screen and (min-width: 601px) {
   .container {
      width: 65%;
   }
-  /* .flexibleRow{
-   width: 50%;    
-  } */
+  #dropdownBtn{
+    padding-left: 15%;
+  }
+  #renameListBtn{
+    padding-left: 5%;
+  }
+  .addItemBtn{
+    padding-top: 0.5%;
+  }
+  
+  
 }
 @media screen and (max-width: 600px) {
   .container {
      width: 100%;
   }
+  #dropdownBtn{
+    padding-left: 0%;
+  }
+  #renameListBtn{
+    padding-left: 0%;
+  }
+  .addItemBtn{
+    padding-top: 2%;
+    padding-bottom: 2%;
+  }
+  
+  
 }
 
 /* .shrinkCol{
