@@ -180,6 +180,10 @@ getRouteParams(){
     this.router.navigate(['new-list']);
   }
 
+  closeEdit(){
+    this.inEdit = false;
+  }
+
   editSubmit(){
     console.log(this.editItemForm.get('editItemName').value);
     // this.itemExists = false;

@@ -47,8 +47,8 @@
                                         <li><button class="dropdown-item" (click)="activateAddItem()">Add Item(s)</button></li>
                                         <li><button class="dropdown-item" (click)="unstrikeAllItems(listToDisplay.id)">Uncheck All Items</button></li>
                                         <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" >Clear List</button></li>
-                                        <!-- <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="#">Separated link</a></li> -->
+                                        <!-- <li><hr class="dropdown-divider"></li> -->
+                                    
                                     </ul>
                                 </div>   
                             </div>
@@ -70,7 +70,7 @@
                                 </div>
                                 <div class="addItemBtn">
                                     <span><button type="submit" class="btn btn-success">Add Item</button></span>
-                                    <span class="closeEditBtn"><button type="button" class="btn btn-warning">Close</button></span>
+                                    <span class="closeEditBtn"><button type="button" class="btn btn-warning" (click)="closeEdit()">Close</button></span>
                                 </div>
                             </form>
                         </div>
@@ -124,9 +124,6 @@
         </div>
         <div class="modal-body">
             <div class="mb-3">
-                <!-- <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
                 You are about to clear all the items out of this list! Do you wish to proceed?
             </div>
             <div class="modalBtns">
