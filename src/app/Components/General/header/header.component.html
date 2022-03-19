@@ -4,7 +4,7 @@
             <img src="../../../assets/blackRunnerRemindLogo.JPG" alt="Logo" class="responsive" id="logo">
         </div>
     
-        <div *ngIf="userLoggedIn">
+        <div *ngIf="userLoggedIn else notLoggedIn">
             <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
                 <button class="navbar-toggler" type="button" aria-controls="navbarContent" [attr.aria-expanded]="collapsed"
                     aria-label="Toggle navigation" (click)="collapse()">
@@ -94,6 +94,56 @@
                 </div>
             </nav>
         </div>
+
+        <!-- Need navbar stuf for if not logged in -->
+        <ng-template #notLoggedIn>
+            <!-- <div class="container d-flex flex-column flex-md-row"> -->
+                <!-- <nav class="navbar navbar-expand-sm navbar-light d-flex flex-sm-column"> -->
+                    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                        <button class="navbar-toggler" type="button" aria-controls="navbarContent" [attr.aria-expanded]="collapsed"
+                            aria-label="Toggle navigation" (click)="collapse()">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+        
+                        <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
+                            <ul class="navbar-nav">
+                    
+                                <li class="nav-item" ngbDropdown>
+                                    <a class="nav-link" a [routerLink]="['/about']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
+                                        About
+                                    </a>
+                                </li>
+        
+                                <!-- <li class="nav-item" ngbDropdown>
+                                    <a class="nav-link" a [routerLink]="['/contact']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
+                                        Training?
+                                    </a> 
+                                </li> -->
+        
+                                <li class="nav-item" ngbDropdown>
+                                    <a class="nav-link" a [routerLink]="['/contact']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
+                                        Contact?
+                                    </a> 
+                                </li>
+        
+                                <li class="nav-item" ngbDropdown>
+                                    <a class="nav-link" a [routerLink]="['/']" routerLinkActive="router-link-active" style="color:white"  role="button" (click)="collapse()">
+                                        Create Account
+                                    </a> 
+                                </li>
+        
+                                <li class="nav-item" ngbDropdown>
+                                    <a class="nav-link" a [routerLink]="['/login']" routerLinkActive="router-link-active" style="color:white"  role="button">
+                                        Log In
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                <!-- </nav> -->
+            <!-- </div> -->
+
+        </ng-template>
     </div>
 </header>
 
