@@ -44,7 +44,7 @@ const routes: Routes = [
   {path: 'edit-list', component: EditListComponent},
   {path: 'race-results/:userId', component: RaceResultsComponent},
   {path: 'view-lists', component: ViewListNamesComponent},
-  {path: 'sidebar', component: SidebarNavComponent},
+  // {path: 'sidebar', component: SidebarNavComponent},
     
 
   // if no route, redirect to home

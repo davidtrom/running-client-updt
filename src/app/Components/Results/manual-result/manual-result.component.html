@@ -3,13 +3,13 @@
 <div class="flex-container">
     <div class = "container">
         <div class="title">
-            <h2>New User Registration</h2>
+            <h2>Enter New Result</h2>
         </div>
         <div class="container">
             <div class="panel-heading">
                 <h2 class="panel-title">All Fields Are Required</h2>
             </div>
-            <form [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="manualResultForm" (ngSubmit)="onSubmit()">
                 <div class="panel panel-default">
                     
                     <div class="panel-body">
@@ -38,7 +38,7 @@
                             </div>
                             
                             
-                            <label for="email">Email Address:*</label>
+                            <!-- <label for="email">Email Address:*</label>
                             <input type="email" formControlName="email" class="form-control" id="email" placeholder="yourAddress@email.com" [ngClass]="{'is-invalid': form.email.errors && (form.email.touched || form.email.dirty)}">
                             <div *ngIf="form.email.errors && (form.email.touched || form.email.dirty)" class="invalid-feedback">
                                 <div *ngIf='form.email.errors.required'>*Email is Required</div>
@@ -48,7 +48,7 @@
                             <div *ngIf="emailAlreadyTaken" class="alert alert-danger"> 
                                 *This username already exists!
                             </div>
-                        
+                         -->
                             
                             <label for="city">City:*</label>
                             <input id="city" formControlName="city" type="text" class="form-control" placeholder="City" [ngClass]="{'is-invalid': form.city.errors && (form.city.touched || form.city.dirty)}">
@@ -68,7 +68,7 @@
                                 <div *ngIf='form.country.errors.required'>*Country is Required</div>
                             </div>
                             
-                            <label for="gender">Gender:*</label>
+                            <!-- <label for="gender">Gender:*</label>
                             <select class="form-control" id="gender" formControlName="gender"(change)="setGender($event)" [ngClass]="{'is-invalid': form.gender.errors && form.gender.touched}">
                               <option value="Male" data-name="Male">Male</option>
                               <option value="Female" data-name="Female">Female</option>
@@ -106,7 +106,7 @@
                                 <div class="form-check-label" for="flexRadioDefault2">
                                     Private
                                 </div>
-                            </div>
+                            </div> -->
                             
                             <div *ngIf="formNotValid" class="formNotValid">
                                 *Please enter all required fields before submitting
