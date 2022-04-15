@@ -1,4 +1,6 @@
-export class RaceResult {
+import { race } from "rxjs";
+
+export class RaceResultMetrics {
     raceId: number;
     userId: number;
     shoeId: number;
@@ -14,14 +16,14 @@ export class RaceResult {
     age: number;
     ageGroupPlace: number;
     ageGroupParticipants: number;
-    pace: string;
     timeElapsed: string;
+    pace: string;
     heartRate: number;
     elevationGain: number;
     cadence: number;
 
     constructor(raceName: string, distance: string, raceDate: Date, weather: string, description: string, location: string, timingCo: string, overallPlace: number, 
-        totalParticipants: number, age: number, ageGroupPlace: number, ageGroupParticipants: number, pace: string, timeElapsed: string,
+        totalParticipants: number, age: number, ageGroupPlace: number, ageGroupParticipants: number, timeElapsed: string, pace: string, 
         heartRate: number, elevationGain: number, cadence: number){
        this.raceName = raceName;
        this.distance = distance;
@@ -35,8 +37,8 @@ export class RaceResult {
        this.age = age;
        this.ageGroupPlace = ageGroupPlace;
        this.ageGroupParticipants = ageGroupParticipants;
-       this.pace = pace;
-       this.timeElapsed = timeElapsed;   
+       this.timeElapsed = timeElapsed;  
+       this.pace = pace; 
        this.heartRate = heartRate;
        this.elevationGain = elevationGain;
        this.cadence = cadence;      

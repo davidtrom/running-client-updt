@@ -21,6 +21,7 @@ import { RaceShoeDetailComponent } from './Components/Shoes/race-shoe-detail/rac
 import { AddRaceShoeComponent } from './Components/Shoes/add-race-shoe/add-race-shoe.component';
 import { ViewListNamesComponent } from './Components/SupplyLists/view-list-names/view-list-names.component';
 import { SidebarNavComponent } from './Components/sidebar-nav/sidebar-nav.component';
+import { ManualResultComponent } from './Components/Results/manual-result/manual-result.component';
 // import { ViewProfileComponent } from './Components/view-profile/view-profile.component';
 
 const routes: Routes = [
@@ -44,6 +45,7 @@ const routes: Routes = [
   {path: 'edit-list', component: EditListComponent},
   {path: 'race-results/:userId', component: RaceResultsComponent},
   {path: 'view-lists', component: ViewListNamesComponent},
+  {path: 'manual-result', component: ManualResultComponent},
   // {path: 'sidebar', component: SidebarNavComponent},
     
 
