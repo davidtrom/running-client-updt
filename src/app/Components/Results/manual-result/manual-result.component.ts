@@ -13,6 +13,7 @@ export class ManualResultComponent implements OnInit {
   manualResultForm: FormGroup;
 
   constructor(private fb: FormBuilder, private router: Router) { }
+  addtlMetrics: boolean = false;
 
   ngOnInit(): void {
     this.manualResultForm = this.fb.group({
@@ -27,8 +28,9 @@ export class ManualResultComponent implements OnInit {
       totalParticipants: ['', Validators.required],
       age: ['', Validators.required],
       ageGroupPlace: ['', Validators.required],
-      pace: ['',Validators.required],
+      ageGroupParticipants: [''],
       timeElapsed: ['', Validators.required],
+      pace: ['',Validators.required],
       heartRate: [''],
       elevationGain: [''],
       cadence: ['']
@@ -39,6 +41,15 @@ export class ManualResultComponent implements OnInit {
 
   homePageRoute(){
     this.router.navigate(['results-home']);
+  }
+
+  showAddtlMetrics(){
+    if(this.addtlMetrics = false){
+      this.addtlMetrics = true;
+    }
+    else{
+      this.addtlMetrics = false;
+    }
   }
 
   onSubmit(){
@@ -63,7 +74,6 @@ export class ManualResultComponent implements OnInit {
         this.manualResultForm.controls.cadence.value
       )
     }
-
   }
 
 

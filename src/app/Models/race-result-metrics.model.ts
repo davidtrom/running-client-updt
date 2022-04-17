@@ -1,5 +1,3 @@
-import { race } from "rxjs";
-
 export class RaceResultMetrics {
     raceId: number;
     userId: number;
