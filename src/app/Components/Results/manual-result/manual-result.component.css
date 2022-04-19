@@ -1,0 +1,22 @@
+.title{
+    padding-top: 4%;
+    padding-bottom: 3%;
+    text-align: center;
+    color: rgb(60, 97, 153);
+}
+
+#btnGroup{
+    padding-top: 4%;
+    padding-bottom: 4%;
+}
+
+#addtlMetricsChoice{
+    padding-top: 2%;
+}
+
+.cancelBtn{
+    padding-left: 15%;
+}
+.panel-title{
+    color: rgb(202, 45, 45);
+}

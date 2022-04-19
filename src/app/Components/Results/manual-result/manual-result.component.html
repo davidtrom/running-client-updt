@@ -1,5 +1,3 @@
-<p>manual-result works!</p>
-
 <div class="flex-container">
     <div class = "container">
         <div class="title">
@@ -7,7 +5,7 @@
         </div>
         <div class="container">
             <div class="panel-heading">
-                <h2 class="panel-title">* Denotes A Required Field</h2>
+                <h6 class="panel-title">* Denotes A Required Field</h6>
             </div>
             <!-- In drop down for adding result have a result with metrics be an option -->
             <!-- an observable for that or two diff forms -->
@@ -17,11 +15,13 @@
                     <div class="panel-body">
                         <div class="form-row">
                             
-                            <label for="racename">Race Name:*</label>
-                            <input id="racename" formControlName="racename" type="text" class="form-control" placeholder="Race Name" [ngClass]="{'is-invalid': form.racename.errors && (form.racename.touched || form.racename.dirty)}">
-                            <div *ngIf="form.racename.errors && (form.racename.touched || form.racename.dirty)" class="invalid-feedback">
-                                <div *ngIf='form.racename.errors.required'>*Race Name is Required</div>    
+                            
+                            <label for="raceName">Race Name:*</label>
+                            <input id="raceName" formControlName="raceName" type="text" class="form-control" placeholder="Race Name" [ngClass]="{'is-invalid': form.raceName.errors && (form.raceName.touched || form.raceName.dirty)}">
+                            <div *ngIf="form.raceName.errors && (form.raceName.touched || form.raceName.dirty)" class="invalid-feedback">
+                                <div *ngIf='form.raceName.errors.required'>*Race Name is Required</div>    
                             </div>
+                        
                             
                             
                             <label for="distance">Distance:*</label>
@@ -29,6 +29,7 @@
                             <div *ngIf="form.distance.errors && (form.distance.touched || form.distance.dirty)" class="invalid-feedback">
                                 <div *ngIf='form.distance.errors.required'>Distance is Required</div>
                             </div>
+                        
 
                             
                             <label for="raceDate">Race Date:*</label>
@@ -38,7 +39,7 @@
                             </div>
 
 
-                            <label for="weather">Weather:*</label>
+                            <label for="weather">Weather:</label>
                             <input id="weather" formControlName="weather" type="text" class="form-control" placeholder="Race weather" [ngClass]="{'is-invalid': form.weather.errors && (form.weather.touched || form.weather.dirty)}">
                             <div *ngIf="form.weather.errors && (form.weather.touched || form.weather.dirty)" class="invalid-feedback">
                                 <div *ngIf='form.weather.errors.required'>*Last Name is Required</div>
@@ -46,7 +47,8 @@
                             
                                                         
                             <label for="description">Race Description:</label>
-                            <input id="description" formControlName="description" type="text" class="form-control" placeholder="Race Description" [ngClass]="{'is-invalid': form.description.errors && (form.description.touched || form.description.dirty)}">
+                            <textarea class="form-control" formControlName="description" id="description" rows="3" placeholder="Race Description"></textarea>
+                            <!-- <input id="description" formControlName="description" type="text" class="form-control" placeholder="Race Description" [ngClass]="{'is-invalid': form.description.errors && (form.description.touched || form.description.dirty)}"> -->
                             <!-- <div *ngIf="form.description.errors && (form.description.touched || form.description.dirty)" class="invalid-feedback">
                                 <div *ngIf='form.description.errors.required'>*A Race Description is Required</div>
                             </div> -->
@@ -106,36 +108,46 @@
                             </div> -->
                             <!-- pace in miles or KM options? -->
 
+                            
+
                             <div id="addtlMetricsChoice">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                    <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" (click) = "showAddtlMetrics()">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">Add additional Fitness Metrics</label>
+                                    <br>
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">(Heart Rate, Elevation Gain, Cadence)</label>
                                 </div>
-                            </div>
+                            </div>  
+                            
 
-                            <div *ngif="addtlMetrics" (click)="showAddtlMetrics()">
+                            <!-- <fieldset [disabled] = "isDisabled"> -->
+                            <!-- <button type="button" class="btn btn-primary" (click) = "showAddtlMetrics()">Primary</button> -->
+                            <div *ngIf="addtlMetrics">
                                 <label for="heartRate">Heart Rate:</label>
                                 <input id="heartRate" formControlName="heartRate" type="text" class="form-control" placeholder="Heart Rate" [ngClass]="{'is-invalid': form.heartRate.errors && (form.heartRate.touched || form.heartRate.dirty)}">
                                 <!-- <div *ngIf="form.heartRate.errors && (form.heartRate.touched || form.heartRate.dirty)" class="invalid-feedback">
                                     <div *ngIf='form.heartRate.errors.required'>heartRate is Required</div>
                                 </div> -->
+                            
 
+                            
                                 <label for="elevationGain">Elevation Gain:</label>
                                 <input id="elevationGain" formControlName="elevationGain" type="text" class="form-control" placeholder="Elevation Gain" [ngClass]="{'is-invalid': form.elevationGain.errors && (form.elevationGain.touched || form.elevationGain.dirty)}">
                                 <!-- <div *ngIf="form.elevationGain.errors && (form.elevationGain.touched || form.elevationGain.dirty)" class="invalid-feedback">
                                     <div *ngIf='form.elevationGain.errors.required'>elevationGain is Required</div>
                                 </div> -->
+                            
 
+                                
+                            
                                 <label for="cadence">Cadence:</label>
                                 <input id="cadence" formControlName="cadence" type="text" class="form-control" placeholder="Cadence" [ngClass]="{'is-invalid': form.cadence.errors && (form.cadence.touched || form.cadence.dirty)}">
                                 <!-- <div *ngIf="form.cadence.errors && (form.cadence.touched || form.cadence.dirty)" class="invalid-feedback">
                                     <div *ngIf='form.cadence.errors.required'>cadence is Required</div>
                                 </div> -->
                             </div>
-
-                            
-                            
-                            
+                            <!-- </fieldset> -->
+                           
 
                             
                             <div *ngIf="formNotValid" class="formNotValid">
@@ -144,7 +156,7 @@
                         </div>
     
                         <div id="btnGroup">
-                            <button type="submit" class="btn btn-success">Register</button>
+                            <button type="submit" class="btn btn-success">Add Result</button>
                             <span class="cancelBtn"><button type="button" class="btn btn-warning" (click)="homePageRoute()">Cancel</button></span>
                             <!-- <a [routerLink]="['/edit-profile', user$.id]" type="button" class="btn btn-info ">Edit Profile</a> -->
                         </div>
@@ -173,7 +185,7 @@
                         </div>
                     </div> -->
                 </div>
-              </form>
+              </form> 
         </div>
 
     </div>

@@ -14,13 +14,14 @@ export class ManualResultComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private router: Router) { }
   addtlMetrics: boolean = false;
+  isDisabled: boolean = true;
 
   ngOnInit(): void {
     this.manualResultForm = this.fb.group({
       raceName: ['', Validators.required],
       distance: ['', Validators.required],
       raceDate: ['', Validators.required],
-      weather: ['', Validators.required],
+      weather: [''],
       description: [''],
       location: ['', Validators.required],
       timingCo: [''],
@@ -44,12 +45,16 @@ export class ManualResultComponent implements OnInit {
   }
 
   showAddtlMetrics(){
-    if(this.addtlMetrics = false){
-      this.addtlMetrics = true;
-    }
-    else{
-      this.addtlMetrics = false;
-    }
+    this.addtlMetrics = ! this.addtlMetrics;
+    // this.isDisabled = ! this.isDisabled;
+    console.log("addtlMetrics: " + this.addtlMetrics)
+    // if(this.isDisabled === true){
+    //   this.isDisabled = false;
+    // }
+    // else{
+    //   this.isDisabled = true;
+    // }
+    // return this.isDisabled;
   }
 
   onSubmit(){
