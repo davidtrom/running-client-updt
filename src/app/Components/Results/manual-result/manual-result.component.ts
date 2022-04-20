@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RaceResult } from 'src/app/Models/race-result.model';
+import { RaceShoe } from 'src/app/Models/race-shoe.model';
+import { ShoeService } from 'src/app/Services/shoe.service';
 
 @Component({
   selector: 'app-manual-result',
@@ -11,8 +13,17 @@ import { RaceResult } from 'src/app/Models/race-result.model';
 export class ManualResultComponent implements OnInit {
   formNotValid: boolean;
   manualResultForm: FormGroup;
+  raceShoes: RaceShoe[];
+  allShoes: RaceShoe[];
+  activeShoes: RaceShoe[];
+  noShoes: boolean;
+  //userId to test mock data
+  userId: number;
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  //Set heartRate, elevationGain and cadence to null unless they are set in the form?
+
+
+  constructor(private fb: FormBuilder, private router: Router, private shoeService: ShoeService) { }
   addtlMetrics: boolean = false;
   isDisabled: boolean = true;
 
@@ -36,9 +47,32 @@ export class ManualResultComponent implements OnInit {
       elevationGain: [''],
       cadence: ['']
     })
+    this.userId = 1;
+    this.getUserShoes();
+    
   }
 
   get form() { return this.manualResultForm.controls; }
+
+  getUserShoes(){
+    this.shoeService.getUserShoes(this.userId).subscribe(data => {
+      this.allShoes = data;
+      console.log("allShoes", data);
+      if(this.allShoes.length == 0){
+        this.noShoes = true;
+      }
+      else{
+        this.getActiveShoes();
+      }
+    })
+    console.log("All Shoes: ", this.activeShoes);
+  }
+
+  getActiveShoes(){
+      this.shoeService.getActiveShoes(this.userId).subscribe(data => this.activeShoes = data);
+  }
+
+
 
   homePageRoute(){
     this.router.navigate(['results-home']);

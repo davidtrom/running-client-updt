@@ -74,11 +74,12 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
-                                                    <p><strong><u>Inaugural Debut:</u></strong></p>
-                                                        <p>{{activeShoe.beginUse | date: 'shortDate'}}</p>
-                                                    <p><strong><u>Miles Ran:</u></strong></p>
-                                                        <p>{{activeShoe.numOfMiles}}</p>
-                                                    <p><strong><u>Miles Until Retirement:</u></strong> {{activeShoe.maxMiles}}</p>
+                                                    <p><strong><u>Inaugural Debut:</u></strong><br>
+                                                        {{activeShoe.beginUse | date: 'shortDate'}}</p>
+                                                    <p><strong><u>Miles Ran:</u></strong><br>
+                                                        {{activeShoe.numOfMiles}}</p>
+                                                    <p><strong><u>Miles Until Retirement:</u></strong><br>
+                                                        {{activeShoe.maxMiles}}</p>
                                                     <a href="#" class="btn btn-success">View Races</a>
                                                 </div>
                                                 <div class="col">
@@ -115,6 +116,10 @@
             <!-- Nickname for shoe? -->
 
             <ng-template #showRetired>
+                <div class="title">
+                    <h3>Retired Shoes:</h3>
+                </div>
+                
                 <div class="card" *ngFor="let retiredShoe of retiredShoes; let i = index">
                     <!-- <div class="row"> -->
                         <div class="col">
