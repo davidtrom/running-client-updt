@@ -70,10 +70,13 @@
                             
                             
                                     <div class="col" *ngIf="i%2==0">
-                                        <h5 class="card-header">{{activeShoe.brand}} {{activeShoe.model}}</h5>
+                                        <h5 class="card-header">{{activeShoe.nickname}}</h5>
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
+                                                    <p><strong><u>Shoe Brand & Model:</u></strong><br>
+                                                        {{activeShoe.brand}} {{activeShoe.model}}</p>
+                                                    <!-- First Use, Begin Use -->
                                                     <p><strong><u>Inaugural Debut:</u></strong><br>
                                                         {{activeShoe.beginUse | date: 'shortDate'}}</p>
                                                     <p><strong><u>Miles Ran:</u></strong><br>

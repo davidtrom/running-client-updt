@@ -16,6 +16,7 @@ export class ManualResultComponent implements OnInit {
   raceShoes: RaceShoe[];
   allShoes: RaceShoe[];
   activeShoes: RaceShoe[];
+  addRaceShoe: boolean;
   noShoes: boolean;
   //userId to test mock data
   userId: number;
@@ -72,10 +73,37 @@ export class ManualResultComponent implements OnInit {
       this.shoeService.getActiveShoes(this.userId).subscribe(data => this.activeShoes = data);
   }
 
+  setRaceShoe(e){
+    console.log('Change Status: ', e.target.value);
+    // if(e.target.value == "Male"){
+    //   this.manualResultForm.patchValue({gender: Gender.Male});
+    //   console.log("Gender is Male");
+    // }
+    // else if(e.target.value == "Female"){
+    //   this.createUserForm.patchValue({gender: Gender.Female});
+    //   console.log("Gender is Female");
+    // }
+    // else if(e.target.value =="Transgender"){
+    //   this.createUserForm.patchValue({gender: Gender.Transgender});
+    // }
+    // else if (e.target.value == "Other"){
+    //   this.createUserForm.patchValue({gender: Gender.Other});
+    //   console.log("Gender is Other");
+    // }
+    // else{
+    //   this.createUserForm.patchValue({gender: Gender.Undisclosed});
+    //   console.log("Gender is Undisclosed");
+    // }
+ }
+
 
 
   homePageRoute(){
     this.router.navigate(['results-home']);
+  }
+
+  showRaceShoes(){
+    this.addRaceShoe = ! this.addRaceShoe;
   }
 
   showAddtlMetrics(){

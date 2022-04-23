@@ -23,7 +23,6 @@
                             </div>
                         
                             
-                            
                             <label for="distance">Distance:*</label>
                             <input id="distance" formControlName="distance" type="text" class="form-control" placeholder="Race Distance" [ngClass]="{'is-invalid': form.distance.errors && (form.distance.touched || form.distance.dirty)}">
                             <div *ngIf="form.distance.errors && (form.distance.touched || form.distance.dirty)" class="invalid-feedback">
@@ -107,8 +106,37 @@
                                 <div *ngIf='form.pace.errors.required'>*Race Day pace is Required</div>
                             </div> -->
                             <!-- pace in miles or KM options? -->
-
                             
+                            <br>
+                            <div id="addShoeChoice">
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                    <label class="form-check-label" for="inlineRadio1">1</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                    <label class="form-check-label" for="inlineRadio2">2</label>
+                                  </div>
+
+                                <!-- <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" (click) = "showRaceShoes()">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">Add A Race Shoe</label>
+                                    <br>
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">(Heart Rate, Elevation Gain, Cadence)</label> -->
+                                <!-- </div> -->
+                            </div> 
+
+
+                            <br>
+                            <div *ngIf="addRaceShoe">
+                                <!-- <label for="heartRate">Heart Rate:</label>
+                                <input id="heartRate" formControlName="heartRate" type="text" class="form-control" placeholder="Heart Rate" [ngClass]="{'is-invalid': form.heartRate.errors && (form.heartRate.touched || form.heartRate.dirty)}"> -->
+                                <div id="raceShoeDropdown">
+                                    Dropdown of shoes:
+                                </div>
+
+                            </div>
 
                             <div id="addtlMetricsChoice">
                                 <div class="form-check form-switch">

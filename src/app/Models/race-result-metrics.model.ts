@@ -20,9 +20,11 @@ export class RaceResultMetrics {
     elevationGain: number;
     cadence: number;
 
-    constructor(raceName: string, distance: string, raceDate: Date, weather: string, description: string, location: string, timingCo: string, overallPlace: number, 
-        totalParticipants: number, age: number, ageGroupPlace: number, ageGroupParticipants: number, timeElapsed: string, pace: string, 
-        heartRate: number, elevationGain: number, cadence: number){
+    constructor(userId: number, shoeId: number, raceName: string, distance: string, raceDate: Date, weather: string, description: string,  
+        location: string, timingCo: string, overallPlace: number,totalParticipants: number, age: number, ageGroupPlace: number, 
+        ageGroupParticipants: number, timeElapsed: string, pace: string, heartRate: number, elevationGain: number, cadence: number){
+       this.userId = userId;
+       this.shoeId = shoeId;
        this.raceName = raceName;
        this.distance = distance;
        this.raceDate = raceDate;

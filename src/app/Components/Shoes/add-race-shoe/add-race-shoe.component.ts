@@ -35,6 +35,7 @@ export class AddRaceShoeComponent implements OnInit {
     this.newShoeForm = this.fb.group({
       brand: ['', Validators.required],
       model: ['', Validators.required],
+      nickname: ['', Validators.required],
       maxMiles: [''],
       numOfMiles: ['', Validators.required], 
       beginUse: ['', Validators.required],
@@ -79,6 +80,7 @@ export class AddRaceShoeComponent implements OnInit {
         this.userId,
         this.newShoeForm.controls.brand.value,
         this.newShoeForm.controls.model.value,
+        this.newShoeForm.controls.nickname.value,
         this.newShoeForm.controls.numOfMiles.value,
         this.newShoeForm.controls.maxMiles.value,
         this.newShoeForm.controls.beginUse.value,
