@@ -28,7 +28,11 @@
             </thead>
             <tbody>
                 <tr *ngFor="let shoe of userShoes">
-                    <td><a [routerLink]="['/shoe-detail', shoe.shoeId]">{{shoe.brand}} {{shoe.model}}</a></td>
+                    <td><a [routerLink]="['/shoe-detail', shoe.shoeId]">{{shoe.nickname}}
+                            <!-- <br>
+                            <span id="smallDescription">({{shoe.brand}} {{shoe.model}})</span> -->
+                        </a>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -65,10 +69,10 @@
                             <div *ngIf='form.model.errors.required'>*A Shoe Model is Required</div>
                         </div> 
 
-                        <label class="form-label" for="nickName">Shoe Nickname:*</label>
-                        <input id="nickName" formControlName="nickName" type="text" class="form-control" placeholder="Unique Name Reference)" [ngClass]="{'is-invalid': form.nickName.errors && (form.nickName.touched || form.nickName.dirty)}">
-                        <div *ngIf="form.nickName.errors && (form.nickName.touched || form.nickName.dirty)" class="invalid-feedback">
-                            <div *ngIf='form.nickName.errors.required'>*A Shoe NickName is Required</div>
+                        <label class="form-label" for="nickname">Shoe Nickname:*</label>
+                        <input id="nickname" formControlName="nickname" type="text" class="form-control" placeholder="Unique Name Reference)" [ngClass]="{'is-invalid': form.nickname.errors && (form.nickname.touched || form.nickname.dirty)}">
+                        <div *ngIf="form.nickname.errors && (form.nickname.touched || form.nickname.dirty)" class="invalid-feedback">
+                            <div *ngIf='form.nickname.errors.required'>*A Shoe Nickname is Required</div>
                         </div> 
               
                         

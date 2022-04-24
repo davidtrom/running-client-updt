@@ -17,6 +17,7 @@ export class RaceShoesComponent implements OnInit {
   showRetired: boolean = false;
   activeClicks: number = 0;
   retiredClicks: number = 0;
+  activeShoesDemo: RaceShoe[]
 
 
   //FOR TESTING PURPOSES:

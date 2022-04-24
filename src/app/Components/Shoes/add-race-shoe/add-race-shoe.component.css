@@ -55,6 +55,10 @@
     }
 }
 
+#smallDescription{
+  font-size: small;
+}
+
 /* Non Side Bar Items */
 
 #cancelBtn{
@@ -73,4 +77,6 @@
 .form-label{
   padding-top: 2%;
 }
+
+
 
