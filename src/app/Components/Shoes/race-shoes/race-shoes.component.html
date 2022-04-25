@@ -51,22 +51,19 @@
                 </div>
                 <div class="row row-cols-1 row-cols-md-2 g-4">
                     <div class="card" *ngFor="let activeShoe of activeShoes; let i = index">
-                        
-                            <!-- <div class="col">
-                                <h5 class="card-header">{{activeShoe.brand}} {{activeShoe.model}}</h5>
-                                <div class="card-body">
-                                    <h5 class="card-title">Special title treatment</h5>
-                                    <div class="row">
-                                        <div class="col">
-                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                            <a href="#" class="btn btn-success">More Detail</a>
-                                        </div>
-                                        <div class="col">
-                                            Begin Use: {{activeShoe.beginUse | date: 'shortDate'}}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
+
+                        <ul class="list-group list-group-numbered">
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                              <div class="ms-2 me-auto">
+                                <div class="fw-bold">{{activeShoe.nickname}}</div>
+                                First Use: {{activeShoe.beginUse | date: 'shortDate'}}
+                                
+                                <div>Details: link for details,</div>
+                                
+                              </div>
+                              <!-- <span class="badge bg-primary rounded-pill">14</span> -->
+                            </li>
+                        </ul>
                             
                             
                                     <div class="col" *ngIf="i%2==0">
@@ -74,19 +71,20 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
-                                                    <p><strong><u>Shoe Brand & Model:</u></strong><br>
-                                                        {{activeShoe.brand}} {{activeShoe.model}}</p>
-                                                    <!-- First Use, Begin Use -->
-                                                    <p><strong><u>Inaugural Debut:</u></strong><br>
+                                                    <!-- <p><strong><u>Shoe Brand & Model:</u></strong><br>
+                                                        {{activeShoe.brand}} {{activeShoe.model}}</p> -->
+                                                    <!-- First Use, Begin Use, Inaug-->
+                                                    <p><strong><u>First Race:</u></strong><br>
                                                         {{activeShoe.beginUse | date: 'shortDate'}}</p>
-                                                    <p><strong><u>Miles Ran:</u></strong><br>
+                                                    <!-- <p><strong><u>Miles Ran:</u></strong><br>
                                                         {{activeShoe.numOfMiles}}</p>
                                                     <p><strong><u>Miles Until Retirement:</u></strong><br>
-                                                        {{activeShoe.maxMiles}}</p>
-                                                    <a href="#" class="btn btn-success">View Races</a>
+                                                        {{activeShoe.maxMiles}}</p> -->
+                                                    <a [routerLink]="['/record-detail',  ]" class="btn btn-success">View Race Details</a>
                                                 </div>
                                                 <div class="col">
-                                                    <strong><u>Description:</u></strong> {{activeShoe.description}}                                                </div>
+                                                    <strong><u>Description:</u></strong> {{activeShoe.description}}                                                
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

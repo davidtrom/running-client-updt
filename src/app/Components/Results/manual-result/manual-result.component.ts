@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RaceResult } from 'src/app/Models/race-result.model';
 import { RaceShoe } from 'src/app/Models/race-shoe.model';
+import { ResultService } from 'src/app/Services/result.service';
 import { ShoeService } from 'src/app/Services/shoe.service';
 
 @Component({
@@ -18,13 +19,14 @@ export class ManualResultComponent implements OnInit {
   activeShoes: RaceShoe[];
   addRaceShoe: boolean;
   noShoes: boolean;
+  raceShoeId: number;
   //userId to test mock data
   userId: number;
 
   //Set heartRate, elevationGain and cadence to null unless they are set in the form?
 
 
-  constructor(private fb: FormBuilder, private router: Router, private shoeService: ShoeService) { }
+  constructor(private fb: FormBuilder, private router: Router, private shoeService: ShoeService, private resultService: ResultService) { }
   addtlMetrics: boolean = false;
   isDisabled: boolean = true;
 
@@ -75,6 +77,8 @@ export class ManualResultComponent implements OnInit {
 
   setRaceShoe(e){
     console.log('Change Status: ', e.target.value);
+    // GET LIST OF RACE SHOES AND DISPLAY THEM HERE IN A DROP DOWN
+    this.raceShoeId = 99;
     // if(e.target.value == "Male"){
     //   this.manualResultForm.patchValue({gender: Gender.Male});
     //   console.log("Gender is Male");
@@ -122,6 +126,8 @@ export class ManualResultComponent implements OnInit {
   onSubmit(){
     if(this.manualResultForm.valid){
       let manualResult: RaceResult= new RaceResult(
+        this.userId,
+        52,
         this.manualResultForm.controls.raceName.value,
         this.manualResultForm.controls.distance.value,
         this.manualResultForm.controls.raceDate.value,
@@ -139,7 +145,8 @@ export class ManualResultComponent implements OnInit {
         this.manualResultForm.controls.heartRate.value,
         this.manualResultForm.controls.elevationGain.value,
         this.manualResultForm.controls.cadence.value
-      )
+      );
+      //this.resu
     }
   }
 

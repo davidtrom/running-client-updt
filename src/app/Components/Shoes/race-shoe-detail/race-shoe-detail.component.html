@@ -30,7 +30,8 @@
                   </div> -->
                   <div class="col-md-8">
                     <div class="card-body" >
-                      <h4 class="card-title">{{shoe.brand}} {{shoe.model}}</h4>
+                      <h4 class="card-title">{{shoe.nickname}}</h4>
+                      <p>{{shoe.brand}} {{shoe.model}}</p>
                       <p class="card-text"><strong><u>Begin Use Date:</u></strong> {{shoe.beginUse | date:'shortDate'}}</p>
                       <p class="card-text"><strong><u>Current Mileage:</u></strong> {{shoe.numOfMiles | number}}</p>
                       <p><button class="btn btn-warning">Edit</button></p>
