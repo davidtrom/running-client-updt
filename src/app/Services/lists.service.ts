@@ -12,6 +12,7 @@ export class ListsService {
 
   nameOfList: string;
   listItemToEdit$: BehaviorSubject<string>;
+  listNameToEdit$: BehaviorSubject<string>;
 
   baseUrl = environment.baseUrl + "/supply-lists";
 
@@ -30,6 +31,15 @@ export class ListsService {
    setListItemToEdit(newItem: string){
     this.listItemToEdit$.next(newItem);
    }
+   
+   getListNameToEdit(): Observable<string>{
+      return this.listNameToEdit$.asObservable();
+   }
+
+   setListNameToEdit(newName: string){
+     this.listNameToEdit$.next(newName);
+   }
+
 
   getUserLists(id:number) : Observable <SupplyList[]> {
     return this.http.get<SupplyList[]>(this.baseUrl+`/get-lists/${id}`, this.httpOptions)

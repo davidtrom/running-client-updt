@@ -1,5 +1,5 @@
 <div class="flex-container">
-    <div class = "container">
+    <div class="container">
         <div class="title">
             <h2>Enter A New Result</h2>
         </div>
@@ -11,124 +11,157 @@
             <!-- an observable for that or two diff forms -->
             <form [formGroup]="manualResultForm" (ngSubmit)="onSubmit()">
                 <div class="panel panel-default">
-                    
+
                     <div class="panel-body">
                         <div class="form-row">
-                            
-                            
+
+
                             <label for="raceName">Race Name:*</label>
-                            <input id="raceName" formControlName="raceName" type="text" class="form-control" placeholder="Race Name" [ngClass]="{'is-invalid': form.raceName.errors && (form.raceName.touched || form.raceName.dirty)}">
-                            <div *ngIf="form.raceName.errors && (form.raceName.touched || form.raceName.dirty)" class="invalid-feedback">
-                                <div *ngIf='form.raceName.errors.required'>*Race Name is Required</div>    
+                            <input id="raceName" formControlName="raceName" type="text" class="form-control"
+                                placeholder="Race Name"
+                                [ngClass]="{'is-invalid': form.raceName.errors && (form.raceName.touched || form.raceName.dirty)}">
+                            <div *ngIf="form.raceName.errors && (form.raceName.touched || form.raceName.dirty)"
+                                class="invalid-feedback">
+                                <div *ngIf='form.raceName.errors.required'>*Race Name is Required</div>
                             </div>
-                        
-                            
+
+
                             <label for="distance">Distance:*</label>
-                            <input id="distance" formControlName="distance" type="text" class="form-control" placeholder="Race Distance" [ngClass]="{'is-invalid': form.distance.errors && (form.distance.touched || form.distance.dirty)}">
-                            <div *ngIf="form.distance.errors && (form.distance.touched || form.distance.dirty)" class="invalid-feedback">
+                            <input id="distance" formControlName="distance" type="text" class="form-control"
+                                placeholder="Race Distance"
+                                [ngClass]="{'is-invalid': form.distance.errors && (form.distance.touched || form.distance.dirty)}">
+                            <div *ngIf="form.distance.errors && (form.distance.touched || form.distance.dirty)"
+                                class="invalid-feedback">
                                 <div *ngIf='form.distance.errors.required'>Distance is Required</div>
                             </div>
-                        
 
-                            
+
+
                             <label for="raceDate">Race Date:*</label>
-                            <input type="date" formControlName="raceDate" class="form-control" id="raceDate" placeholder="yyyy-mm-dd" [ngClass]="{'is-invalid': form.raceDate.errors && (form.raceDate.touched || form.raceDate.dirty)}">
-                            <div *ngIf="form.raceDate.errors && (form.raceDate.touched || form.raceDate.dirty)" class="invalid-feedback">
+                            <input type="date" formControlName="raceDate" class="form-control" id="raceDate"
+                                placeholder="yyyy-mm-dd"
+                                [ngClass]="{'is-invalid': form.raceDate.errors && (form.raceDate.touched || form.raceDate.dirty)}">
+                            <div *ngIf="form.raceDate.errors && (form.raceDate.touched || form.raceDate.dirty)"
+                                class="invalid-feedback">
                                 <div *ngIf='form.raceDate.errors.required'>*Race Date is Required</div>
                             </div>
 
 
                             <label for="weather">Weather:</label>
-                            <input id="weather" formControlName="weather" type="text" class="form-control" placeholder="Race weather" [ngClass]="{'is-invalid': form.weather.errors && (form.weather.touched || form.weather.dirty)}">
-                            <div *ngIf="form.weather.errors && (form.weather.touched || form.weather.dirty)" class="invalid-feedback">
+                            <input id="weather" formControlName="weather" type="text" class="form-control"
+                                placeholder="Race weather"
+                                [ngClass]="{'is-invalid': form.weather.errors && (form.weather.touched || form.weather.dirty)}">
+                            <div *ngIf="form.weather.errors && (form.weather.touched || form.weather.dirty)"
+                                class="invalid-feedback">
                                 <div *ngIf='form.weather.errors.required'>*Last Name is Required</div>
                             </div>
-                            
-                                                        
+
+
                             <label for="description">Race Description:</label>
-                            <textarea class="form-control" formControlName="description" id="description" rows="3" placeholder="Race Description"></textarea>
+                            <textarea class="form-control" formControlName="description" id="description" rows="3"
+                                placeholder="Race Description"></textarea>
                             <!-- <input id="description" formControlName="description" type="text" class="form-control" placeholder="Race Description" [ngClass]="{'is-invalid': form.description.errors && (form.description.touched || form.description.dirty)}"> -->
                             <!-- <div *ngIf="form.description.errors && (form.description.touched || form.description.dirty)" class="invalid-feedback">
                                 <div *ngIf='form.description.errors.required'>*A Race Description is Required</div>
                             </div> -->
 
-                            <label for="location">Race Location:*</label>
-                            <input id="location" formControlName="location" type="text" class="form-control" placeholder="Race Location" [ngClass]="{'is-invalid': form.location.errors && (form.location.touched || form.location.dirty)}">
-                            <div *ngIf="form.location.errors && (form.location.touched || form.location.dirty)" class="invalid-feedback">
+                            <label for="location">Race Location: (City, State)*</label>
+                            <input id="location" formControlName="location" type="text" class="form-control"
+                                placeholder="City, State"
+                                [ngClass]="{'is-invalid': form.location.errors && (form.location.touched || form.location.dirty)}">
+                            <div *ngIf="form.location.errors && (form.location.touched || form.location.dirty)"
+                                class="invalid-feedback">
                                 <div *ngIf='form.location.errors.required'>*A Race Location is Required</div>
                             </div>
-    
+
                             <label for="timingCo">Timing Company:</label>
-                            <input id="timingCo" formControlName="timingCo" type="text" class="form-control" placeholder="Timing Company" [ngClass]="{'is-invalid': form.timingCo.errors && (form.timingCo.touched || form.timingCo.dirty)}">
+                            <input id="timingCo" formControlName="timingCo" type="text" class="form-control"
+                                placeholder="Timing Company"
+                                [ngClass]="{'is-invalid': form.timingCo.errors && (form.timingCo.touched || form.timingCo.dirty)}">
                             <!-- <div *ngIf="form.timingCo.errors && (form.timingCo.touched || form.timingCo.dirty)" class="invalid-feedback">
                                 <div *ngIf='form.timingCo.errors.required'>*A Timing Company is Required</div>
                             </div> -->
 
                             <label for="overallPlace">Overall Place:*</label>
-                            <input id="overallPlace" formControlName="overallPlace" type="number" class="form-control" placeholder="Overall Place" [ngClass]="{'is-invalid': form.overallPlace.errors && (form.overallPlace.touched || form.overallPlace.dirty)}">
-                            <div *ngIf="form.overallPlace.errors && (form.overallPlace.touched || form.overallPlace.dirty)" class="invalid-feedback">
+                            <input id="overallPlace" formControlName="overallPlace" type="number" class="form-control"
+                                placeholder="Overall Place"
+                                [ngClass]="{'is-invalid': form.overallPlace.errors && (form.overallPlace.touched || form.overallPlace.dirty)}">
+                            <div *ngIf="form.overallPlace.errors && (form.overallPlace.touched || form.overallPlace.dirty)"
+                                class="invalid-feedback">
                                 <div *ngIf='form.overallPlace.errors.required'>*Overall Place is Required</div>
                             </div>
-    
+
                             <label for="totalParticipants">Total Participants:*</label>
-                            <input id="totalParticipants" formControlName="totalParticipants" type="number" class="form-control" placeholder="Total Participants" [ngClass]="{'is-invalid': form.totalParticipants.errors && (form.totalParticipants.touched || form.totalParticipants.dirty)}">
-                            <div *ngIf="form.totalParticipants.errors && (form.totalParticipants.touched || form.totalParticipants.dirty)" class="invalid-feedback">
-                                <div *ngIf='form.totalParticipants.errors.required'>*Total Participants are Required</div>
+                            <input id="totalParticipants" formControlName="totalParticipants" type="number"
+                                class="form-control" placeholder="Total Participants"
+                                [ngClass]="{'is-invalid': form.totalParticipants.errors && (form.totalParticipants.touched || form.totalParticipants.dirty)}">
+                            <div *ngIf="form.totalParticipants.errors && (form.totalParticipants.touched || form.totalParticipants.dirty)"
+                                class="invalid-feedback">
+                                <div *ngIf='form.totalParticipants.errors.required'>*Total Participants are Required
+                                </div>
                             </div>
 
                             <label for="age">Age on Race Day:*</label>
-                            <input id="age" formControlName="age" type="number" class="form-control" placeholder="Age on Race Day" [ngClass]="{'is-invalid': form.age.errors && (form.age.touched || form.age.dirty)}">
-                            <div *ngIf="form.age.errors && (form.age.touched || form.age.dirty)" class="invalid-feedback">
+                            <input id="age" formControlName="age" type="number" class="form-control"
+                                placeholder="Age on Race Day"
+                                [ngClass]="{'is-invalid': form.age.errors && (form.age.touched || form.age.dirty)}">
+                            <div *ngIf="form.age.errors && (form.age.touched || form.age.dirty)"
+                                class="invalid-feedback">
                                 <div *ngIf='form.age.errors.required'>*Race Day Age is Required</div>
                             </div>
 
                             <label for="ageGroupPlace">Age Group Place:*</label>
-                            <input id="ageGroupPlace" formControlName="ageGroupPlace" type="number" class="form-control" placeholder="Age Group Place" [ngClass]="{'is-invalid': form.ageGroupPlace.errors && (form.ageGroupPlace.touched || form.ageGroupPlace.dirty)}">
-                            <div *ngIf="form.ageGroupPlace.errors && (form.ageGroupPlace.touched || form.ageGroupPlace.dirty)" class="invalid-feedback">
+                            <input id="ageGroupPlace" formControlName="ageGroupPlace" type="number" class="form-control"
+                                placeholder="Age Group Place"
+                                [ngClass]="{'is-invalid': form.ageGroupPlace.errors && (form.ageGroupPlace.touched || form.ageGroupPlace.dirty)}">
+                            <div *ngIf="form.ageGroupPlace.errors && (form.ageGroupPlace.touched || form.ageGroupPlace.dirty)"
+                                class="invalid-feedback">
                                 <div *ngIf='form.ageGroupPlace.errors.required'>Age Group Place is Required</div>
                             </div>
 
                             <label for="ageGroupParticipants">Number of Age Group Participants:</label>
-                            <input id="ageGroupParticipants" formControlName="ageGroupParticipants" type="number" class="form-control" placeholder="Number of Age Group Participants" [ngClass]="{'is-invalid': form.ageGroupParticipants.errors && (form.ageGroupParticipants.touched || form.ageGroupParticipants.dirty)}">
+                            <input id="ageGroupParticipants" formControlName="ageGroupParticipants" type="number"
+                                class="form-control" placeholder="Number of Age Group Participants"
+                                [ngClass]="{'is-invalid': form.ageGroupParticipants.errors && (form.ageGroupParticipants.touched || form.ageGroupParticipants.dirty)}">
                             <!-- <div *ngIf="form.ageGroupParticipants.errors && (form.ageGroupParticipants.touched || form.ageGroupParticipants.dirty)" class="invalid-feedback">
                                 <div *ngIf='form.ageGroupParticipants.errors.required'>The Number of Age Group Participants is Required</div>
                             </div> -->
 
                             <label for="timeElapsed">TimeElapsed:*</label>
-                            <input id="timeElapsed" formControlName="timeElapsed" type="text" class="form-control" placeholder="Time Elapsed" [ngClass]="{'is-invalid': form.timeElapsed.errors && (form.timeElapsed.touched || form.timeElapsed.dirty)}">
-                            <div *ngIf="form.timeElapsed.errors && (form.timeElapsed.touched || form.timeElapsed.dirty)" class="invalid-feedback">
+                            <input id="timeElapsed" formControlName="timeElapsed" type="text" class="form-control"
+                                placeholder="Time Elapsed"
+                                [ngClass]="{'is-invalid': form.timeElapsed.errors && (form.timeElapsed.touched || form.timeElapsed.dirty)}">
+                            <div *ngIf="form.timeElapsed.errors && (form.timeElapsed.touched || form.timeElapsed.dirty)"
+                                class="invalid-feedback">
                                 <div *ngIf='form.timeElapsed.errors.required'>timeElapsed is Required</div>
                             </div>
 
                             <label for="pace">Pace Per Mile:</label>
-                            <input id="pace" formControlName="pace" type="text" class="form-control" placeholder="Pace Per Mile" [ngClass]="{'is-invalid': form.pace.errors && (form.pace.touched || form.pace.dirty)}">
+                            <input id="pace" formControlName="pace" type="text" class="form-control"
+                                placeholder="Pace Per Mile"
+                                [ngClass]="{'is-invalid': form.pace.errors && (form.pace.touched || form.pace.dirty)}">
                             <!-- <div *ngIf="form.pace.errors && (form.pace.touched || form.pace.dirty)" class="invalid-feedback">
                                 <div *ngIf='form.pace.errors.required'>*Race Day pace is Required</div>
                             </div> -->
                             <!-- pace in miles or KM options? -->
-                            
-                            <br>
+
+                            <!-- <br> -->
                             <div id="addShoeChoice">
-
+                                <label>Associate this race with a shoe?</label>
+                                <br>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                    <label class="form-check-label" for="inlineRadio1">1</label>
-                                  </div>
-                                  <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                    <label class="form-check-label" for="inlineRadio2">2</label>
-                                  </div>
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                        id="shoeYes" value="true" (change)="changeStatus($event)">
+                                    <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                        id="shoeNo" value="false" checked (change)="changeStatus($event)">
+                                    <label class="form-check-label" for="inlineRadio2">No</label>
+                                </div>
 
-                                <!-- <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" (click) = "showRaceShoes()">
-                                    <label class="form-check-label" for="flexSwitchCheckChecked">Add A Race Shoe</label>
-                                    <br>
-                                    <label class="form-check-label" for="flexSwitchCheckChecked">(Heart Rate, Elevation Gain, Cadence)</label> -->
-                                <!-- </div> -->
-                            </div> 
+                            </div>
 
-
-                            <br>
                             <div *ngIf="addRaceShoe">
                                 <!-- <label for="heartRate">Heart Rate:</label>
                                 <input id="heartRate" formControlName="heartRate" type="text" class="form-control" placeholder="Heart Rate" [ngClass]="{'is-invalid': form.heartRate.errors && (form.heartRate.touched || form.heartRate.dirty)}"> -->
@@ -140,72 +173,82 @@
 
                             <div id="addtlMetricsChoice">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" (click) = "showAddtlMetrics()">
-                                    <label class="form-check-label" for="flexSwitchCheckChecked">Add additional Fitness Metrics</label>
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
+                                        (click)="showAddtlMetrics()">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">Add additional Fitness
+                                        Metrics</label>
                                     <br>
-                                    <label class="form-check-label" for="flexSwitchCheckChecked">(Heart Rate, Elevation Gain, Cadence)</label>
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">(Heart Rate, Elevation
+                                        Gain, Cadence)</label>
                                 </div>
-                            </div>  
-                            
+                            </div>
+
 
                             <!-- <fieldset [disabled] = "isDisabled"> -->
                             <!-- <button type="button" class="btn btn-primary" (click) = "showAddtlMetrics()">Primary</button> -->
                             <div *ngIf="addtlMetrics">
                                 <label for="heartRate">Heart Rate:</label>
-                                <input id="heartRate" formControlName="heartRate" type="text" class="form-control" placeholder="Heart Rate" [ngClass]="{'is-invalid': form.heartRate.errors && (form.heartRate.touched || form.heartRate.dirty)}">
+                                <input id="heartRate" formControlName="heartRate" type="text" class="form-control"
+                                    placeholder="Heart Rate"
+                                    [ngClass]="{'is-invalid': form.heartRate.errors && (form.heartRate.touched || form.heartRate.dirty)}">
                                 <!-- <div *ngIf="form.heartRate.errors && (form.heartRate.touched || form.heartRate.dirty)" class="invalid-feedback">
                                     <div *ngIf='form.heartRate.errors.required'>heartRate is Required</div>
                                 </div> -->
-                            
 
-                            
+
+
                                 <label for="elevationGain">Elevation Gain:</label>
-                                <input id="elevationGain" formControlName="elevationGain" type="text" class="form-control" placeholder="Elevation Gain" [ngClass]="{'is-invalid': form.elevationGain.errors && (form.elevationGain.touched || form.elevationGain.dirty)}">
+                                <input id="elevationGain" formControlName="elevationGain" type="text"
+                                    class="form-control" placeholder="Elevation Gain"
+                                    [ngClass]="{'is-invalid': form.elevationGain.errors && (form.elevationGain.touched || form.elevationGain.dirty)}">
                                 <!-- <div *ngIf="form.elevationGain.errors && (form.elevationGain.touched || form.elevationGain.dirty)" class="invalid-feedback">
                                     <div *ngIf='form.elevationGain.errors.required'>elevationGain is Required</div>
                                 </div> -->
-                            
 
-                                
-                            
+
+
+
                                 <label for="cadence">Cadence:</label>
-                                <input id="cadence" formControlName="cadence" type="text" class="form-control" placeholder="Cadence" [ngClass]="{'is-invalid': form.cadence.errors && (form.cadence.touched || form.cadence.dirty)}">
+                                <input id="cadence" formControlName="cadence" type="text" class="form-control"
+                                    placeholder="Cadence"
+                                    [ngClass]="{'is-invalid': form.cadence.errors && (form.cadence.touched || form.cadence.dirty)}">
                                 <!-- <div *ngIf="form.cadence.errors && (form.cadence.touched || form.cadence.dirty)" class="invalid-feedback">
                                     <div *ngIf='form.cadence.errors.required'>cadence is Required</div>
                                 </div> -->
                             </div>
                             <!-- </fieldset> -->
-                           
 
-                            
+
+
                             <div *ngIf="formNotValid" class="formNotValid">
                                 *Please enter all required fields before submitting
-                            </div>  
+                            </div>
                         </div>
-    
+
                         <div id="btnGroup">
                             <button type="submit" class="btn btn-success">Add Result</button>
-                            <span class="cancelBtn"><button type="button" class="btn btn-warning" (click)="homePageRoute()">Cancel</button></span>
+                            <span class="cancelBtn"><button type="button" class="btn btn-warning"
+                                    (click)="homePageRoute()">Cancel</button></span>
                             <!-- <a [routerLink]="['/edit-profile', user$.id]" type="button" class="btn btn-info ">Edit Profile</a> -->
                         </div>
-    
+
                     </div>
-    
-                    
-    
+
+
+
                     <!-- <div class="form-group">
                         <div class="row">
                             <div class="col-md-3">
                                 <button type="submit" class="btn btn-success">Register</button>
                             </div> -->
-                            <!-- <span class="cancelBtn"> -->
-                            <!-- <div class="col-md-3">
+                    <!-- <span class="cancelBtn"> -->
+                    <!-- <div class="col-md-3">
                                 <button type="button" class="btn btn-warning" (click)="homePageRoute()">Cancel</button>   
                             </div> -->
-                            <!-- </span>  -->
-                        <!-- </div>  
+                    <!-- </span>  -->
+                    <!-- </div>  
                     </div> -->
-                    
+
                     <!-- <div class="form-group">                 
                         <div class="form-row grid-container">
                             <button type="submit" class="btn btn-success">Register</button>
@@ -213,7 +256,7 @@
                         </div>
                     </div> -->
                 </div>
-              </form> 
+            </form>
         </div>
 
     </div>

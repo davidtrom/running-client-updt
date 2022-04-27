@@ -16,7 +16,8 @@ export class ManualResultComponent implements OnInit {
   manualResultForm: FormGroup;
   raceShoes: RaceShoe[];
   allShoes: RaceShoe[];
-  activeShoes: RaceShoe[];
+  activeShoes: RaceShoe[] = [];
+  retiredShoes: RaceShoe[] = [];
   addRaceShoe: boolean;
   noShoes: boolean;
   raceShoeId: number;
@@ -46,13 +47,13 @@ export class ManualResultComponent implements OnInit {
       ageGroupParticipants: [''],
       timeElapsed: ['', Validators.required],
       pace: ['',Validators.required],
-      heartRate: [''],
-      elevationGain: [''],
-      cadence: ['']
+      heartRate: [null],
+      elevationGain: [null],
+      cadence: [null]
     })
+
+    //Used for testing purposes
     this.userId = 1;
-    this.getUserShoes();
-    
   }
 
   get form() { return this.manualResultForm.controls; }
@@ -60,20 +61,30 @@ export class ManualResultComponent implements OnInit {
   getUserShoes(){
     this.shoeService.getUserShoes(this.userId).subscribe(data => {
       this.allShoes = data;
+      for(var i=0; i<this.allShoes.length; i++){
+        if(this.allShoes[i].isActive){
+          this.activeShoes.push(this.allShoes[i]);
+          console.log("active Shoes: ", this.activeShoes);
+        }
+        else {
+          this.retiredShoes.push(this.allShoes[i]);
+          console.log("retired Shoes: ", this.retiredShoes);
+        }
+      }
       console.log("allShoes", data);
       if(this.allShoes.length == 0){
         this.noShoes = true;
       }
       else{
-        this.getActiveShoes();
+        //this.getActiveShoes();
       }
     })
     console.log("All Shoes: ", this.activeShoes);
   }
 
-  getActiveShoes(){
-      this.shoeService.getActiveShoes(this.userId).subscribe(data => this.activeShoes = data);
-  }
+  // getActiveShoes(){
+  //     this.shoeService.getActiveShoes(this.userId).subscribe(data => this.activeShoes = data);
+  // }
 
   setRaceShoe(e){
     console.log('Change Status: ', e.target.value);
@@ -112,15 +123,21 @@ export class ManualResultComponent implements OnInit {
 
   showAddtlMetrics(){
     this.addtlMetrics = ! this.addtlMetrics;
-    // this.isDisabled = ! this.isDisabled;
-    console.log("addtlMetrics: " + this.addtlMetrics)
-    // if(this.isDisabled === true){
-    //   this.isDisabled = false;
-    // }
-    // else{
-    //   this.isDisabled = true;
-    // }
-    // return this.isDisabled;
+  }
+
+  changeStatus(e){
+    console.log('Change Status: ', e.target.value);
+    if(e.target.value == "true"){
+      this.addRaceShoe = true;
+      this.getUserShoes();
+      // this.createUserForm.patchValue({profileStatus: ProfileStatus.Public});
+      console.log("User desires to add race shoe");
+    }
+    else{
+      this.addRaceShoe = false;
+      // this.createUserForm.patchValue({profileStatus: ProfileStatus.Private});
+      console.log("Do not add a race shoe");
+    }
   }
 
   onSubmit(){
@@ -146,7 +163,11 @@ export class ManualResultComponent implements OnInit {
         this.manualResultForm.controls.elevationGain.value,
         this.manualResultForm.controls.cadence.value
       );
-      //this.resu
+      this.resultService.createNewResult(manualResult).subscribe(data => console.log(data));
+    }
+    else{
+      this.manualResultForm.markAllAsTouched();
+      this.formNotValid = true;
     }
   }
 
