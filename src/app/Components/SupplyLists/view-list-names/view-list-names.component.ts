@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ListsService } from 'src/app/Services/lists.service';
 
 @Component({
   selector: 'app-view-list-names',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewListNamesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private listService: ListsService) { }
+  listName: string;
 
   ngOnInit(): void {
+    this.listService.getListNameToEdit().subscribe(data => this.listName)
   }
 
 }

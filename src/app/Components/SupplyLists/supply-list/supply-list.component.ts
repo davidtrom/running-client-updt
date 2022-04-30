@@ -20,8 +20,15 @@ export class SupplyListComponent implements OnInit {
   //user: User;
 
   constructor(private listService: ListsService, private router:Router) { }
+  isMobileResolution: boolean;
 
   ngOnInit(): void {
+    if (window.innerWidth < 768) {
+      this.isMobileResolution = true;
+    } else {
+      this.isMobileResolution = false;
+    }
+
     this.userId = 1;
 
     this.listService.getUserLists(this.userId).subscribe(data => {

@@ -171,7 +171,8 @@ getRouteParams(){
     })
   }
 
-  renameList(listId: number){
+  renameList(listId: number, listName: string){
+    this.listService.setListNameToEdit(listName);
     this.router.navigate(['view-lists']);
     //set List names in list service and get list name in rename component
   }
