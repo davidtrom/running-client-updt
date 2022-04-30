@@ -8,7 +8,7 @@
         </button>  -->
         
 
-        <div *ngIf="isMobileResolution else nonMobile">
+        <div *ngIf="isMobileResolution else nonMobileSidebar">
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
                 <div class="sidebar">
                     <div *ngIf="noSupplyLists else displayLists" class="sidebarNoLists" >
@@ -55,7 +55,7 @@
             </div> 
         </div>
         
-        <ng-template #nonMobile>
+        <ng-template #nonMobileSidebar>
             <div class="sidebar">
                 <div *ngIf="noSupplyLists else displayLists" class="sidebarNoLists" >
                     <div class="offcanvas-body">
@@ -97,14 +97,17 @@
                 </ng-template>
             </div>
         </ng-template>
+
+        <i class="bi bi-justify"></i>
+        
          
     
 
     <div *ngIf="isMobileResolution else nonMobile">
-        <div class="row">
-            <div class="col-xs-auto">
+        <!-- <div class="row"> -->
+            <div class="col-sm-auto">
                 <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                    >
+                    ->
                 </button>
             </div>
 
@@ -127,7 +130,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        <!-- </div> -->
     </div>
                     
     <ng-template #nonMobile>
