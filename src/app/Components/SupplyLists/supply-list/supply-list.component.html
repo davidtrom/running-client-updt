@@ -1,26 +1,17 @@
 <div class="d-flex" id="wrapper">
-    
-    <!-- The sidebar -->
-    <!-- <div class="row"> -->
-    <!-- <div class="navbar navbar-inverse navbar-expand-sm navbar-dark bg-dark" id="collapseWidthExample"> -->
-        <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>  -->
-        
 
-        <div *ngIf="isMobileResolution else nonMobileSidebar">
+    <!-- The sidebar -->
+    <div *ngIf="isMobileResolution else nonMobileSidebar">
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
                 <div class="sidebar">
-                    <div *ngIf="noSupplyLists else displayLists" class="sidebarNoLists" >
+                    <div *ngIf="noSupplyLists else displayLists" class="sidebarNoLists">
+                        <div class="offcanvas-header">
+                            <h2 class="offcanvas-title" id="offcanvasExampleLabel">User's Lists</h2> <!-- {{user.firstName}}'s List's -->
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <hr>
                         <div class="offcanvas-body">
                             <table class="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <!-- <th>{{user.firstName}}'s Lists</th> -->
-                                        <th class="tableHeader">User's Lists</th>
-                                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                                    </tr>
-                                </thead>
                                 <tbody>
                                     <tr>
                                         <td><a [routerLink]="['/new-list']">Add New List</a></td>
@@ -31,15 +22,13 @@
                     </div>
         
                     <ng-template #displayLists>
+                        <div class="offcanvas-header">
+                            <h2 class="offcanvas-title" id="offcanvasExampleLabel">User's Lists</h2> <!-- {{user.firstName}}'s List's -->
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <hr>
                         <div class="offcanvas-body">
                             <table class="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <!-- <th>{{user.firstName}}'s Lists</th> -->
-                                        <th class="tableHeader">User's Lists</th>
-                                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                                    </tr>
-                                </thead>
                                 <tbody>
                                     <tr *ngFor="let list of userLists">
                                         <td><a [routerLink]="['/view-list', list.id]">{{list.listDescription}}</a></td>
@@ -58,32 +47,27 @@
         <ng-template #nonMobileSidebar>
             <div class="sidebar">
                 <div *ngIf="noSupplyLists else displayLists" class="sidebarNoLists" >
-                    <div class="offcanvas-body">
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <!-- <th>{{user.firstName}}'s Lists</th> -->
-                                    <th class="tableHeader">User's Lists</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><a [routerLink]="['/new-list']">Add New List</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="tableHeader">
+                        User's Lists
+                        <!-- {{user.firstName}}'s List's -->
                     </div>
+                    <hr id="titleBreak">
+                    <table class="table table-striped table-bordered">
+                        <tbody>
+                            <tr>
+                                <td><a [routerLink]="['/new-list']">Add New List</a></td>
+                            </tr>
+                        </tbody>
+                    </table>  
                 </div>
 
                 <ng-template #displayLists>
-                    <div class="offcanvas-body">
+                    <div class="tableHeader" id="tableTitle">
+                        User's Lists
+                        <!-- {{user.firstName}}'s List's -->
+                    </div>
+                    <hr id="titleBreak">
                         <table class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <!-- <th>{{user.firstName}}'s Lists</th> -->
-                                    <th class="tableHeader">User's Lists</th>
-                                </tr>
-                            </thead>
                             <tbody>
                                 <tr *ngFor="let list of userLists">
                                     <td><a [routerLink]="['/view-list', list.id]">{{list.listDescription}}</a></td>
@@ -93,44 +77,32 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
                 </ng-template>
             </div>
         </ng-template>
 
-        <i class="bi bi-justify"></i>
-        
-         
-    
-
+    <!-- Non-Sidebar -->
     <div *ngIf="isMobileResolution else nonMobile">
-        <!-- <div class="row"> -->
-            <div class="col-sm-auto">
-                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                    ->
-                </button>
+        <button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+            <i class="bi bi-justify"></i>
+        </button>
+
+        <div class="content container">
+            <div class="title">
+                <h2>Supply Lists</h2>
+                <p>When race day comes, you want to make sure you're prepared with everything you need.  Make your list and check it twice!  
+                    <br>Add supplies to your list to make sure you have all the things you'll need for a successful race!</p>
             </div>
 
-            <div class="col-auto">
-                <div class="content container">
-                    
-                    <div class="title">
-                        <h2>Supply Lists</h2>
-                        <p>When race day comes, you want to make sure you're prepared with everything you need.  Make your list and check it twice!  
-                            <br>Add supplies to your list to make sure you have all the things you'll need for a successful race!</p>
-                    </div>
-
-                    <div class="createList">
-                        <div id="viewListLabel">View or edit a list by clicking on it in the side panel.</div>
-                        <br>
-                        <div id="newListLabel">Click Below to Create a New List</div>
-                        <div id="newListBtn">
-                            <button type="button" class="btn btn-success" (click)="newListRoute()">New List</button>
-                        </div>
-                    </div>
+            <div class="createList">
+                <div id="viewListLabel">View or edit a list by clicking on it in the side panel.</div>
+                <br>
+                <div id="newListLabel">Click Below to Create a New List</div>
+                <div id="newListBtn">
+                    <button type="button" class="btn btn-success" (click)="newListRoute()">New List</button>
                 </div>
             </div>
-        <!-- </div> -->
+        </div>
     </div>
                     
     <ng-template #nonMobile>

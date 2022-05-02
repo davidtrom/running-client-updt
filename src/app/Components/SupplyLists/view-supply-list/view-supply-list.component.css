@@ -11,7 +11,7 @@
   
   /* Sidebar links */
   /* .sidebar a { */
-  .sidebar td {
+  .sidebar a {
     display: block;
     color: black;
     padding: 16px;
@@ -20,14 +20,14 @@
   
   /* Active/current link */
   /* .sidebar a.active { */
-  .sidebar td.active {
+  .sidebar a.active {
     background-color: #04AA6D;
     color: white;
   }
   
   /* Links on mouse-over */
   /* .sidebar a:hover:not(.active) { */
-  .sidebar td:hover:not(.active) {
+  .sidebar a:hover:not(.active) {
     background-color: #555;
     color: white;
   }
@@ -46,7 +46,7 @@
       height: auto;
       position: relative;
     }
-    .sidebar td {float: left;}
+    .sidebar a {float: left;}
     div.content {margin-left: 0;}
   }
   
@@ -61,9 +61,23 @@
 
 /* Non Sidebar elements */
 
-/* .title{
-    padding-top: 2%;
-} */
+.tableHeader{
+  font-size: x-large;
+  font-weight: bold;
+}
+
+#tableTitle{
+  padding-top: 2.5%;
+  font-size: x-large;
+  font-weight: bold;
+  padding-left: 5%;
+}
+
+#titleBreak{
+  margin-left: auto;
+  margin-right: auto;
+  height: 2px;
+}
 
 .headerWrapper{
   padding-top: 2%;
@@ -77,6 +91,10 @@
 
 .title{
   display: inline-block;
+}
+
+.bi-justify{
+  font-size: 1.5rem;
 }
 
 /* .editBtn{
@@ -108,14 +126,6 @@
   padding-left: 1.5%;
 }
 
-.tableHeader{
-  font-size: larger;
-}
-
-/* .leftColTitles{
-  padding-top: 2%;
-} */
-
 .itemsDisplay{
   padding-bottom: 4%;
 }
@@ -129,10 +139,7 @@
 }
 
 
-
-
-
-@media screen and (min-width: 601px) {
+/* @media screen and (min-width: 601px) { */
   .container {
      width: 65%;
   }
@@ -144,16 +151,12 @@
   }
   .addItemBtn{
     padding-top: 0.5%;
-  }
-  
-  
-}
+  }  
+/* } */
+
 @media screen and (max-width: 600px) {
   .container {
      width: 100%;
-  }
-  #dropdownBtn{
-    padding-left: 0%;
   }
   #renameListBtn{
     padding-left: 0%;

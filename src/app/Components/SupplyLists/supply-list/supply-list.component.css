@@ -61,12 +61,26 @@ div.content {
 /* NON SIDEBAR ITEMS: */
 
 .tableHeader{
-  font-size: larger;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+#tableTitle{
+  padding-top: 2.5%;
+  font-size: x-large;
+  font-weight: bold;
+  padding-left: 5%;
+}
+
+#titleBreak{
+  margin-left: auto;
+  margin-right: auto;
+  height: 2px;
 }
 
 .title{
   padding-top: 2%;
-  font-size: large;
+  font-size: larger;
 }
 
 #newListBtn{
@@ -87,3 +101,25 @@ div.content {
 #sidebarToggleBtn{
   padding-left: 15%;
 }
+
+.bi-justify{
+  font-size: 1.5rem;
+}
+
+/* .hr{
+  max-width: 10%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.col-xs-auto{
+  display: block;
+  flex: 0 0 10%;
+  max-width: 10%;
+}
+
+.col-auto{
+  display: block;
+  flex: 0 0 90%;
+  max-width: 90%;
+} */

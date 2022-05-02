@@ -25,6 +25,7 @@ export class ViewSupplyListComponent implements OnInit {
   itemExists: boolean = false;
   displayItems: string[];
   inEdit: boolean = false;
+  isMobileResolution: boolean;
   //itemToEdit: string = "";
   //favicons
   // faEraser = faEraser;
@@ -57,6 +58,12 @@ export class ViewSupplyListComponent implements OnInit {
     //   console.log("List Items: ", this.listToDisplay.items);
     //   console.log("First item: ", this.listToDisplay.items[0]);
     // });
+
+    if (window.innerWidth < 768) {
+      this.isMobileResolution = true;
+    } else {
+      this.isMobileResolution = false;
+    }
 
     this.getRouteParams();
 
