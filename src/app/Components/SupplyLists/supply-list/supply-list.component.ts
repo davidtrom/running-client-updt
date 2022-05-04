@@ -17,6 +17,7 @@ export class SupplyListComponent implements OnInit {
   supplyList: SupplyList;
   noSupplyLists: boolean;
   userId: number;
+  collapsed: boolean = true;
   //user: User;
 
   constructor(private listService: ListsService, private router:Router) { }
@@ -35,8 +36,6 @@ export class SupplyListComponent implements OnInit {
       this.userLists = data;
       this.checkForLists(this.userLists);
     });
-
-    
   }
 
   checkForLists(supplyLists: SupplyList[]) {
@@ -46,6 +45,17 @@ export class SupplyListComponent implements OnInit {
     else {
       this.noSupplyLists = true;
     }
+  }
+
+  collapse(): boolean{
+    // this.collapsed = ! this.collapsed;
+    if(this.collapsed === true){
+      this.collapsed = false;
+    }
+    else{
+      this.collapsed = true;
+    }
+    return this.collapsed;
   }
 
 getMyUserLists(id:number){
