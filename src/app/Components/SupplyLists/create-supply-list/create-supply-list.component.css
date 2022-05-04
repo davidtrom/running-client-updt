@@ -8,9 +8,8 @@ h2{
 
 .createListBtn{
     padding-top: 1.5%;
+    padding-bottom: 5%;
 }
-
-
 
 .showGif{
     padding-top: 2%;
@@ -26,8 +25,22 @@ h2{
 }
 
 .tableHeader{
-  font-size: larger;
+  font-size: x-large;
+  font-weight: bold;
 }
+
+#tableTitle{
+  padding-top: 2.5%;
+  font-size: x-large;
+  font-weight: bold;
+  padding-left: 5%;
+}
+
+.bi-justify{
+  font-size: 1.5rem;
+}
+
+
 
 /* The side navigation menu */
 .sidebar {

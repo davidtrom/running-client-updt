@@ -21,11 +21,18 @@ export class CreateSupplyListComponent implements OnInit {
   supplyListId: string;
   userLists: SupplyList[];
   invalidForm: boolean;
+  isMobileResolution: boolean;
 
   constructor( private fb: FormBuilder, private router: Router, private listService: ListsService) { }
 
   ngOnInit(): void {
     this.userId = 1;
+
+    if (window.innerWidth < 768) {
+      this.isMobileResolution = true;
+    } else {
+      this.isMobileResolution = false;
+    }
 
     this.newListForm = this.fb.group({
       listName: ['', Validators.required]
