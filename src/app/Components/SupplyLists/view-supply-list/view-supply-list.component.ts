@@ -26,6 +26,11 @@ export class ViewSupplyListComponent implements OnInit {
   displayItems: string[];
   inEdit: boolean = false;
   isMobileResolution: boolean;
+  justDeleteItem: boolean;
+  deleteAllItems: boolean;
+  listToDeleteItemFrom: number;
+  itemToDeleteFromList: number
+  itemDescriptionToDisplay: string;
   //itemToEdit: string = "";
   //favicons
   // faEraser = faEraser;
@@ -144,9 +149,34 @@ getRouteParams(){
       }
   }
 
-  deleteItem(listId: number, itemId:number){
-    this.listService.deleteItem(listId, itemId).subscribe(data => {this.listToDisplay = data;
+  deleteItem(){
+    this.listService.deleteItem(this.listToDeleteItemFrom, this.itemToDeleteFromList).subscribe(data => {this.listToDisplay = data;
       this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);})
+  }
+
+  deleteItemOn(incomingListId: number, incomingItemId: number, incomingDescription: string){
+    this.justDeleteItem = true;
+    this.listToDeleteItemFrom = incomingListId;
+    this.itemToDeleteFromList = incomingItemId;
+    this.itemDescriptionToDisplay = incomingDescription;
+    console.log("list: ", this.listToDeleteItemFrom);
+    console.log("item: ", this.itemToDeleteFromList);
+    console.log("item: ", this.itemDescriptionToDisplay);
+  }
+
+  deleteItemOff(){
+    this.justDeleteItem = false;
+    this.listToDeleteItemFrom = null;
+    this.itemToDeleteFromList = null;
+    this.itemDescriptionToDisplay = null;
+  }
+
+  deleteAllItemsOn(){
+    this.deleteAllItems = true;
+  }
+
+  deleteAllItemsOff(){
+    this.deleteAllItems = false;
   }
 
   strikethruItem(listId: number, itemId: number){
