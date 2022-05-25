@@ -24,13 +24,15 @@ export class ViewSupplyListComponent implements OnInit {
   newItem: string;
   itemExists: boolean = false;
   displayItems: string[];
-  inEdit: boolean = false;
+  inAddItem: boolean = false;
+  inEdit: boolean;
   isMobileResolution: boolean;
   justDeleteItem: boolean;
   deleteAllItems: boolean;
   listToDeleteItemFrom: number;
   itemToDeleteFromList: number
   itemDescriptionToDisplay: string;
+  itemToEditDescription: string = "";
   //itemToEdit: string = "";
   //favicons
   // faEraser = faEraser;
@@ -74,6 +76,7 @@ export class ViewSupplyListComponent implements OnInit {
 
     this.newItemForm = this.fb.group({
       newItemName: ['', Validators.required],
+      editItemName: [this.itemToEditDescription, [Validators.required]]
       });
     
 
@@ -109,11 +112,11 @@ getRouteParams(){
   }
 
   activateAddItem(){
-    this.inEdit = true;
+    this.inAddItem = true;
   }
 
   deactivateAddItem(){
-    this.inEdit = false;
+    this.inAddItem = false;
   }
 
   onSubmit(){
@@ -149,6 +152,13 @@ getRouteParams(){
       }
   }
 
+  editSubmit(){
+    console.log("Item: ", this.itemToEditDescription);
+    if(this.newItemForm.valid){
+      console.log("Valid Form");
+    }
+  }
+
   deleteItem(){
     this.listService.deleteItem(this.listToDeleteItemFrom, this.itemToDeleteFromList).subscribe(data => {this.listToDisplay = data;
       this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);})
@@ -159,9 +169,6 @@ getRouteParams(){
     this.listToDeleteItemFrom = incomingListId;
     this.itemToDeleteFromList = incomingItemId;
     this.itemDescriptionToDisplay = incomingDescription;
-    console.log("list: ", this.listToDeleteItemFrom);
-    console.log("item: ", this.itemToDeleteFromList);
-    console.log("item: ", this.itemDescriptionToDisplay);
   }
 
   deleteItemOff(){
@@ -177,6 +184,20 @@ getRouteParams(){
 
   deleteAllItemsOff(){
     this.deleteAllItems = false;
+  }
+
+  editItemOn(incomingItem: string){
+    this.inEdit = true;
+    this.itemToEditDescription = incomingItem;
+    console.log(this.itemToEditDescription);
+  }
+
+  editItemOff(){
+    this.itemToEditDescription = null;
+  }
+
+  testEdit(){
+
   }
 
   strikethruItem(listId: number, itemId: number){
@@ -198,7 +219,7 @@ getRouteParams(){
     this.router.navigate(['edit-item'])
     
     console.log("itemDescription: ", itemDescription)
-    this.inEdit=true;
+    this.inAddItem=true;
   }
 
   clearItems(listId: number){
@@ -219,11 +240,11 @@ getRouteParams(){
   }
 
   closeEdit(){
-    this.inEdit = false;
+    this.inAddItem = false;
   }
 
-  editSubmit(){
-    console.log(this.editItemForm.get('editItemName').value);
+  // editSubmit(){
+  //   console.log(this.editItemForm.get('editItemName').value);
     // this.itemExists = false;
     
     //   if(this.editItemForm.valid){
@@ -255,10 +276,10 @@ getRouteParams(){
     //     this.editItemForm.markAllAsTouched();
     //   }
   
-  }
+  // }
 
   cancel(){
-    this.inEdit = false;
+    this.inAddItem = false;
   }
 
   goEdit(){
