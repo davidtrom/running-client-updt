@@ -122,11 +122,24 @@
             </div>
 
             <div *ngIf="inAddItem">
+                <label for="newItem">New Item:</label>
+                <span class="addItemInputBox"><input type="text" #box onfocus="this.value=''" value ="Item to Add"> </span>
+                <div class="itemExists" *ngIf="itemExists">
+                    *{{newItem}} already exists in your list.
+                </div>
+                <div class="itemExists" *ngIf="noItemGiven">
+                    *Please enter an Item.
+                </div>
+                <div class="addItemBtn">
+                    <span><button (click)="addNewItem(box.value)" class="btn btn-success">Add Item</button></span>
+                    <span class="closeEditBtn"><button type="button" class="btn btn-warning" (click)="closeEdit()">Close</button></span>
+                </div>
+            </div>
+
+            <!-- <div *ngIf="inAddItem">
                 <form [formGroup]="newItemForm" (ngSubmit)="onSubmit()">
                     <div class="inputForm">
-                        <label for="newItem">New Item:</label>
-                        <!-- Enter the Item to add to the Supply List: -->
-                        
+                        <label for="newItem">New Item:</label> 
                         <input id="newItemName" formControlName="newItemName" type="text" class="form-control" placeholder="Item to Add" [ngClass]="{'is-invalid': form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)}" >
                         <div *ngIf="form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)" class="invalid-feedback">
                             <div *ngIf='form.newItemName.errors.required'>*An Item to Add is Required</div>
@@ -140,7 +153,7 @@
                         <span class="closeEditBtn"><button type="button" class="btn btn-warning" (click)="closeEdit()">Close</button></span>
                     </div>
                 </form>
-            </div>
+            </div> -->
         
                 
             <div class="itemsDisplay">
@@ -191,7 +204,7 @@
                     You are about to clear all the items out of this list! Do you wish to proceed?
                 </div>
                 <div *ngIf="justDeleteItem" class="mb-3">
-                    You are about to clear {{itemDescriptionToDisplay}} out of the list! Do you wish to remove it?
+                    You are about to remove {{itemDescriptionToDisplay}} out of the list! Do you wish to remove it?
                 </div>
                 <div *ngIf="deleteAllItems" class="modalBtns">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="clearItems(listToDisplay.id)">Clear List</button>
@@ -207,7 +220,7 @@
     </div>
 
     <!-- Modal for editing an item-->
-    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -215,20 +228,20 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div *ngIf="inEdit" class="mb-3">
+                <div *ngIf="inEdit" class="mb-3"> -->
                     <!-- <label for="newItemName" class="col-form-label">Edit:</label>
                     {{itemToEditDescription}}
                     <input type="text" class="form-control" id="newItemName"> -->
-                    <form [formGroup]="newItemForm" (ngSubmit)="editSubmit()">
+                    <!-- <form [formGroup]="newItemForm" (ngSubmit)="editSubmit()">
                         <div class="inputForm">
-                            <label for="newItem">List Item to Edit:</label>
+                            <label for="newItem">List Item to Edit:</label> -->
                             <!-- Enter the Item to add to the Supply List: -->
                             
                             <!-- <input id="newItemName" formControlName="newItemName" type="text" class="form-control" placeholder="Item to Add" [ngClass]="{'is-invalid': form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)}" >
                             <div *ngIf="form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)" class="invalid-feedback">
                                 <div *ngIf='form.newItemName.errors.required'>*An Item to Add is Required</div>
                             </div> -->
-                            <input id="editItemName" formControlName="editItemName" type="text" class="form-control" [ngClass]="{'is-invalid': form.editItemName.errors && (form.editItemName.touched || form.editItemName.dirty)}" >
+                            <!-- <input id="editItemName" formControlName="editItemName" type="text" class="form-control" [ngClass]="{'is-invalid': form.editItemName.errors && (form.editItemName.touched || form.editItemName.dirty)}" >
                             <div *ngIf="form.editItemName.errors && (form.editItemName.touched || form.editItemName.dirty)" class="invalid-feedback">
                                 <div *ngIf='form.editItemName.errors.required'>*An Item is Required</div>
                             </div>
@@ -242,15 +255,15 @@
                         </div>
                     </form>
 
-                </div>
+                </div> -->
                 <!-- <div class="modalBtns">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Update</button>
                     <span class="closeModalBtn"><button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button></span>
                 </div> -->
-            </div>
+            <!-- </div>
         </div>
         </div>
-    </div>
+    </div> -->
 
 
 
@@ -300,11 +313,24 @@
             </div>
 
             <div *ngIf="inAddItem">
+                <label for="newItem">New Item:</label>
+                <span class="addItemInputBox"><input type="text" #box  onfocus="this.value=''" value ="Item to Add"> </span>
+                <div class="itemExists" *ngIf="itemExists">
+                    *{{newItem}} already exists in your list.
+                </div>
+                <div class="itemExists" *ngIf="noItemGiven">
+                    *Please enter an Item.
+                </div>
+                <div class="addItemBtn">
+                    <span><button (click)="addNewItem(box.value)" class="btn btn-success">Add Item</button></span>
+                    <span class="closeEditBtn"><button type="button" class="btn btn-warning" (click)="closeEdit()">Close</button></span>
+                </div>
+            </div>
+
+            <!-- <div *ngIf="inAddItem">
                 <form [formGroup]="newItemForm" (ngSubmit)="onSubmit()">
                     <div class="inputForm">
                         <label for="newItem">New Item:</label>
-                        <!-- Enter the Item to add to the Supply List: -->
-                        
                         <input id="newItemName" formControlName="newItemName" type="text" class="form-control" placeholder="Item to Add" [ngClass]="{'is-invalid': form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)}" >
                         <div *ngIf="form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)" class="invalid-feedback">
                             <div *ngIf='form.newItemName.errors.required'>*An Item to Add is Required</div>
@@ -318,7 +344,7 @@
                         <span class="closeEditBtn"><button type="button" class="btn btn-warning" (click)="closeEdit()">Close</button></span>
                     </div>
                 </form>
-            </div>
+            </div> -->
 
 
                 
@@ -370,14 +396,14 @@
                     You are about to clear all the items out of this list! Do you wish to proceed?
                 </div>
                 <div *ngIf="justDeleteItem" class="mb-3">
-                    You are about to clear "{{itemDescriptionToDisplay}}" out of the list! Do you wish to remove it?
+                    You are about to remove {{itemDescriptionToDisplay}} out of the list! Do you wish to remove it?
                 </div>
                 <div *ngIf="deleteAllItems" class="modalBtns">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="clearItems(listToDisplay.id)">Clear List</button>
                     <span class="closeModalBtn"><button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button></span>
                 </div>
                 <div *ngIf="justDeleteItem" class="modalBtns">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="deleteItem(listToDisplay.id, listToDisplay.items[i].id)">Remove</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="deleteItem()">Remove</button>
                     <span class="closeModalBtn"><button type="button" class="btn btn-warning" data-bs-dismiss="modal" (click)="deleteItemOff()">Cancel</button></span>
                 </div>
             </div>

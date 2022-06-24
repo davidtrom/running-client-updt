@@ -103,7 +103,8 @@
 
 .itemExists, .blankItem{
     color: red;
-    padding-top: 1%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
 }
 
 .inputForm{
@@ -147,6 +148,10 @@
 
 .closeEditBtn{
   padding-left: 10%;
+}
+
+.addItemInputBox{
+  padding-left: 0.5%;
 }
 
 /* #itemInList{

@@ -4,6 +4,7 @@ import { ListItem } from 'src/app/Models/list-item.model';
 import { SupplyList } from 'src/app/Models/supply-list.model';
 import { ListsService } from 'src/app/Services/lists.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 
 @Component({
@@ -32,7 +33,9 @@ export class ViewSupplyListComponent implements OnInit {
   listToDeleteItemFrom: number;
   itemToDeleteFromList: number
   itemDescriptionToDisplay: string;
-  itemToEditDescription: string = "";
+  itemToEditDescription$: string = null;
+  private currentItemToEdit$: BehaviorSubject<string>;
+  noItemGiven: boolean;
   //itemToEdit: string = "";
   //favicons
   // faEraser = faEraser;
@@ -74,15 +77,14 @@ export class ViewSupplyListComponent implements OnInit {
 
     this.getRouteParams();
 
-    this.newItemForm = this.fb.group({
-      newItemName: ['', Validators.required],
-      editItemName: [this.itemToEditDescription, [Validators.required]]
-      });
+    // this.newItemForm = this.fb.group({
+    //   newItemName: ['', Validators.required],
+    //   });
     
 
-    // this.editItemForm = this.fb.group({
-    //   editItemName: ['', Validators.required]
-    // })
+    this.editItemForm = this.fb.group({
+      editItemName: ['', Validators.required]
+    })
 
     this.userId = 1;
 
@@ -119,6 +121,42 @@ getRouteParams(){
     this.inAddItem = false;
   }
 
+  addNewItem(itemToAdd: string){
+    this.itemExists = false;
+    this.newItem = itemToAdd;
+    if(this.newItem === "" || this.newItem === "Item to Add"){
+      this.noItemGiven = true;
+    }
+    else{
+      for(let i = 0; i < this.displayItems.length; i++){
+        console.log("inside for loop", this.displayItems[i]);
+        if(this.displayItems[i].toLowerCase() === this.newItem.toLowerCase()){
+          this.itemExists = true;
+          break;
+        }
+      }
+      if(!this.itemExists){
+        this.listService.addItem(this.listToDisplay.id, this.newItem)
+        .subscribe(data => {
+            console.log('new item created');
+            this.listToDisplay = data;
+            this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);
+          }  
+        )
+        this.itemExists = false;
+        //clear text box
+        //turn off item exists or blank item warning
+
+      }
+    }
+  }
+
+  addItemInputFocus(){
+   //clear text box
+   this.itemExists = null;
+   
+  }
+
   onSubmit(){
     this.itemExists = false;
     
@@ -152,8 +190,10 @@ getRouteParams(){
       }
   }
 
+
+
   editSubmit(){
-    console.log("Item: ", this.itemToEditDescription);
+    console.log("Item: ", this.itemToEditDescription$);
     if(this.newItemForm.valid){
       console.log("Valid Form");
     }
@@ -188,12 +228,20 @@ getRouteParams(){
 
   editItemOn(incomingItem: string){
     this.inEdit = true;
-    this.itemToEditDescription = incomingItem;
-    console.log(this.itemToEditDescription);
+    this.setObservableItem(incomingItem).subscribe(data => this.itemToEditDescription$ = data);
+    //this.itemToEditDescription$ = incomingItem;
+    console.log("Item to edit description: ", this.itemToEditDescription$);
+    console.log("CurrentItemToEdit: ", this.currentItemToEdit$);
+    
+  }
+
+  setObservableItem(incomingItem: string): Observable<string>{
+    this.currentItemToEdit$.next(incomingItem);
+    return this.currentItemToEdit$.asObservable();
   }
 
   editItemOff(){
-    this.itemToEditDescription = null;
+    this.itemToEditDescription$ = null;
   }
 
   testEdit(){
