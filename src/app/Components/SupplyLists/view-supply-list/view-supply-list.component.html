@@ -128,8 +128,11 @@
                     *{{newItem}} already exists in your list.
                 </div>
                 <div class="itemExists" *ngIf="noItemGiven">
-                    *Please enter an Item.
+                    *Please enter a valid Item.
                 </div>
+                <!-- <div class="itemExists" *ngIf="notValidItem">
+                    *Please enter a valid Item.
+                </div> -->
                 <div class="addItemBtn">
                     <span><button (click)="addNewItem(box.value)" class="btn btn-success">Add Item</button></span>
                     <span class="closeEditBtn"><button type="button" class="btn btn-warning" (click)="closeEdit()">Close</button></span>
@@ -319,8 +322,11 @@
                     *{{newItem}} already exists in your list.
                 </div>
                 <div class="itemExists" *ngIf="noItemGiven">
-                    *Please enter an Item.
+                    *Please enter a valid Item.
                 </div>
+                <!-- <div class="itemExists" *ngIf="notValidItem">
+                    *Please enter a valid Item.
+                </div> -->
                 <div class="addItemBtn">
                     <span><button (click)="addNewItem(box.value)" class="btn btn-success">Add Item</button></span>
                     <span class="closeEditBtn"><button type="button" class="btn btn-warning" (click)="closeEdit()">Close</button></span>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ListItem } from 'src/app/Models/list-item.model';
 import { SupplyList } from 'src/app/Models/supply-list.model';
@@ -36,6 +36,8 @@ export class ViewSupplyListComponent implements OnInit {
   itemToEditDescription$: string = null;
   private currentItemToEdit$: BehaviorSubject<string>;
   noItemGiven: boolean;
+  //notValidItem: boolean could be implemented for more precise error handling
+  @ViewChild('box') inputItemText;
   //itemToEdit: string = "";
   //favicons
   // faEraser = faEraser;
@@ -144,9 +146,12 @@ getRouteParams(){
           }  
         )
         this.itemExists = false;
+        this.noItemGiven = false;
         //clear text box
+        this.inputItemText.nativeElement.value = "";
+        // document.getElementById("inputBox").value = "";
+        
         //turn off item exists or blank item warning
-
       }
     }
   }
