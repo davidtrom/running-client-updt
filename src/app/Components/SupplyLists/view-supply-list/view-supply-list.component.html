@@ -20,7 +20,7 @@
                             </tr>
                             <tr>
                                 <!-- <td><a [routerLink]="['/new-list']">Add New List</a></td> -->
-                                <td (click)="newListPath()">Add New List</td>
+                                <td (click)="newListPath()">+ Add New List</td>
                             </tr>
                         </tbody>
                     </table>
@@ -41,7 +41,7 @@
                                 <td><a [routerLink]="['/view-list', list.id]">{{list.listDescription}}</a></td>
                             </tr>
                             <tr>
-                                <td><a [routerLink]="['/new-list']">Add New List</a></td>
+                                <td><a [routerLink]="['/new-list']">+ Add New List</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -113,9 +113,7 @@
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="listOptionsButton">
                             <li><button class="dropdown-item" (click)="activateAddItem()">Add Item(s)</button></li>
                             <li><button class="dropdown-item" (click)="unstrikeAllItems(listToDisplay.id)">Uncheck All Items</button></li>
-                            <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Clear List</button></li>
-                            <!-- <li><hr class="dropdown-divider"></li> -->
-                        
+                            <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="deleteAllItemsOn()">Clear List</button></li>
                         </ul>
                     </div>   
                 </div>
@@ -166,28 +164,32 @@
                 <ul class="list-group">
                     <li *ngFor="let item of displayItems; let i = index" class="list-group-item" [ngClass]="listToDisplay.items[i].strikethru ? 'strikethru' : 'null'">
                     
-                        <!-- NOT ngIf here for inEDit -->
-                        <span  (click)="editItem(listToDisplay.id, listToDisplay.items[i].id, listToDisplay.items[i].itemDescription)">{{item}}</span>
+                        
+                        <div class="row">
+                            <!-- To make the actual item clickable and edited -->
+                            <div class="col-8">
+                                <div class="itemDisplayed" (click)="strikethruItem(listToDisplay.id, listToDisplay.items[i].id)">{{item}}</div>
+                            </div>
 
-                        <span class="faviconCrudBtns">
-                            
-                            <span *ngIf="!listToDisplay.items[i].strikethru" class="itemOptBtn" id="itemCrudBtn" ><i class="bi bi-square" (click)="strikethruItem(listToDisplay.id, listToDisplay.items[i].id)"></i></span>
-                            <span *ngIf="listToDisplay.items[i].strikethru" class="itemOptBtn" id="itemCrudBtn"><i class="bi bi-check2-square" (click)="strikethruItem(listToDisplay.id, listToDisplay.items[i].id)"></i></span>
-                            
-                            <!-- <span class="itemOptBtn" id="itemCrudBtn" ><i class="bi bi-check-lg" (click)="strikethruItem(listToDisplay.id, listToDisplay.items[i].id)"></i></span> -->
-                            <!-- <span class="itemCrudBtn" ><button (click)="strikethruItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="far fa-check-square fa-fw"></i></button></span> -->
-                            
-                            
-                            <span class="itemOptBtn" id="itemCrudBtn"><button data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="deleteItemOn(listToDisplay.id, listToDisplay.items[i].id, listToDisplay.items[i].itemDescription)"><i class="bi bi-trash"></i></button></span>
-                            <!-- <span class="itemCrudBtn"><button (click)="deleteItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="far fa-trash-alt fa-fw"></i></button></span> -->
-                            
-                            
-                            <span class="itemOptBtn" id="editItemBtn"><button data-bs-toggle="modal" data-bs-target="#editModal"><i class="bi bi-pencil" (click)="editItemOn(listToDisplay.items[i].itemDescription)"></i></button></span>  <!--(click)="editItem(listToDisplay.items[i].itemDescription)"-->
-                            <!-- <span class="editItemBtn"><button (click)="editItem(listToDisplay.items[i].itemDescription)"><i class="fas fa-pencil-alt fa-fw"></i></button></span> -->
+                            <div class="col-4">
+                                <div class="faviconCrudBtns">
+                                    
+                                    <span *ngIf="!listToDisplay.items[i].strikethru" class="itemOptBtn" id="itemCrudBtn" ><i class="bi bi-square" (click)="strikethruItem(listToDisplay.id, listToDisplay.items[i].id)"></i></span>
+                                    <span *ngIf="listToDisplay.items[i].strikethru" class="itemOptBtn" id="itemCrudBtn"><i class="bi bi-check2-square" (click)="strikethruItem(listToDisplay.id, listToDisplay.items[i].id)"></i></span>
+                                    
+                                    <!-- <span class="itemOptBtn" id="itemCrudBtn" ><i class="bi bi-check-lg" (click)="strikethruItem(listToDisplay.id, listToDisplay.items[i].id)"></i></span> -->
+                                    <!-- <span class="itemCrudBtn" ><button (click)="strikethruItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="far fa-check-square fa-fw"></i></button></span> -->
+                                    
+                                    
+                                    <!-- <span class="itemOptBtn" id="itemCrudBtn"><button data-bs-toggle="modal" data-bs-target="#editModal" (click)="editItemOn(listToDisplay.items[i].itemDescription)"><i class="bi bi-pencil" ></i></button></span>  (click)="editItem(listToDisplay.items[i].itemDescription)" -->
+                                    <span class="itemOptBtn" id="itemCrudBtn"><i data-bs-toggle="modal" data-bs-target="#editModal" class="bi bi-pencil" (click)="editItemOn(listToDisplay.items[i].itemDescription)"></i></span>  <!-- (click)="editItem(listToDisplay.items[i].itemDescription)" -->
 
-
-                            <!-- <span class="editItemBtn"><button data-bs-toggle="modal" data-bs-target="#editModal" (click)="editItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="fas fa-pencil-alt"></i></button></span> -->
-                        </span>
+                                    <span class="itemOptBtn" id="itemCrudBtn"><i data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="deleteItemOn(listToDisplay.id, listToDisplay.items[i].id, listToDisplay.items[i].itemDescription)" class="bi bi-trash"></i></span>
+                                    <!-- <span class="itemCrudBtn"><button (click)="deleteItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="far fa-trash-alt fa-fw"></i></button></span> -->
+                                </div>
+                            </div>
+                        </div>
+                
                     </li>
                 </ul>
             </div>
@@ -207,7 +209,7 @@
                     You are about to clear all the items out of this list! Do you wish to proceed?
                 </div>
                 <div *ngIf="justDeleteItem" class="mb-3">
-                    You are about to remove {{itemDescriptionToDisplay}} out of the list! Do you wish to remove it?
+                    You are about to remove "{{itemDescriptionToDisplay}}" out of the list! Do you wish to remove it?
                 </div>
                 <div *ngIf="deleteAllItems" class="modalBtns">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="clearItems(listToDisplay.id)">Clear List</button>
@@ -223,28 +225,28 @@
     </div>
 
     <!-- Modal for editing an item-->
-    <!-- <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title text-danger" id="exampleModalLabel"><strong>Edit Item</strong></h5>
+            <h5 class="modal-title text-danger" id="editModalLabel"><strong>Edit Item</strong></h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div *ngIf="inEdit" class="mb-3"> -->
-                    <!-- <label for="newItemName" class="col-form-label">Edit:</label>
+                <div *ngIf="inEdit" class="mb-3">
+                    <label for="newItemName" class="col-form-label">Edit:</label>
                     {{itemToEditDescription}}
-                    <input type="text" class="form-control" id="newItemName"> -->
-                    <!-- <form [formGroup]="newItemForm" (ngSubmit)="editSubmit()">
+                    <input type="text" class="form-control" id="newItemName">
+                    <form [formGroup]="newItemForm" (ngSubmit)="editSubmit()">
                         <div class="inputForm">
-                            <label for="newItem">List Item to Edit:</label> -->
-                            <!-- Enter the Item to add to the Supply List: -->
+                            <label for="newItem">List Item to Edit:</label>
+                            Enter the Item to add to the Supply List:
                             
-                            <!-- <input id="newItemName" formControlName="newItemName" type="text" class="form-control" placeholder="Item to Add" [ngClass]="{'is-invalid': form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)}" >
+                            <input id="newItemName" formControlName="newItemName" type="text" class="form-control" placeholder="Item to Add" [ngClass]="{'is-invalid': form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)}" >
                             <div *ngIf="form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)" class="invalid-feedback">
                                 <div *ngIf='form.newItemName.errors.required'>*An Item to Add is Required</div>
-                            </div> -->
-                            <!-- <input id="editItemName" formControlName="editItemName" type="text" class="form-control" [ngClass]="{'is-invalid': form.editItemName.errors && (form.editItemName.touched || form.editItemName.dirty)}" >
+                            </div>
+                            <input id="editItemName" formControlName="editItemName" type="text" class="form-control" [ngClass]="{'is-invalid': form.editItemName.errors && (form.editItemName.touched || form.editItemName.dirty)}" >
                             <div *ngIf="form.editItemName.errors && (form.editItemName.touched || form.editItemName.dirty)" class="invalid-feedback">
                                 <div *ngIf='form.editItemName.errors.required'>*An Item is Required</div>
                             </div>
@@ -258,15 +260,15 @@
                         </div>
                     </form>
 
-                </div> -->
-                <!-- <div class="modalBtns">
+                </div>
+                <div class="modalBtns">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Update</button>
                     <span class="closeModalBtn"><button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button></span>
-                </div> -->
-            <!-- </div>
+                </div>
+             </div>
         </div>
         </div>
-    </div> -->
+    </div>
 
 
 
@@ -307,7 +309,7 @@
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="listOptionsButton">
                             <li><button class="dropdown-item" (click)="activateAddItem()">Add Item(s)</button></li>
                             <li><button class="dropdown-item" (click)="unstrikeAllItems(listToDisplay.id)">Uncheck All Items</button></li>
-                            <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Clear List</button></li>
+                            <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="deleteAllItemsOn()">Clear List</button></li>
                             <!-- <li><hr class="dropdown-divider"></li> -->
                         
                         </ul>
@@ -361,14 +363,41 @@
                 <ul class="list-group">
                     <li *ngFor="let item of displayItems; let i = index" class="list-group-item" [ngClass]="listToDisplay.items[i].strikethru ? 'strikethru' : 'null'">
                     
+                        <div class="row">
+                            <!-- To make the actual item clickable and edited -->
+                            <div class="col-5">
+                                <div class="itemDisplayed" (click)="strikethruItem(listToDisplay.id, listToDisplay.items[i].id)">{{item}}</div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="faviconCrudBtns">
+                                    
+                                    <span *ngIf="!listToDisplay.items[i].strikethru" class="itemOptBtn" id="itemCrudBtn" ><i class="bi bi-square" (click)="strikethruItem(listToDisplay.id, listToDisplay.items[i].id)"></i></span>
+                                    <span *ngIf="listToDisplay.items[i].strikethru" class="itemOptBtn" id="itemCrudBtn"><i class="bi bi-check2-square" (click)="strikethruItem(listToDisplay.id, listToDisplay.items[i].id)"></i></span>
+                                    
+                                    <!-- <span class="itemOptBtn" id="itemCrudBtn" ><i class="bi bi-check-lg" (click)="strikethruItem(listToDisplay.id, listToDisplay.items[i].id)"></i></span> -->
+                                    <!-- <span class="itemCrudBtn" ><button (click)="strikethruItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="far fa-check-square fa-fw"></i></button></span> -->
+                                    
+                                    
+                                    <!-- <span class="itemOptBtn" id="itemCrudBtn"><button data-bs-toggle="modal" data-bs-target="#editModal" (click)="editItemOn(listToDisplay.items[i].itemDescription)"><i class="bi bi-pencil" ></i></button></span>  (click)="editItem(listToDisplay.items[i].itemDescription)" -->
+                                    <span class="itemOptBtn" id="itemCrudBtn"><i data-bs-toggle="modal" data-bs-target="#editModal" class="bi bi-pencil" (click)="editItemOn(listToDisplay.items[i].itemDescription)"></i></span>  <!-- (click)="editItem(listToDisplay.items[i].itemDescription)" -->
+
+                                    <span class="itemOptBtn" id="itemCrudBtn"><i data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="deleteItemOn(listToDisplay.id, listToDisplay.items[i].id, listToDisplay.items[i].itemDescription)" class="bi bi-trash"></i></span>
+                                    <!-- <span class="itemCrudBtn"><button (click)="deleteItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="far fa-trash-alt fa-fw"></i></button></span> -->
+                                </div>
+                            </div>
+                        </div>
+                       
+                       
+                       
                         <!-- NOT ngIf here for inEDit -->
-                        <span id="itemInList" (click)="editItem(listToDisplay.id, listToDisplay.items[i].id, listToDisplay.items[i].itemDescription)">{{item}}</span>
+                        <!-- <span id="itemInList" (click)="editItem(listToDisplay.id, listToDisplay.items[i].id, listToDisplay.items[i].itemDescription)">{{item}}</span>
 
                         <span class="faviconCrudBtns">
                             <span *ngIf="!listToDisplay.items[i].strikethru" class="itemOptBtn" id="itemCrudBtn" ><i class="bi bi-square" (click)="strikethruItem(listToDisplay.id, listToDisplay.items[i].id)"></i></span>
                             <span *ngIf="listToDisplay.items[i].strikethru" class="itemOptBtn" id="itemCrudBtn"><i class="bi bi-check2-square" (click)="strikethruItem(listToDisplay.id, listToDisplay.items[i].id)"></i></span>
                             <span class="itemOptBtn" id="itemCrudBtn"><button data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="deleteItemOn(listToDisplay.id, listToDisplay.items[i].id, listToDisplay.items[i].itemDescription)"><i class="bi bi-trash"></i></button></span>
-                            <span class="itemOptBtn" id="editItemBtn"><button data-bs-toggle="modal" data-bs-target="#editModal"><i class="bi bi-pencil" (click)="editItemOn(listToDisplay.items[i].itemDescription)"></i></button></span>  <!--(click)="editItem(listToDisplay.items[i].itemDescription)"-->
+                            <span class="itemOptBtn" id="editItemBtn"><button data-bs-toggle="modal" data-bs-target="#editModal"><i class="bi bi-pencil" (click)="editItemOn(listToDisplay.items[i].itemDescription)"></i></button></span>  (click)="editItem(listToDisplay.items[i].itemDescription)" -->
 
 
                         <!-- <i class="bi bi-square"></i> -->
@@ -383,7 +412,7 @@
                             <!-- <span class="editItemBtn"><button><i class="fas fa-pencil-alt fa-fw"></i></button></span> -->
 
                             <!-- <span class="editItemBtn"><button data-bs-toggle="modal" data-bs-target="#editModal" (click)="editItem(listToDisplay.id, listToDisplay.items[i].id)"><i class="fas fa-pencil-alt"></i></button></span> -->
-                        </span>
+                        <!-- </span> -->
                     </li>
                 </ul>
             </div>
@@ -402,7 +431,7 @@
                     You are about to clear all the items out of this list! Do you wish to proceed?
                 </div>
                 <div *ngIf="justDeleteItem" class="mb-3">
-                    You are about to remove {{itemDescriptionToDisplay}} out of the list! Do you wish to remove it?
+                    You are about to remove "{{itemDescriptionToDisplay}}"" out of the list! Do you wish to remove it?
                 </div>
                 <div *ngIf="deleteAllItems" class="modalBtns">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="clearItems(listToDisplay.id)">Clear List</button>
@@ -418,32 +447,50 @@
     </div>
 
     <!-- Modal for editing an item-->
-    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title text-danger" id="exampleModalLabel"><strong>Warning!</strong></h5>
+            <h5 class="modal-title text-danger" id="editModalLabel"><strong>Edit Item</strong></h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div *ngIf="!justDeleteItem" class="mb-3">
-                    You are about to clear all the items out of this list! Do you wish to proceed?
+                <div *ngIf="inEdit" class="mb-3">
+                    <label for="newItemName" class="col-form-label">Edit:</label>
+                    {{itemToEditDescription}}
+                    <input type="text" class="form-control" id="newItemName">
+                    <form [formGroup]="newItemForm" (ngSubmit)="editSubmit()">
+                        <div class="inputForm">
+                            <label for="newItem">List Item to Edit:</label>
+                            Enter the Item to add to the Supply List:
+                            
+                            <input id="newItemName" formControlName="newItemName" type="text" class="form-control" placeholder="Item to Add" [ngClass]="{'is-invalid': form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)}" >
+                            <div *ngIf="form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)" class="invalid-feedback">
+                                <div *ngIf='form.newItemName.errors.required'>*An Item to Add is Required</div>
+                            </div>
+                            <input id="editItemName" formControlName="editItemName" type="text" class="form-control" [ngClass]="{'is-invalid': form.editItemName.errors && (form.editItemName.touched || form.editItemName.dirty)}" >
+                            <div *ngIf="form.editItemName.errors && (form.editItemName.touched || form.editItemName.dirty)" class="invalid-feedback">
+                                <div *ngIf='form.editItemName.errors.required'>*An Item is Required</div>
+                            </div>
+                            <div class="itemExists" *ngIf="itemExists">
+                                *{{newItem}} already exists in your list.
+                            </div>
+                        </div>
+                        <div class="addItemBtn">
+                            <span><button type="submit" class="btn btn-success" data-bs-dismiss="modal">Edit Item</button></span>
+                            <span class="closeEditBtn"><button type="button" class="btn btn-warning" data-bs-dismiss="modal" (click)="closeEdit()">Cancel</button></span>
+                        </div>
+                    </form>
+
                 </div>
-                <div *ngIf="justDeleteItem" class="mb-3">
-                    You are about to clear this item out of the list! Do you wish to remove it?
-                </div>
-                <div *ngIf="!justDeleteItem" class="modalBtns">
-                    <button type="button" class="btn btn-secondary" (click)="clearItems(listToDisplay.id)">Clear List</button>
+                <div class="modalBtns">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Update</button>
                     <span class="closeModalBtn"><button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button></span>
                 </div>
-                <div *ngIf="!justDeleteItem" class="modalBtns">
-                    <button type="button" class="btn btn-secondary" (click)="clearItems(listToDisplay.id)">Clear List</button>
-                    <span class="closeModalBtn"><button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button></span>
-                </div>
-            </div>
+             </div>
         </div>
         </div>
-    </div> -->
+    </div>
 
 
         </div>

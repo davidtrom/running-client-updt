@@ -40,7 +40,7 @@
   }
   
   /* On screens that are less than 700px wide, make the sidebar into a topbar */
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 768px) {
     .sidebar {
       width: 100%;
       height: auto;
@@ -48,15 +48,49 @@
     }
     .sidebar a {float: left;}
     div.content {margin-left: 0;}
+    .container {
+      width: 100%;
+   }
+   #renameListBtn{
+     padding-left: 0%;
+   }
+   .addItemBtn{
+     margin-top: 2%;
+     margin-bottom: 2%;
+     margin-left: 20%;
+   } 
+   .dropdown{
+    margin-left: 20%;
+    margin-bottom: 5%;
+   }
+  .faviconCrudBtns{
+   width: 100%;
   }
+  .itemOptBtn{
+    display: inline-block;
+    width: 33%;
+    /* width: 33% if three items */
+    text-align: center;
+  }
+}
+   
+
+/* .itemOptBtn{
+  text-align: right;
+} */
+   /* #editItemBtn{
+    text-align: right;
+    color: green
+   } */
+  /* } */
   
   /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
-  @media screen and (max-width: 400px) {
+  /* @media screen and (max-width: 400px) {
     .sidebar td {
       text-align: center;
       float: none;
     }
-}
+} */
 
 
 /* Non Sidebar elements */
@@ -111,14 +145,6 @@
   padding-top: 2%;
 }
 
-.faviconCrudBtns{
-  padding-left: 1%;
-  /* display: flex; */
-  justify-content: end;
-  /* border: indianred;
-  border-width: 2px; */
-}
-
 #itemCrudBtn{
   padding-right: 0.5%;
 }
@@ -139,7 +165,7 @@
 
 .itemsDisplay{
   padding-bottom: 4%;
-  max-width: 65%;
+  /* max-width: 65%; */
 }
 
 .closeModalBtn{
@@ -154,14 +180,27 @@
   padding-left: 0.5%;
 }
 
+.faviconCrudBtns{
+  width: 100%;
+ }
+ .itemOptBtn{
+   display: inline-block;
+   width: 33%;
+   /* width: 33% if three items */
+   text-align: center;
+ }
+ .itemDisplayed, i{
+   cursor:pointer;
+ }
+
 /* #itemInList{
   display: inline-block;
 } */
 
 
-/* @media screen and (min-width: 601px) { */
+@media screen and (min-width: 769px) {
   .container {
-     width: 65%;
+     width: 60%;
   }
   #dropdownBtn{
     padding-left: 15%;
@@ -171,19 +210,6 @@
   }
   .addItemBtn{
     padding-top: 0.5%;
-  }  
-/* } */
-
-@media screen and (max-width: 600px) {
-  .container {
-     width: 100%;
-  }
-  #renameListBtn{
-    padding-left: 0%;
-  }
-  .addItemBtn{
-    padding-top: 2%;
-    padding-bottom: 2%;
   }  
 }
 

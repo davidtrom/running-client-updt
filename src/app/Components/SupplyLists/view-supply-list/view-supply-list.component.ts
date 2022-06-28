@@ -233,7 +233,7 @@ getRouteParams(){
 
   editItemOn(incomingItem: string){
     this.inEdit = true;
-    this.setObservableItem(incomingItem).subscribe(data => this.itemToEditDescription$ = data);
+    // this.setObservableItem(incomingItem).subscribe(data => this.itemToEditDescription$ = data);
     //this.itemToEditDescription$ = incomingItem;
     console.log("Item to edit description: ", this.itemToEditDescription$);
     console.log("CurrentItemToEdit: ", this.currentItemToEdit$);
