@@ -95,7 +95,7 @@ export class ViewSupplyListComponent implements OnInit {
     });
   }
 
-  get form() {return this.newItemForm.controls;}
+  get form() {return this.editItemForm.controls;}
 
 getRouteParams(){
   this.route.params.subscribe(routeParams => {
@@ -147,19 +147,8 @@ getRouteParams(){
         )
         this.itemExists = false;
         this.noItemGiven = false;
-        //clear text box
-        this.inputItemText.nativeElement.value = "";
-        // document.getElementById("inputBox").value = "";
-        
-        //turn off item exists or blank item warning
       }
     }
-  }
-
-  addItemInputFocus(){
-   //clear text box
-   this.itemExists = null;
-   
   }
 
   onSubmit(){
@@ -193,6 +182,26 @@ getRouteParams(){
       else{
         this.newItemForm.markAllAsTouched();
       }
+  }
+
+  editItemOn(incomingItem: string){
+    this.inEdit = true;
+    console.log("IncomingItem: ", incomingItem);
+    this.setObservableItem(incomingItem).subscribe(data => this.itemToEditDescription$ = data);
+    //this.itemToEditDescription$ = incomingItem;
+    console.log("Item to edit description: ", this.itemToEditDescription$);
+    console.log("CurrentItemToEdit: ", this.currentItemToEdit$);
+    
+  }
+
+  setObservableItem(incomingItem: string): Observable<string>{
+    console.log("IncomingItem: ", incomingItem);
+    this.currentItemToEdit$.next(incomingItem);
+    return this.currentItemToEdit$.asObservable();
+  }
+
+  editItemOff(){
+    this.itemToEditDescription$ = null;
   }
 
 
@@ -231,28 +240,6 @@ getRouteParams(){
     this.deleteAllItems = false;
   }
 
-  editItemOn(incomingItem: string){
-    this.inEdit = true;
-    // this.setObservableItem(incomingItem).subscribe(data => this.itemToEditDescription$ = data);
-    //this.itemToEditDescription$ = incomingItem;
-    console.log("Item to edit description: ", this.itemToEditDescription$);
-    console.log("CurrentItemToEdit: ", this.currentItemToEdit$);
-    
-  }
-
-  setObservableItem(incomingItem: string): Observable<string>{
-    this.currentItemToEdit$.next(incomingItem);
-    return this.currentItemToEdit$.asObservable();
-  }
-
-  editItemOff(){
-    this.itemToEditDescription$ = null;
-  }
-
-  testEdit(){
-
-  }
-
   strikethruItem(listId: number, itemId: number){
     this.listService.strikethruItem(listId, itemId).subscribe(data => {this.listToDisplay = data;
       this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);})
@@ -261,18 +248,6 @@ getRouteParams(){
   unstrikeAllItems(listId: number){
     this.listService.unstrikeAllItems(listId).subscribe(data => {this.listToDisplay = data;
       this.displayItems = this.listToDisplay.items.map(item => item.itemDescription);})
-  }
-
-  editItem(listId: number, itemName: number, itemDescription: string){
-    console.log("item to be edited: ", itemName);
-    console.log("list to be edited: ", listId);
-    // this.router.navigate(['edit-list', listId, itemId]);
-    
-    this.listService.setListItemToEdit(itemDescription);
-    this.router.navigate(['edit-item'])
-    
-    console.log("itemDescription: ", itemDescription)
-    this.inAddItem=true;
   }
 
   clearItems(listId: number){
@@ -330,13 +305,5 @@ getRouteParams(){
     //   }
   
   // }
-
-  cancel(){
-    this.inAddItem = false;
-  }
-
-  goEdit(){
-    this.router.navigate(['edit-list', this.listToDisplay.id]);
-  }
 }
 

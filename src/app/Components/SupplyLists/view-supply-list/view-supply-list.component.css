@@ -72,25 +72,10 @@
     /* width: 33% if three items */
     text-align: center;
   }
+  /* i{
+    align-items: center;
+  } */
 }
-   
-
-/* .itemOptBtn{
-  text-align: right;
-} */
-   /* #editItemBtn{
-    text-align: right;
-    color: green
-   } */
-  /* } */
-  
-  /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
-  /* @media screen and (max-width: 400px) {
-    .sidebar td {
-      text-align: center;
-      float: none;
-    }
-} */
 
 
 /* Non Sidebar elements */
@@ -131,9 +116,10 @@
   font-size: 1.5rem;
 }
 
-/* .editBtn{
+.editItemBtns{
     padding-top: 2%;
-} */
+    text-align: center;
+}
 
 .itemExists, .blankItem{
     color: red;
