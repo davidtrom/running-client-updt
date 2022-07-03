@@ -65,12 +65,16 @@
    }
   .faviconCrudBtns{
    width: 100%;
+   vertical-align:;
   }
   .itemOptBtn{
     display: inline-block;
     width: 33%;
     /* width: 33% if three items */
     text-align: center;
+  }
+  .itemOptBtn{
+    vertical-align:middle;
   }
   /* i{
     align-items: center;

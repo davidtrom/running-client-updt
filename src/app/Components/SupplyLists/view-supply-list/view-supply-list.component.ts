@@ -147,6 +147,7 @@ getRouteParams(){
         )
         this.itemExists = false;
         this.noItemGiven = false;
+        (document.getElementById("newItemBox") as HTMLInputElement).value = 'Item to Add';
       }
     }
   }

@@ -121,7 +121,7 @@
 
             <div *ngIf="inAddItem">
                 <label for="newItem">New Item:</label>
-                <span class="addItemInputBox"><input type="text" #box onfocus="this.value=''" value ="Item to Add"> </span>
+                <span class="addItemInputBox"><input type="text" id="newItemBox" #box onfocus="this.value=''" value ="Item to Add"> </span>
                 <div class="itemExists" *ngIf="itemExists">
                     *{{newItem}} already exists in your list.
                 </div>
