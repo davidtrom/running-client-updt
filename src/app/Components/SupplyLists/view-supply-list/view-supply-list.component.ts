@@ -4,7 +4,7 @@ import { ListItem } from 'src/app/Models/list-item.model';
 import { SupplyList } from 'src/app/Models/supply-list.model';
 import { ListsService } from 'src/app/Services/lists.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 
 @Component({
@@ -34,25 +34,20 @@ export class ViewSupplyListComponent implements OnInit {
   itemToDeleteFromList: number
   itemDescriptionToDisplay: string;
   itemToEditDescription$: string = null;
-  private currentItemToEdit$: BehaviorSubject<string>;
+  currentItemToEdit$: BehaviorSubject<string>;
+  // currentItemToEdit$ = new Subject();
   noItemGiven: boolean;
-  //notValidItem: boolean could be implemented for more precise error handling
   @ViewChild('box') inputItemText;
-  //itemToEdit: string = "";
-  //favicons
-  // faEraser = faEraser;
-  // faTrashAlt = faTrashAlt;
-  // faPencilAlt = faPencilAlt;
-  // faCheckSquare = faCheckSquare;
-
-  //Uncheck all button
-
+  itemToEdit$: string;
+  
 
   //Turn off edit button if an item is crossed off?
   //Need an array for the ids of the items in the list to use in a map and then send for editing and updating
 
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private listService: ListsService, private router: Router) {
+    this.currentItemToEdit$ = new BehaviorSubject<string>("");
+    
     // this.router.routeReuseStrategy.shouldReuseRoute = () => {
     //   return false;
     // }
@@ -71,6 +66,8 @@ export class ViewSupplyListComponent implements OnInit {
     //   console.log("First item: ", this.listToDisplay.items[0]);
     // });
 
+    this.getObservableItem().subscribe(data => this.itemToEdit$ = data);
+
     if (window.innerWidth < 768) {
       this.isMobileResolution = true;
     } else {
@@ -85,7 +82,7 @@ export class ViewSupplyListComponent implements OnInit {
     
 
     this.editItemForm = this.fb.group({
-      editItemName: ['', Validators.required]
+      editItemName: [this.itemToEdit$, Validators.required]
     })
 
     this.userId = 1;
@@ -154,8 +151,7 @@ getRouteParams(){
 
   onSubmit(){
     this.itemExists = false;
-    
-      if(this.newItemForm.valid){
+      if(this.editItemForm.valid){
         this.newItem =  this.newItemForm.get('newItemName').value;
         for(let i = 0; i < this.displayItems.length; i++){
           console.log("inside for loop", this.displayItems[i]);
@@ -187,18 +183,24 @@ getRouteParams(){
 
   editItemOn(incomingItem: string){
     this.inEdit = true;
-    console.log("IncomingItem: ", incomingItem);
-    this.setObservableItem(incomingItem).subscribe(data => this.itemToEditDescription$ = data);
+    this.currentItemToEdit$.next(incomingItem);
+    // this.currentItemToEdit$.subscribe(data => this.itemToEdit$ = data)
+    this.setObservableItem(incomingItem);
+    //console.log("IncomingItem: ", incomingItem);
+    //this.getObservableItem().subscribe(data => this.itemToEdit$ = data);
     //this.itemToEditDescription$ = incomingItem;
-    console.log("Item to edit description: ", this.itemToEditDescription$);
+    console.log("Item to edit: ", this.itemToEdit$);
     console.log("CurrentItemToEdit: ", this.currentItemToEdit$);
     
   }
 
-  setObservableItem(incomingItem: string): Observable<string>{
+  getObservableItem(): Observable<string>{
+    return this.currentItemToEdit$.asObservable();
+  }
+
+  setObservableItem(incomingItem: string){
     console.log("IncomingItem: ", incomingItem);
     this.currentItemToEdit$.next(incomingItem);
-    return this.currentItemToEdit$.asObservable();
   }
 
   editItemOff(){

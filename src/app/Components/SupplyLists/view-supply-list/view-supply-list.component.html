@@ -246,8 +246,8 @@
                             <div *ngIf="form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)" class="invalid-feedback">
                                 <div *ngIf='form.newItemName.errors.required'>*An Item to Add is Required</div>
                             </div> -->
-                            <label for="editItemName">List Item to Edit: {{itemToEditDescription}}</label>
-                            <input id="editItemName" formControlName="editItemName" type="text" class="form-control" [ngClass]="{'is-invalid': form.editItemName.errors && (form.editItemName.touched || form.editItemName.dirty)}" >
+                            <label for="editItemName">List Item to Edit: {{itemToEdit$}}</label>
+                            <input id="editItemName" formControlName="editItemName" type="text" class="form-control" value="{{itemToEdit}}" [ngClass]="{'is-invalid': form.editItemName.errors && (form.editItemName.touched || form.editItemName.dirty)}" >
                             <div *ngIf="form.editItemName.errors && (form.editItemName.touched || form.editItemName.dirty)" class="invalid-feedback">
                                 <div *ngIf='form.editItemName.errors.required'>*An Item is Required</div>
                             </div>
