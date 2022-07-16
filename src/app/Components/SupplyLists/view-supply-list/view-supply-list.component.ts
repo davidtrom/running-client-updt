@@ -4,7 +4,7 @@ import { ListItem } from 'src/app/Models/list-item.model';
 import { SupplyList } from 'src/app/Models/supply-list.model';
 import { ListsService } from 'src/app/Services/lists.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 
 
 @Component({
@@ -34,11 +34,10 @@ export class ViewSupplyListComponent implements OnInit {
   itemToDeleteFromList: number
   itemDescriptionToDisplay: string;
   itemToEditDescription$: string = null;
-  currentItemToEdit$: BehaviorSubject<string>;
-  // currentItemToEdit$ = new Subject();
   noItemGiven: boolean;
   @ViewChild('box') inputItemText;
-  itemToEdit$: string;
+
+
   
 
   //Turn off edit button if an item is crossed off?
@@ -46,7 +45,6 @@ export class ViewSupplyListComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private listService: ListsService, private router: Router) {
-    this.currentItemToEdit$ = new BehaviorSubject<string>("");
     
     // this.router.routeReuseStrategy.shouldReuseRoute = () => {
     //   return false;
@@ -66,7 +64,6 @@ export class ViewSupplyListComponent implements OnInit {
     //   console.log("First item: ", this.listToDisplay.items[0]);
     // });
 
-    this.getObservableItem().subscribe(data => this.itemToEdit$ = data);
 
     if (window.innerWidth < 768) {
       this.isMobileResolution = true;
@@ -75,15 +72,6 @@ export class ViewSupplyListComponent implements OnInit {
     }
 
     this.getRouteParams();
-
-    // this.newItemForm = this.fb.group({
-    //   newItemName: ['', Validators.required],
-    //   });
-    
-
-    this.editItemForm = this.fb.group({
-      editItemName: [this.itemToEdit$, Validators.required]
-    })
 
     this.userId = 1;
 
@@ -183,31 +171,14 @@ getRouteParams(){
 
   editItemOn(incomingItem: string){
     this.inEdit = true;
-    this.currentItemToEdit$.next(incomingItem);
-    // this.currentItemToEdit$.subscribe(data => this.itemToEdit$ = data)
-    this.setObservableItem(incomingItem);
-    //console.log("IncomingItem: ", incomingItem);
-    //this.getObservableItem().subscribe(data => this.itemToEdit$ = data);
-    //this.itemToEditDescription$ = incomingItem;
-    console.log("Item to edit: ", this.itemToEdit$);
-    console.log("CurrentItemToEdit: ", this.currentItemToEdit$);
-    
-  }
-
-  getObservableItem(): Observable<string>{
-    return this.currentItemToEdit$.asObservable();
-  }
-
-  setObservableItem(incomingItem: string){
-    console.log("IncomingItem: ", incomingItem);
-    this.currentItemToEdit$.next(incomingItem);
+    this.editItemForm = this.fb.group({
+      editItemName: [incomingItem, Validators.required]
+    });
   }
 
   editItemOff(){
     this.itemToEditDescription$ = null;
   }
-
-
 
   editSubmit(){
     console.log("Item: ", this.itemToEditDescription$);

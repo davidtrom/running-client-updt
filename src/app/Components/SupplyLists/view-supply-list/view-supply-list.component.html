@@ -234,20 +234,10 @@
             </div>
             <div class="modal-body">
                 <div *ngIf="inEdit" class="mb-3">
-                    <!-- <label for="newItemName" class="col-form-label">Edit:</label>
-                    {{itemToEditDescription}}
-                    <input type="text" class="form-control" id="newItemName"> -->
                     <form [formGroup]="editItemForm" (ngSubmit)="editSubmit()">
                         <div class="inputForm">
-                            <!-- <label for="newItem">List Item to Edit:</label>
-                            Enter the Item to add to the Supply List: -->
-                            
-                            <!-- <input id="newItemName" formControlName="newItemName" type="text" class="form-control" placeholder="Item to Add" [ngClass]="{'is-invalid': form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)}" >
-                            <div *ngIf="form.newItemName.errors && (form.newItemName.touched || form.newItemName.dirty)" class="invalid-feedback">
-                                <div *ngIf='form.newItemName.errors.required'>*An Item to Add is Required</div>
-                            </div> -->
                             <label for="editItemName">List Item to Edit: {{itemToEdit$}}</label>
-                            <input id="editItemName" formControlName="editItemName" type="text" class="form-control" value="{{itemToEdit}}" [ngClass]="{'is-invalid': form.editItemName.errors && (form.editItemName.touched || form.editItemName.dirty)}" >
+                            <input #editItemName id="editItemName" formControlName="editItemName" type="text" class="form-control" (onfocus)="updateStatus()" [ngClass]="{'is-invalid': form.editItemName.errors && (form.editItemName.touched || form.editItemName.dirty)}" >
                             <div *ngIf="form.editItemName.errors && (form.editItemName.touched || form.editItemName.dirty)" class="invalid-feedback">
                                 <div *ngIf='form.editItemName.errors.required'>*An Item is Required</div>
                             </div>
@@ -256,7 +246,8 @@
                             </div>
                         </div>
                         <div class="editItemBtns">
-                            <span><button type="submit" class="btn btn-success" data-bs-dismiss="modal">Update</button></span>
+                            <span *ngIf=""><button type="submit" class="btn btn-success" data-bs-dismiss="modal">Update</button></span>
+                            <span ><button type="submit" class="btn btn-success" data-bs-dismiss="modal" disabled>Update</button></span>
                             <span class="closeEditBtn"><button type="button" class="btn btn-warning" data-bs-dismiss="modal" (click)="closeEdit()">Cancel</button></span>
                         </div>
                     </form>
